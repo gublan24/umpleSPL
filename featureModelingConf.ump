@@ -1,0 +1,36 @@
+mixset StateMachine {
+    require [Class];
+
+}
+mixset Trait {
+    require [Class];
+}
+mixset Mixset {
+}
+mixset Trace {
+}
+mixset Structure {
+}
+
+mixset Template {
+}
+mixset Layout {
+      require [Class];
+}
+mixset Filter {
+}
+mixset FIXML {
+}
+
+mixset FeatureModel {
+  require [Mixset];
+}
+
+
+require subfeature [Class];
+require subfeature [opt StateMachine];
+require subfeature [opt Trait];
+require subfeature [opt Mixset];
+require subfeature [opt Trace opt Structure];
+require subfeature [opt FeatureModel];
+require subfeature [opt Template opt Layout opt Filter opt FIXML];

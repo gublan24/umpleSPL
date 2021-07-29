@@ -96,7 +96,7 @@ mixset CodeGvClassTraitDiagramGenerator{
   require [Trait];
 }
 mixset FeatureDiagramCo{
-  require [Feature];
+  require [FeatureModel];
  }
 mixset EntityRelationshipCon{ }
 mixset AlloyGenerator{ 

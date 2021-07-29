@@ -1,32 +1,6 @@
-mixset StateMachine {
-    require [Class];
+// This file contains the feature model of UmpleSPL
 
-}
-mixset Trait {
-    require [Class];
-}
-mixset Mixset {
-}
-mixset Trace {
-}
-mixset Structure {
-}
-
-mixset Template {
-}
-mixset Layout {
-      require [Class];
-}
-mixset Filter {
-}
-mixset FIXML {
-}
-
-mixset FeatureModel {
-  require [Mixset];
-}
-
-
+// SPL feature model (level 1): 
 require subfeature [Class];
 require subfeature [opt StateMachine];
 require subfeature [opt Trait];
@@ -34,3 +8,82 @@ require subfeature [opt Mixset];
 require subfeature [opt Trace opt Structure];
 require subfeature [opt FeatureModel];
 require subfeature [opt Template opt Layout opt Filter opt FIXML];
+require subfeature [Generators];
+
+// SPL feature model (level 2): 
+mixset StateMachine {
+    require [Class];
+}
+mixset Trait {
+    require [Class];
+}
+mixset Layout {
+      require [Class];
+}
+mixset FeatureModel {
+  require [Mixset];
+}
+
+// Generators (level 3): 
+mixset Generators {
+  require [SuperCodeGeneratorGenerator];
+  require [UmpleGenerator]; 
+
+  require subfeature [JavaGenerator];
+
+  require subfeature [opt RTCppGenerator opt PhpGenerator opt Uigu2Generator opt SqlGenerator];
+  
+  require subfeature [opt UmpleSelfGenerator opt USEGenerator opt EcoreGenerator opt TestGenerator];
+
+  require subfeature [opt PapyrusGenerator opt XmiGenerator opt TextUmlGenerator opt ScxmlGenerator];
+  
+    require subfeature [opt GvStateDiagramGenerator ];
+}
+
+//mixset CodeGenerator {  } // empty 
+mixset RubyGenerator { 
+  //require [RubyGeneratorIntMixset];
+  }
+
+
+// dependencies among generators and models 
+mixset JavaGenerator {  }
+mixset RTCppGenerator { }
+mixset PhpGenerator { }
+mixset Uigu2Generator {  }
+mixset SqlGenerator {  }
+mixset UmpleSelfGenerator {  }
+mixset USEGenerator { }
+mixset EcoreGenerator {  }
+mixset TestGenerator { }
+mixset PapyrusGenerator{  }
+mixset XmiGenerator{ }
+mixset TextUmlGenerator{ }
+mixset ScxmlGenerator{  }
+
+mixset GvStateDiagramGenerator { 
+  require [StateMachine];
+}
+
+mixset StateTableGenerator{  }
+mixset EventSequenceGenerator{  }
+mixset SimpleMetricsGenerator{  }
+
+mixset CodeGvClassDiagramGenerator{ }
+mixset CodeGvClassTraitDiagramGenerator{  }
+mixset FeatureDiagramCo{  }
+mixset EntityRelationshipCon{ }
+mixset AlloyGenerator{  }
+
+mixset NuSMVGenerators{ }
+mixset SimulateGenerator{ }
+mixset YumlGenerator{}
+mixset XtextGenerator{  }
+mixset JsonGenerator{  }
+mixset JsonMixedGenerator{  }
+mixset StructureDiagramGenerator{  }
+mixset SuperCodeGeneratorGenerator{ }
+mixset SuperGvGeneratorGenerator{ }
+mixset HtmlGenerator{ }
+mixset UmpleModelWalkerGenerator{ }
+mixset CodeAnalysisGenerator{ }

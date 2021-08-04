@@ -3,10 +3,6 @@
 class UmpleInternalParser {
    Map<Attribute,Token> fixmlLastIntilialization = new HashMap<Attribute, Token>();
    Map<Attribute,Integer> fixmlAttributeCount = new HashMap<Attribute, Integer>();
-   mixset Association {
-     Map<Association,List<Token>> afixmlLastIntilialization = new HashMap<Association, List<Token>>();
-     Map<Association,Integer> afixmlAttributeCount = new HashMap<Association, Integer>();
-   }
 //----------------------------------------------------------------------------  
 //---------------------------------Start--------------------------------------
 //----------------------------------------------------------------------------  
@@ -44,9 +40,7 @@ class UmpleInternalParser {
 			if (subToken.getName().equals("fixmlContent")) {
 				analyzeFIXMLContetnt(subToken);
 				//assignInitialValues(); // based-on-single-attributes
-				mixset Association {
-				  assignAssociationInitialValues(); // based-on-single-associations
-				}
+				Lable_Association_117: ;
 			}
 		}
    }
@@ -107,14 +101,11 @@ class UmpleInternalParser {
 			} else if (subToken.getName().equals("endContent")){
 				UmpleClass rUClass = analyzeFIXMLEndContetnt(uClass,subToken);
 				//addAttributes(uClass, rUClass,subToken); //based-on-single-attributes
-				mixset addAssociation {
-				  addAssociation(uClass, rUClass,subToken); // based-on-single-associations
-				}
+				Lable_addAssociation_118: ;
+		
 			} else if (subToken.getName().equals("extendContent")) {
 				UmpleClass rUClass = analyzeFIXMLextendedContentContetnt(subToken);
-				mixset Association {
-				  addAssociation(uClass, rUClass,subToken); // based-on-single-associations
-				}
+				Lable_Association_119: ;
 				//addAttributes(uClass, rUClass,subToken); //based-on-single-attributes
 			}
 		}
@@ -322,50 +313,7 @@ class UmpleInternalParser {
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
-mixset Association {
-   private void addAssociation(UmpleClass uClass, UmpleClass rUClass, Token mainToken){
-    Multiplicity m = new Multiplicity();
-		Association aAss = getModel().getAssociation(rUClass.getName()+"_Object");
-		if ( aAss != null) {			
-			Integer bound = Integer.parseInt(getModel().getAssociation(rUClass.getName()+"_Object").getEnd(1).getMultiplicity().getBound());
-			bound++;
-			m.setBound( bound.toString());
-			getModel().getAssociation(rUClass.getName()+"_Object").getEnd(1).setMultiplicity(m);
-			for (AssociationVariable yourAs : uClass.getAssociationVariables()) {
-				if (yourAs.getName().equals(rUClass.getName()+"_Object")) {
-					yourAs.setMultiplicity(m);
-				}
-			}
-		    List <Token> listOfToken = afixmlLastIntilialization.get(aAss);
-		    listOfToken.add(mainToken);
-		    afixmlLastIntilialization.put(aAss, listOfToken);
-			
-		} else {
-			m.setBound("1");
-			AssociationEnd leftEnd = new AssociationEnd(uClass.getName()+"_Object",uClass.getName(), "",uClass.getName(), m);
-			AssociationEnd rightEnd = new AssociationEnd(rUClass.getName()+"_Object",rUClass.getName(), "",rUClass.getName(), m);		
-			Association aAssociation = new Association(false, true,false,false,leftEnd,rightEnd);
-			aAssociation.setName(rUClass.getName()+"_Object");
-			getModel().addAssociation(aAssociation);	    
-			AssociationEnd myEnd = aAssociation.getEnd(0);
-		    AssociationEnd yourEnd = aAssociation.getEnd(1);
-		    AssociationVariable myAs = new AssociationVariable(myEnd.getRoleName(),myEnd.getClassName(),myEnd.getModifier(),null,myEnd.getMultiplicity(),aAssociation.getIsLeftNavigable());
-                    myAs.setIsComposition(aAssociation.getIsLeftComposition());
-		    AssociationVariable yourAs = new AssociationVariable(yourEnd.getRoleName(),yourEnd.getClassName(),yourEnd.getModifier(),null,yourEnd.getMultiplicity(),aAssociation.getIsRightNavigable());
-                    yourAs.setIsComposition(aAssociation.getIsRightComposition());
 
-		    myAs.setRelatedAssociation(yourAs);
-		    boolean added = uClass.addAssociationVariable(yourAs);
-		    if (added)
-		    {
-		      unlinkedAssociationVariables.add(yourAs);
-		      uClass.addAssociation(aAssociation);
-		    }
-		    List <Token> listOfToken = new ArrayList<>();
-		    listOfToken.add(mainToken);
-		    afixmlLastIntilialization.put(aAssociation, listOfToken);
-		}
-   }
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------

@@ -98,20 +98,8 @@ class UmpleInternalParser
         }
       }
 
-      mixset Trait {      
-      // Check that the enumeration doesn't conflict with any traits
-      for (UmpleTrait uT : model.getUmpleTraits()) {
-        if (uEnum.hasSameName(uT.getName())) {
-          // Enumeration Naming Conflict
-          getParseResult().addErrorMessage(new ErrorMessage(96,
-                                                            uEnum.getPosition(), 
-                                                            uEnum.getName(), 
-                                                            "" + uEnum.getPosition().getLineNumber(),
-                                                            "" + uT.getPosition(0).getLineNumber()));
-          return;
-        }
-      }
-      }
+      Lable_Trait_141: ;
+
       
       for (UmpleClass uClass : model.getUmpleClasses()) {
         if (uEnum.hasSameName(uClass.getName())) {

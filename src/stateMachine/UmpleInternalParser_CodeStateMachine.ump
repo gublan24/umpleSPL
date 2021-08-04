@@ -235,16 +235,8 @@ class UmpleInternalParser
 		    return;
 		}
 	  } 
-    mixset Trait {
-      else if (uClassifier instanceof UmpleTrait) {
-        if (((UmpleTrait)uClassifier).isImmutable())
-        {
-          //TODO--- trait's code	
-            setFailedPosition(token.getPosition(), 15, uClassifier.getName());
-            return;
-        }	
-	    }
-    }
+    Lable_Trait_120: ;
+
       
       Token subToken = token.getSubToken(0);
       if (subToken.is("activeDefinition"))
@@ -470,11 +462,8 @@ class UmpleInternalParser
     }
 
     StateMachine sm = new StateMachine(name);
-    mixset Trait {
-      if (uClassifier instanceof UmpleTrait){
-        sm.setUmpleTrait((UmpleTrait)uClassifier);
-      }
-    } if (uClassifier instanceof UmpleClass){
+    Lable_Trait_121: ;
+   if (uClassifier instanceof UmpleClass){
       sm.setUmpleClass((UmpleClass)uClassifier);
     }
     //------------
@@ -482,11 +471,7 @@ class UmpleInternalParser
     if (uClassifier instanceof UmpleClass) {
     	wasSet = sm.setUmpleClass((UmpleClass)uClassifier);
     } 
-    mixset Trait {
-        else if (uClassifier instanceof UmpleTrait) {
-        wasSet = sm.setUmpleTrait((UmpleTrait)uClassifier);
-      }
-    }
+    Lable_Trait_125: ;
     //------------
     if (!wasSet)
     {
@@ -495,12 +480,7 @@ class UmpleInternalParser
     	if (uClassifier instanceof UmpleClass) {
 	    	setFailedPosition(stateMachineToken.getPosition(), 15, uClassifier.getName());
 	    }
-      mixset Trait {
-        else if (uClassifier instanceof UmpleTrait) {
-          //TODO --Trait's code
-          setFailedPosition(stateMachineToken.getPosition(), 15, uClassifier.getName());
-        }
-      } 
+      Lable_Trait_123: ;
     }
     
     populateStateMachine(stateMachineDefinitionToken,sm, uClassifier);
@@ -600,11 +580,7 @@ class UmpleInternalParser
 	    else
 	    {
 	      sm = new StateMachine(name);
-        mixset Trait {
-            if (uClassifier instanceof UmpleTrait){
-            sm.setUmpleTrait((UmpleTrait)uClassifier);
-          } 
-        }
+        Lable_Trait_124: ;
         if (uClassifier instanceof UmpleClass){
           sm.setUmpleClass((UmpleClass)uClassifier);
         }
@@ -616,23 +592,15 @@ class UmpleInternalParser
     if (uClassifier instanceof UmpleClass) {
     	wasSet = sm.setUmpleClass((UmpleClass)uClassifier);
     } 
-    mixset Trait {
-       if (uClassifier instanceof UmpleTrait) {
-    	wasSet = sm.setUmpleTrait((UmpleTrait)uClassifier);
-     }
-    }
+    Lable_Trait_122: ;
+
     if (!wasSet)
     {
     	// Future-proofing: currently all paths cause wasSet to be true
     	if (uClassifier instanceof UmpleClass) {
 	    	setFailedPosition(stateMachineToken.getPosition(), 15, uClassifier.getName());
 	    } 
-      mixset Trait {
-          if (uClassifier instanceof UmpleTrait) {
-          //TODO --Trait's code
-          setFailedPosition(stateMachineToken.getPosition(), 15, uClassifier.getName());
-        }
-      } 
+      Lable_Trait_126: ;
     }
       
     
@@ -775,9 +743,8 @@ class UmpleInternalParser
       }
     }
     
-    mixset Mixset {
-      analyzeMixsetDefinition(innerMixsetTokens, sm);
-    }
+    Lable_Mixset_127: ;
+
  
     return sm;
   }
@@ -963,16 +930,8 @@ class UmpleInternalParser
       {
         setFailedPosition(stateMachineToken.getPosition(), 53, sm.getName());
       }
-      mixset Trace {
-        if(stateToken.is("trace"))
-        {
-          if (uClassifier instanceof UmpleClass) {
-          analyzeTraceStatement((UmpleClass)uClassifier,stateToken); 
-        } else {
-          //TODO--- trait's functionality for trace;
-        }
-        }
-      }
+      Lable_Trace_128: ;
+
       
       if (!stateToken.is("state") && !stateToken.is("stateName"))
       {
@@ -1920,11 +1879,7 @@ class UmpleInternalParser
     {
       if(((GuardAnalyzer)model.getAnalyzer("guard"))!=null){
         UmpleClassifier uClassifier = fromState.getStateMachine().getRootStateMachine().getUmpleClass();
-    	mixset Trait {
-        if (fromState.getStateMachine().getRootStateMachine().getUmpleClass()==null){
-    		uClassifier = fromState.getStateMachine().getRootStateMachine().getUmpleTrait();
-    	  }
-      }
+    	  Lable_Trait_129: ;
         ((GuardAnalyzer)model.getAnalyzer("guard")).setUClassifier(uClassifier);
         ((GuardAnalyzer)model.getAnalyzer("guard")).setT(t);
         model.getAnalyzer("guard").analyzeToken(guardToken);

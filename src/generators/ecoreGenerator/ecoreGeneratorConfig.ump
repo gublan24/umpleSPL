@@ -2,8 +2,6 @@ namespace cruise.umple.compiler;
 
 use EoreGenerator;
 
-mixset EoreGenerator{
-
 class EcoreGenerator
 {
   isA CodeGeneratorWithSubptions;
@@ -22,4 +20,3 @@ class EcoreGenerator
 use generators/ecoreGenerator/Generator_CodeEcore.ump;
 
 
-}

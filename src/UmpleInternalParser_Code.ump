@@ -253,9 +253,8 @@ class UmpleInternalParser
     mixset Mixset {
       analyzeMixsetToken(t, analysisStep);
     }
-    mixset FeatureModel {
-      analyzeRequireStatement(t, analysisStep);
-    }
+    Lable_FeatureModel_148: ;
+
     mixset AspectInjection {
       analyzeInjectionToken(t, analysisStep);
     }
@@ -526,10 +525,7 @@ mixset Trait{
 mixset Constraint {
   use constraint/UmpleInternalParser_CodeConstraints.ump;
 }
-mixset Structure {
-  use strcture/UmpleInternalParser_CodeStructure.ump;
-  use Template_Strcture;
-}
+
 mixset Template {
   use template/UmpleInternalParser_CodeTemplate.ump;
   use Template_Strcture;

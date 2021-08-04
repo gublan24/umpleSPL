@@ -110,39 +110,11 @@ class UmpleInternalParser
     String tokenKey ="";
     String prefix ="";
     boolean returnMixsetBody= false;
-    mixset Class {
-      if (token.is("classDefinition"))
-      {
-        tokenKey = "name"; 
-        prefix ="class";
-        returnMixsetBody= true;
-      }
-    }
-    mixset StateMachine {
-      else if (token.is("state"))
-      {
-        tokenKey = "stateName";
-      }
-      else if (token.is("inlineStateMachine"))
-      {
-        tokenKey =  "name";
-      }
-    }
-    mixset Trait {
-      else if (token.is("traitDefinition"))
-      {
-        tokenKey = "name"; 
-        prefix ="trait";
-        returnMixsetBody= true;
-      }
-    }
-    mixset Association {
-      else if (token.is("associationDefinition"))
-      {
-        tokenKey = "name"; 
-        prefix ="association";
-      }
-    }
+    Lable_Class_144: ;
+    Lable_StateMachine_145: ;
+    Lable_Trait_146: ;
+    Lable_Association_147: ;
+
     if(! tokenKey.equals("")) 
     {
       mixsetBody = " "+prefix +" "+ token.getValue(tokenKey) + " { " + mixsetBody + " } ";

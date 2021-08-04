@@ -55,10 +55,7 @@ use Umple.ump;
 mixset Trace {
   use trace/Trace.ump;
 }
-mixset Structure {
-  use strcture/Structure.ump;
-  use Structure_StateMachine;
-}
+
 mixset Template {
   use template/Template.ump;
 }

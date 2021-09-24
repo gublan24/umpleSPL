@@ -1,3 +1,62 @@
+//moved from file 'Master_readyComposition.ump' but not inserted in their target features
+
+mixset StateMachine { 
+  class GeneratorHelper { 
+    before Lable_StateMachine_1:postpare(UmpleModel)
+  {
+      postpareStateMachine(model);
+    }  } 
+} 
+
+mixset Trace { 
+  class GeneratorHelper { 
+    before Lable_Trace_2:postpare(UmpleModel)
+  {
+      postpareTrace(model);
+    }  } 
+} 
+
+
+mixset StateMachine { 
+  class GeneratorHelper { 
+    before Lable_StateMachine_3:postpare(UmpleClass)
+  {
+      postpareStateMachine(aClass);
+    }  } 
+} 
+
+
+
+mixset Trace { 
+  class GeneratorHelper { 
+    before Lable_Trace_4:postpare(UmpleClass)
+  {
+      postpareTrace(aClass);
+    }  } 
+} 
+
+
+mixset Mixset { 
+  class GeneratorHelper { 
+    before Lable_Mixset_5:toCode(List<CodeInjection>)
+  {
+	      if(inject.hasCodeLabel())
+          continue;// handle the case when labels are used. // Do nothing  
+        }  } 
+} 
+
+
+mixset RubyGeneratorIntMixset { 
+  class GeneratorHelper { 
+    before Lable_RubyGeneratorIntMixset_6:toCode(List<CodeInjection>)
+  {
+          comment = RubyGenerator.class.isInstance(generator)?"#":"//";
+        }  } 
+} 
+
+
+//
+
 
 mixset Mixset { 
   class TemplateDefinitionWalker { 

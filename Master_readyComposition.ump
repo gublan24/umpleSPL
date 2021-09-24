@@ -13,165 +13,23 @@
 
 
 
-mixset Class { 
-  class UmpleGenerator { 
-    before Lable_Class_7:initializeParser
-  {
-      parser.addGrammarFile("/class/umple_classes.grammar");
-    }  } 
-} 
 
 
-mixset Trait { 
-  class UmpleGenerator { 
-    before Lable_Trait_8:initializeParser
-  {
-      parser.addGrammarFile("/trait/umple_traits.grammar");
-    }  } 
-} 
 
 
-mixset FIXML { 
-  class UmpleGenerator { 
-    before Lable_FIXML_9:initializeParser
-  {
-      parser.addGrammarFile("/fixml/umple_fixml.grammar");
-    }  } 
-} 
 
 
-mixset StateMachine { 
-  class UmpleGenerator { 
-    before Lable_StateMachine_10:initializeParser
-  {
-      parser.addGrammarFile("/stateMachine/umple_state_machines.grammar");
-    }  } 
-} 
 
 
-mixset Trace { 
-  class UmpleGenerator { 
-    before Lable_Trace_11:initializeParser
-  {
-      parser.addGrammarFile("/trace/umple_traces.grammar");
-    }  } 
-} 
 
 
-mixset Template { 
-  class UmpleGenerator { 
-    before Lable_Template_12:initializeParser
-  {
-      parser.addGrammarFile("/template/umple_template.grammar");
-    }  } 
-} 
 
 
-mixset Structure { 
-  class UmpleGenerator { 
-    before Lable_Structure_13:initializeParser
-  {
-      parser.addGrammarFile("/strcture/umple_structure.grammar");
-    }  } 
-} 
 
 
-mixset Layout { 
-  class UmpleGenerator { 
-    before Lable_Layout_14:initializeParser
-  {
-       parser.addGrammarFile("/layout/umple_layout.grammar");
-    }  } 
-} 
 
 
-mixset Filter { 
-  class UmpleGenerator { 
-    before Lable_Filter_15:initializeParser
-  {
-      parser.addGrammarFile("/filter/umple_filter.grammar"); // TODO Under development
-    }  } 
-} 
 
-
-mixset Mixset { 
-  class UmpleGenerator { 
-    before Lable_Mixset_16:initializeParser
-  {
-      parser.addGrammarFile("/mixset/umple_mixsets.grammar");
-    }  } 
-} 
-
-
-mixset StateMachine { 
-  class SuperCodeGenerator { 
-    before Lable_StateMachine_17:testForPrimitiveInConstraint(ConstraintVariable)
-  {
-      if(variable instanceof ConstraintStateMachine)
-      {
-        return false;
-      }
-    }  } 
-} 
-
-
-mixset StateMachine { 
-  class SuperCodeGenerator { 
-    before Lable_StateMachine_18:translate(String,ConstraintVariable,boolean)
-  {
-      else if("state".equals(id))
-      {
-        return translate("stateOne", ((ConstraintState)cv).getState());
-      }
-      else if("statemachine".equals(id))
-      {
-        return translate("getFullMethod",((ConstraintStateMachine)cv).getStateMachine())+"()";
-      }
-    }  } 
-} 
-
-
-mixset StateMachine { 
-  class UmpleClass { 
-    before Lable_StateMachine_19:getMethodNames
-  {
-      for(StateMachine sm : this.getStateMachines())
-      {
-        String stateMachineName = sm.getName().substring(0, 1).toUpperCase() + sm.getName().substring(1);
-        methodNames.add("set" + stateMachineName);
-        methodNames.add("get" + stateMachineName);
-
-        for(Event ev : sm.getEvents())
-        {
-          methodNames.add(ev.getName());
-        }
-      }
-    }  } 
-} 
-
-
-mixset StateMachine { 
-  class UmpleClass { 
-    before Lable_StateMachine_20:hasImplementedMethodIncludingWithinParentClasses(Method)
-  {
-    if (numberOfStateMachines()>0){
-    	for(StateMachine sm : getStateMachines()){
-    		if (sm.getEventByMethod(comparedMethod)!=null){
-    			return true;
-    		}
-    	}
-    }
-    }  } 
-} 
-
-
-mixset StateMachine { 
-  class UmpleClass { 
-    before Lable_StateMachine_21:propagateImmutabilityToAllRelationships(boolean)
-  {
-      if (this.hasStateMachines()) { return false; }
-      }  } 
-} 
 
 
 mixset Filter { 

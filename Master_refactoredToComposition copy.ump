@@ -539,7 +539,850 @@ mixset StateMachine {
 } 
 
 
+mixset Association { 
+  class AssociationTraceItem { 
+    before Lable_Association_35:trace(CodeTranslator,Object,String,UmpleClass,String...)
+  {
+		for(AssociationVariable ass: uClass.getAssociationVariables())
+		{
+			if(ass.equals(o))
+			{
+				String type = ((AssociationVariable)o).getType();
+				String name = "";
+				String extra = "";
+				String obj = "";
+				String accessor = gen.translate("traceAccessor",this);
+				String concatinator = gen.translate("traceConcatinator",this);
+				String comma = concatinator+"\",\""+concatinator;
+				String tracerName = Character.toUpperCase(getTracerType().charAt(0)) + getTracerType().substring(1);
+				String messageLayout = "{0}"+comma+"{1}"+concatinator+"\",{2},{3},{4},\""+concatinator+"{5}"+concatinator+"\",{6},{7},\"";
+				mixset Association {
+				  if(o instanceof AssociationVariable)
+				  {
+					name = gen.translate("associationMany",(AssociationVariable)o);
+			  	  }
+				}
 
+				//         if(type==null||"".equals(type)||"Boolean".equals(type)||"boolean".equals(type)||"String".equals(type)||"int".equals(type)||"Integer".equals(type)||"float".equals(type)||"Float".equals(type)||"double".equals(type)||"Double".equals(type)||"Time".equals(type)||"Date".equals(type))
+				//         {
+				//           obj = name;
+				//         }
+				//         else
+				//         {
+				//           obj = name+"(\"+"+StringFormatter.format(gen.translate("traceIdentifier",this),name)+"+\")";
+				//           name += gen.translate("traceFormatNonPrimitive",this);
+				//         }
+
+				for(String str: args){
+					extra+=concatinator+str;
+				}
+				if(getTraceDirective().getTraceRecord()!=null)
+				{
+					for(Attribute record:getTraceDirective().getTraceRecord().getAttributes())
+					{
+						extra+=comma+gen.translate("attribute"+(record.getIsList()?"Many":"One"),record);
+					}
+					if(getTraceDirective().getTraceRecord().numberOfRecord()>0)
+					{
+						extra+= concatinator+"\"";
+						for(String record:getTraceDirective().getTraceRecord().getRecord())
+						{
+							extra+=","+record.replace("\"","");
+						}
+						extra+= "\"";
+					}
+				}
+				String message = messageLayout+extra;
+				message = StringFormatter.format(
+						message,gen.translate("traceTimestamp",this),
+						gen.translate("traceThread",this),
+						getPosition().getFilename().replace("\\","\\\\"),
+						getPosition().getLineNumber(),
+						uClass.getName()+"+"+type,
+						StringFormatter.format(gen.translate("traceIdentifier",this),gen.translate("traceSelf",this)),
+						methodname,
+						name        
+						);
+
+				message = TraceItemUtil.prepareTraceMessage(getTraceDirective(),gen,this,message);
+
+				message = StringFormatter.format(getExtremities(gen, name),message);
+				message = GeneratorHelper.doIndent(message,gen.translate("traceIndent",this));
+				if(getTraceDirective().getPostfix().getExecuteClause()!=null)
+				{
+					String execute = getTraceDirective().getPostfix().getExecuteClause();
+					execute = GeneratorHelper.doIndent(execute,gen.translate("traceIndent",this));
+					message += "\n" + execute;
+				}
+				return message;
+			}
+		}
+		}  } 
+}
+
+mixset Trait { 
+  class PreconditionAnalyzer { 
+    before Lable_Trait_36:analyze(Token)
+  {
+    else if (uClassifier instanceof UmpleTrait)
+    {
+      ((UmpleTrait)(uClassifier)).addPreCond((Precondition)rawLine);  
+    }  
+    }  } 
+} 
+
+
+mixset Trait { 
+  class PostconditionAnalyzer { 
+    before Lable_Trait_37:analyze(Token)
+  {
+      else if (uClassifier instanceof UmpleTrait)
+      {
+        ((UmpleTrait)(uClassifier)).addPostCond((Postcondition)rawLine);  
+      }
+    }  } 
+} 
+
+
+
+mixset Trait { 
+  class InvariantAnalyzer { 
+    before Lable_Trait_38:analyze(Token)
+  {
+      else if (uClassifier instanceof UmpleTrait)
+      {
+        ((UmpleTrait)uClassifier).addConstraintTree(rawLine);  
+      }
+    }  } 
+} 
+
+
+mixset Trait { 
+  class ConstraintNameNameAnalyzer { 
+    before Lable_Trait_39:retrieveClass(ConstraintTree,UmpleClassifier)
+  {
+              uClass = previouslyFoundAttribute.getAttribute().getUmpleTrait();
+              UmpleModel model = ((UmpleTrait)uClass).getSourceModel();
+              uClass = model.getUmpleClass(previouslyFoundAttribute.getAttribute().getType());
+              }  } 
+} 
+
+
+mixset Trait { 
+  class ConstraintNameNameAnalyzer { 
+    before Lable_Trait_40:retrieveClass(ConstraintTree,UmpleClassifier)
+  {
+              uClass = previouslyFoundAssociation.getAssociation().getUmpleTrait();
+              UmpleModel model = ((UmpleTrait)uClass).getSourceModel();
+              uClass = model.getUmpleClass(previouslyFoundAssociation.getAssociation().getType());
+              }  } 
+}
+
+
+mixset Trait { 
+  class ConstraintNameNameAnalyzer { 
+    before Lable_Trait_41:generateConstraintName(UmpleClassifier,String,Boolean)
+  {
+        attribute = ((UmpleTrait)(uClassifier)).getAttribute(value);
+      }  } 
+} 
+
+mixset Trait { 
+  class ConstraintNameNameAnalyzer { 
+    before Lable_Trait_42:generateConstraintName(UmpleClassifier,String,Boolean)
+  {
+          association = ((UmpleTrait)(uClassifier)).getAssociationVariable(value);
+        }  } 
+} 
+
+
+mixset StateMachine { 
+  class ConstraintNameNameAnalyzer { 
+    before Lable_StateMachine_43:generateConstraintName(UmpleClassifier,String,Boolean)
+  {
+        StateMachine stateMachine = null;
+        if(uClassifier instanceof UmpleClass)
+        {
+          stateMachine = ((UmpleClass)uClassifier).getStateMachine(value);
+        }
+        }  } 
+} 
+
+mixset Trait { 
+  class ConstraintNameNameAnalyzer { 
+    before Lable_Trait_44:generateConstraintName(UmpleClassifier,String,Boolean)
+  {
+          mixset StateMachine {
+            else if(uClassifier instanceof UmpleTrait)
+            {
+              stateMachine = ((UmpleTrait)uClassifier).getStateMachine(value);
+            }
+          }
+        }  } 
+} 
+
+mixset StateMachine { 
+  class ConstraintNameNameAnalyzer { 
+    before Lable_StateMachine_45:generateConstraintName(UmpleClassifier,String,Boolean)
+  {
+        if(stateMachine!=null)
+        {
+          ConstraintStateMachine name = new ConstraintStateMachine(stateMachine);
+          return name;
+        }
+        }  } 
+} 
+
+mixset Structure { 
+  class ConstraintNameNameAnalyzer { 
+    before Lable_Structure_46:generateConstraintName(UmpleClassifier,String,Boolean)
+  {
+            Port port = null;
+            if (uClassifier instanceof UmpleClass)
+            {
+              port = ((UmpleClass)(uClassifier)).getPort(value);
+            }
+            if(port!=null)
+            {
+              ConstraintPort name = new ConstraintPort(port);
+              return name;
+            }
+        }  } 
+} 
+
+
+mixset Trait { 
+  class ConstraintNameNameAnalyzer { 
+    before Lable_Trait_47:generateConstraintName(UmpleClassifier,String,Boolean)
+  {
+    else if(uClassifier instanceof UmpleTrait)
+    {
+      for(UmpleTrait uTrait:((UmpleTrait)uClassifier).getExtendsTraits())
+      {
+        ConstraintVariable var = generateConstraintName(uTrait,value,hasParameter);
+        if(!(var instanceof ConstraintUnassignedName))
+        {
+          return var;
+        }
+      }
+    }      
+    }  } 
+}
+
+mixset Constraint { 
+  class UmpleInternalParser { 
+    before Lable_Constraint_48:init
+  {
+      parser.addGrammarFile("/constraint/umple_constraints.grammar");  // TODO Under development
+    }  } 
+} 
+
+mixset StateMachine { 
+  class UmpleInternalParser { 
+    before Lable_StateMachine_49:analyze(boolean)
+  {
+        secondPostTokenAnalysis();
+      }  } 
+} 
+
+mixset Attribute { 
+  class UmpleInternalParser { 
+    before Lable_Attribute_50:analyze(boolean)
+  {
+        mixset Method {
+          checkDefaultedNameConflict();
+        }
+      }  } 
+} 
+
+
+mixset FeatureModel { 
+  class UmpleInternalParser { 
+    before Lable_FeatureModel_51:analyze(boolean)
+  {
+        analyzeFeatureModel(); // lastly to analyze the feature model after all mixsets are added to umple model. 
+      }  } 
+} 
+
+mixset Mixset { 
+  class UmpleInternalParser { 
+    before Lable_Mixset_52:analyzeToken(Token,int)
+  {
+      analyzeMixsetUseStatement(t, analysisStep);
+    }  } 
+} 
+
+
+mixset Class { 
+  class UmpleInternalParser { 
+    before Lable_Class_53:analyzeToken(Token,int)
+  {
+      analyzeClassToken(t,analysisStep);
+    }  } 
+} 
+
+
+mixset Trait { 
+  class UmpleInternalParser { 
+    before Lable_Trait_54:analyzeToken(Token,int)
+  {
+      analyzeTraitToken(t,analysisStep);
+    }  } 
+} 
+
+
+mixset Template { 
+  class UmpleInternalParser { 
+    before Lable_Template_55:analyzeToken(Token,int)
+  {
+      analyzeTemplateToken(t,analysisStep);
+    }  } 
+} 
+
+
+mixset StateMachine { 
+  class UmpleInternalParser { 
+    before Lable_StateMachine_56:analyzeToken(Token,int)
+  {
+      analyzeStateMachineToken(t,analysisStep);
+    }  } 
+} 
+
+
+mixset Structure { 
+  class UmpleInternalParser { 
+    before Lable_Structure_57:analyzeToken(Token,int)
+  {
+      analyzeComponentToken(t,analysisStep);
+    }  } 
+} 
+
+
+mixset Trace { 
+  class UmpleInternalParser { 
+    before Lable_Trace_58:analyzeToken(Token,int)
+  {
+      analyzeTraceToken(t,analysisStep);
+    }  } 
+} 
+
+
+mixset Filter { 
+  class UmpleInternalParser { 
+    before Lable_Filter_59:analyzeToken(Token,int)
+  {
+      analyzeFilterToken(t,analysisStep);
+    }  } 
+} 
+
+
+mixset Layout { 
+  class UmpleInternalParser { 
+    before Lable_Layout_60:analyzeToken(Token,int)
+  {
+      analyzeLayoutToken(t,analysisStep);
+    }  } 
+} 
+
+
+mixset FIXML { 
+  class UmpleInternalParser { 
+    before Lable_FIXML_61:analyzeToken(Token,int)
+  {
+      analyzeFIXML(t, analysisStep);
+    }  } 
+} 
+
+
+mixset Mixset { 
+  class UmpleInternalParser { 
+    before Lable_Mixset_62:analyzeToken(Token,int)
+  {
+      analyzeMixsetToken(t, analysisStep);
+    }  } 
+} 
+
+
+mixset FeatureModel { 
+  class UmpleInternalParser { 
+    before Lable_FeatureModel_63:analyzeToken(Token,int)
+  {
+      analyzeRequireStatement(t, analysisStep);
+    }  } 
+} 
+
+mixset AspectInjection { 
+  class UmpleInternalParser { 
+    before Lable_AspectInjection_64:analyzeToken(Token,int)
+  {
+      analyzeInjectionToken(t, analysisStep);
+    }  } 
+} 
+
+
+mixset Class { 
+  class UmpleInternalParser { 
+    before Lable_Class_65:analyzeToken(Token,UmpleClass,int)
+  {
+      analyzeClassToken(t,aClass,analysisStep);
+    }  } 
+} 
+
+
+
+mixset Constraint { 
+  class UmpleInternalParser { 
+    before Lable_Constraint_67:analyzeDependentTokens(Token,UmpleClass,int)
+  {
+      if (t.is("modelConstraintBody"))
+      {
+        analyzeModelConstraint(t,aClass);
+      }
+    }  } 
+} 
+
+
+mixset AspectInjection { 
+  class UmpleInternalParser { 
+    before Lable_AspectInjection_68:analyzeDependentTokens(Token,UmpleClass,int)
+  {
+      else if (t.is("beforeCode") || t.is("afterCode"))
+      {
+        analyzeInjectionCode(t,aClass);
+      }
+    }  } 
+} 
+
+
+mixset Trace { 
+  class UmpleInternalParser { 
+    before Lable_Trace_69:analyzeDependentTokens(Token,UmpleClass,int)
+  {
+      analyzeTraceToken(t,aClass);
+    }  } 
+} 
+
+
+mixset Layout { 
+  class UmpleInternalParser { 
+    before Lable_Layout_70:analyzeDependentTokens(Token,UmpleClass,int)
+  {
+      analyzeLayoutToken(t,aClass,analysisStep);
+    }  } 
+} 
+
+
+mixset Class { 
+  class UmpleInternalParser { 
+    before Lable_Class_71:postTokenAnalysis
+  {
+      if (getParseResult().getWasSuccess())
+      {
+        postTokenClassAnalysis();
+      }
+    }  } 
+} 
+
+
+mixset Trace { 
+  class UmpleInternalParser { 
+    before Lable_Trace_72:postTokenAnalysis
+  { 
+      if (getParseResult().getWasSuccess())
+      {
+        postTokenTraceAnalysis();
+      }
+    }  } 
+} 
+
+
+mixset Trait { 
+  class UmpleInternalParser { 
+    before Lable_Trait_73:postTokenAnalysis
+  {
+      if (getParseResult().getWasSuccess())
+      {
+        postTokenTraitAnalysis();
+      }  
+      if (getParseResult().getWasSuccess())
+      {
+        applyTraits();
+        //Issue 686
+        checkCodeInjections();
+      } 
+     }  } 
+} 
+
+
+mixset Layout { 
+  class UmpleInternalParser { 
+    before Lable_Layout_74:postTokenAnalysis
+  {
+      if (getParseResult().getWasSuccess())
+      {
+        postTokenLayoutAnalysis();
+      }
+    }  } 
+} 
+
+
+mixset Template { 
+  class UmpleInternalParser { 
+    before Lable_Template_75:postTokenAnalysis
+  {
+      if (getParseResult().getWasSuccess()) {
+        postTokenTemplateAnalysis();
+      }
+    }  } 
+} 
+
+
+mixset Structure { 
+  class UmpleInternalParser { 
+    before Lable_Structure_76:postTokenAnalysis
+  {
+      if (getParseResult().getWasSuccess()) {
+        postTokenComponentAnalysis();
+      }
+    }  } 
+} 
+
+
+mixset Constraint { 
+  class UmpleInternalParser { 
+    before Lable_Constraint_77:postTokenAnalysis
+  {
+      if (getParseResult().getWasSuccess())
+      {
+        postTokenModelConstraintAnalysis();
+      }
+    }  } 
+} 
+
+
+mixset Mixset { 
+  class UmpleInternalParser { 
+    before Lable_Mixset_78:analyzeClassToken(Token,int)
+  {
+      // add parsed files to parsedUmpfiles hashMap.
+      String umpFileName = t.getSubToken("use").getValue();
+      if(! parsedUmpfiles.keySet().contains(umpFileName))
+      parsedUmpfiles.put(umpFileName, true);
+      }  } 
+} 
+
+
+mixset Mixset { 
+  class UmpleInternalParser { 
+    before Lable_Mixset_79:analyzeClassToken(Token,UmpleClass,int)
+  {
+      else if (token.getValue("mixsetDefinition") != null)  {
+        analyzeMixsetBodyToken(token);
+      }
+    }  } 
+} 
+
+
+mixset StateMachine { 
+  class UmpleInternalParser { 
+    before Lable_StateMachine_80:postTokenClassAnalysis
+  {
+      addAutogeneratedMethodsForStateMachines();
+      }  } 
+} 
+
+
+mixset Trait { 
+  class UmpleInternalParser { 
+    before Lable_Trait_81:checkAssociationsForDistributed
+  { 
+         if (associationIsBetweenClassAndTrait(association)){continue;} 
+       }  } 
+} 
+
+
+mixset Trait { 
+  class UmpleInternalParser { 
+    before Lable_Trait_82:checkAssociationsForDistributed
+  {
+      if(getModel().getUmpleTraitTypeParameter(myEnd.getClassName()) || getModel().getUmpleTrait(myEnd.getClassName())!=null) return ;
+      if(getModel().getUmpleTraitTypeParameter(yourEnd.getClassName()) || getModel().getUmpleTrait(yourEnd.getClassName())!=null) return ;
+      }  } 
+} 
+
+
+mixset Mixset { 
+  class UmpleInternalParser { 
+    before Lable_Mixset_83:analyzeAllAssociations(Token)
+  {
+        if (token.is("mixsetDefinition"))
+        {
+          analyzeMixsetBodyToken(token);
+        } 
+      }  } 
+} 
+
+
+mixset StateMachine { 
+  class UmpleInternalParser { 
+    before Lable_StateMachine_84:analyzeClass(Token)
+  {
+    //Reset number of activeObjects with each class definition
+    this.numberOfActiveObjects = 1;
+    }  } 
+} 
+
+
+mixset Trait { 
+  class UmpleInternalParser { 
+    before Lable_Trait_85:addExtendsTo(Token,UmpleClassifier,Map<UmpleClassifier,List<String>>,Map<UmpleClassifier,List<Token>>)
+  {
+          processGTemplateParameterAssignment(extendsToken, aClassifier, extendName);
+        }  } 
+} 
+
+
+mixset Trait { 
+  class UmpleInternalParser { 
+    before Lable_Trait_86:verifyClassesInUse
+  {
+        boolean isTraitTypeParameter = model.getUmpleTraitTypeParameter(e.getValue());
+        boolean isATrait = model.getUmpleTrait(e.getValue()) != null;
+        condToCheck = condToCheck && !isATrait && !isTraitTypeParameter;
+      }  } 
+} 
+
+mixset Trait { 
+  class UmpleInternalParser { 
+    before Lable_Trait_87:addUnlinkedExtends
+  {
+          isTraitCheck = isUmpleTrait(extendName);
+        }  } 
+} 
+
+
+mixset Trait { 
+  class UmpleInternalParser { 
+    before Lable_Trait_88:addUnlinkedExtends
+  {
+              UmpleTrait parent = model.getUmpleTrait(extendName);     
+              boolean wasSet = child.addExtendsTrait(parent);
+              if (!wasSet)
+              {
+                Position pos;
+                try
+                {
+                  pos = extendsToken.get(i).getPosition();
+                }
+                catch(Exception e)
+                {
+                  pos = new Position("",0,0,0);
+                }
+                // TODO 1: the error code should be chnaged.            
+                setFailedPosition(pos, 16, child.getName(), parent.getName());
+                return;
+              }
+            }  } 
+} 
+
+mixset StateMachine { 
+  class UmpleInternalParser { 
+    before Lable_StateMachine_89:addUnlinkedKeys
+  {          
+            if(c.hasStateMachines())  
+            {
+                for(StateMachine aStateMachine : c.getStateMachines())
+                {
+                    if(aStateMachine.getName().equals(tokenVal))
+                    {
+                        tokenMatch = true;
+                        break;
+                    }
+                }
+            }
+            }  } 
+} 
+
+
+mixset Trait { 
+  class UmpleInternalParser { 
+    before Lable_Trait_90:addImplementedMethodsFromInterface(List<UmpleInterface>,UmpleClass)
+  {
+            hasMethodTraitsCheck = !(uClass.hasMethodInTraits(aMethod));
+          }  } 
+} 
+
+
+mixset Trait { 
+  class UmpleInternalParser { 
+    before Lable_Trait_91:createSpecializedLinks
+  {
+        if (model.getUmpleTrait(aLeftEnd.getClassName()) != null || model.getUmpleTrait(aRightEnd.getClassName()) != null)
+        {
+          continue;
+        }
+      }  } 
+} 
+
+
+
+mixset Trait { 
+  class UmpleInternalParser { 
+    before Lable_Trait_92:createSpecializedLinks
+  {
+          if (model.getUmpleTrait(bLeftEnd.getClassName()) != null || model.getUmpleTrait(bRightEnd.getClassName()) != null)
+          {
+            continue;
+          }
+       }  } 
+} 
+
+
+
+mixset Trait { 
+  class UmpleInternalParser { 
+    before Lable_Trait_93:checkSingletonAssociations
+  { 
+        if (associationIsBetweenClassAndTrait(association)){continue;} 
+      }  } 
+} 
+
+
+mixset Trait { 
+  class UmpleInternalParser { 
+    before Lable_Trait_94:checkSingletonAssociations
+  {
+        if(getModel().getUmpleTraitTypeParameter(myEnd.getClassName()) || getModel().getUmpleTrait(myEnd.getClassName())!=null) return ;
+        if(getModel().getUmpleTraitTypeParameter(yourEnd.getClassName()) || getModel().getUmpleTrait(yourEnd.getClassName())!=null) return ;
+      }  } 
+} 
+
+
+mixset Trait { 
+  class UmpleInternalParser { 
+    before Lable_Trait_95:addUnlinkedAssociations
+  { 
+         if (associationIsBetweenClassAndTrait(association)){continue;}
+       }  } 
+} 
+
+
+mixset Mixset { 
+  class UmpleInternalParser { 
+    before Lable_Mixset_96:analyzeMethod(Token,UmpleElement,boolean)
+  {
+              methodCode = processInlineMixset(token.getValue(), meth);
+            }  } 
+} 
+
+
+mixset StateMachine { 
+  class UmpleInternalParser { 
+    before Lable_StateMachine_97:analyzeMethod(Token,UmpleElement,boolean)
+  {
+        if (uClass.getStateDependentMethods().contains(aMethod) && !aMethod.isIsAbstract()) {
+          uClass.addStateDependentMethod(aMethod, null);
+        }
+        else
+        }  } 
+} 
+
+
+mixset StateMachine { 
+  class UmpleInternalParser { 
+    before Lable_StateMachine_98:analyzeMethod(Token,UmpleElement,boolean)
+  {
+        stateDependentMethodsflag = !uClass.getStateDependentMethods().contains(aMethod);
+        }  } 
+} 
+
+
+
+mixset Trait { 
+  class UmpleInternalParser { 
+    before Lable_Trait_99:analyzeMethod(Token,UmpleElement,boolean)
+  {
+    else if (uElement instanceof UmpleTrait)
+    {
+        UmpleTrait uTrait = (UmpleTrait) uElement;
+        if (method.is("abstractMethodDeclaration")) aMethod.setIsAbstract(true);
+        
+        // Add Getter/Setter/Constructor to Class
+     //   boolean shouldAddMethod = isConstructorOrGetSet(uClass, aMethod);
+        if (!uTrait.hasMethod(aMethod)) // && shouldAddMethod)
+        {
+          String msg = "Please do not modify the following method.";
+      aMethod.addCommentAt(new Comment(msg),0);
+          msg = "The following method comes from trait "+uTrait.getName()+".";
+      aMethod.addCommentAt(new Comment(msg),1);
+      msg = "Trait "+uTrait.getName()+" has been used in classes: ";
+      aMethod.addCommentAt(new Comment(msg),2);
+          uTrait.addMethod(aMethod); 
+        } 
+
+        // Make class abstract if an abstract method was added
+        if(uTrait.hasMethod(aMethod) && aMethod.getIsAbstract()) 
+        {
+          uTrait.setIsAbstract(true);
+          uTrait.addUnimplementedMethod(aMethod);
+        }
+
+        // If method not added to class, add it to list of
+        // unimplemented methods
+        if(!uTrait.hasMethod(aMethod)) 
+        {
+          uTrait.addUnimplementedMethod(aMethod);
+        }     
+    }
+    }  } 
+} 
+
+
+mixset StateMachine { 
+  class UmpleInternalParser { 
+    before Lable_StateMachine_100:checkCodeInjectionValidity(Token,UmpleClass,String)
+  {
+          stateDependentMethodsFlag = uClass.getStateDependentMethods().stream().anyMatch(m -> m.getName().equals(operationFinal));
+        }  } 
+} 
+
+mixset Mixset { 
+  class UmpleInternalParser { 
+    before Lable_Mixset_101:makeCodeInject(Token,CodeInjection,CodeBlock,UmpleClassifier)
+  {
+        aspectCode = processInlineMixset(sub.getValue(), null);
+        }  } 
+} 
+
+
+mixset StateMachine { 
+  class UmpleInternalParser { 
+    before Lable_StateMachine_102:analyzeExtraCode(Token,UmpleClass)
+  {
+
+    //This is a catch all and will be used less often as the grammar gets updated.
+    if(extraCodeIsMalformedStateMachine(token)) setFailedPosition(token.getPosition(), 1006, "");
+    }  } 
+} 
+
+
+mixset Trait { 
+  class UmpleInternalParser { 
+    before Lable_Trait_103:fixImportFromDefaultPackage
+  { 
+             if (associationIsBetweenClassAndTrait(association)){continue;} 
+           }  } 
+} 
+
+
+mixset Trait { 
+  class UmpleInternalParser { 
+    before Lable_Trait_104:fixImportFromDefaultPackage
+  {
+            if(getModel().getUmpleTraitTypeParameter(myEnd.getClassName()) || getModel().getUmpleTrait(myEnd.getClassName())!=null) return ;
+            if(getModel().getUmpleTraitTypeParameter(yourEnd.getClassName()) || getModel().getUmpleTrait(yourEnd.getClassName())!=null) return ;
+          }  } 
+} 
 //
 
 

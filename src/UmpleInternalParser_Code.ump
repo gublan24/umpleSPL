@@ -78,9 +78,7 @@ class UmpleInternalParser
     
     parser.addGrammarFile("/umple_core.grammar");
     parser.addGrammarFile("/umple_patterns.grammar");
-    mixset Constraint {
-      parser.addGrammarFile("/constraint/umple_constraints.grammar");  // TODO Under development
-    }
+    Lable_Constraint_48:;
     parser.addGrammarFile("/umple_exceptions.grammar");
     parser.addGrammarFile("/use.grammar");
   }
@@ -105,19 +103,9 @@ class UmpleInternalParser
       setRootToken(parser.getRootToken());
       analyzeAllTokens(getRootToken());    
       postTokenAnalysis();
-      mixset StateMachine {
-        secondPostTokenAnalysis();
-      }
-      //add analysis here!!! xx.validateStateMachineGuardConstraints(model);
-      mixset Attribute {
-        mixset Method {
-          checkDefaultedNameConflict();
-        }
-      }
-      mixset FeatureModel {
-        analyzeFeatureModel(); // lastly to analyze the feature model after all mixsets are added to umple model. 
-      }
-    
+      Lable_StateMachine_49: ;
+      Lable_Attribute_50: ;
+      Lable_FeatureModel_51: ;
     }
     catch (Exception ex)
     {
@@ -217,47 +205,22 @@ class UmpleInternalParser
   {
     // See #460 - types are now nested
     t.flattenNameRecursive("type");
-    mixset Mixset {
-      analyzeMixsetUseStatement(t, analysisStep);
-    }
+    Lable_Mixset_52: ;
+
     analyzeUSE(t, analysisStep);
     analyzeCoreToken(t,analysisStep);
     analyzeEnumerationToken(t, analysisStep);
-    mixset Class {
-      analyzeClassToken(t,analysisStep);
-    }
-    mixset Trait {
-      analyzeTraitToken(t,analysisStep);
-    }
-    mixset Template {
-      analyzeTemplateToken(t,analysisStep);
-    }
-    mixset StateMachine {
-      analyzeStateMachineToken(t,analysisStep);
-    }
-    mixset Structure {
-      analyzeComponentToken(t,analysisStep);
-    }
-    mixset Trace {
-      analyzeTraceToken(t,analysisStep);
-    }
-    mixset Filter {
-      analyzeFilterToken(t,analysisStep);
-    }
-    mixset Layout {
-      analyzeLayoutToken(t,analysisStep);
-    }
-    mixset FIXML {
-      analyzeFIXML(t, analysisStep);
-    }
-    mixset Mixset {
-      analyzeMixsetToken(t, analysisStep);
-    }
-    Lable_FeatureModel_148: ;
-
-    mixset AspectInjection {
-      analyzeInjectionToken(t, analysisStep);
-    }
+    Lable_Class_53: ; 
+    Lable_Trait_54: ;
+    Lable_Template_55: ;
+    Lable_StateMachine_56: ;
+    Lable_Structure_57: ;
+    Lable_Trace_58:;
+    Lable_Filter_59:;
+    Lable_Layout_60: ;
+    Lable_FIXML_61:;
+    Lable_Mixset_62: ;
+    Lable_FeatureModel_63:;
   }
 
   // Analyze an individual token, delegates to the various components in Umple
@@ -266,12 +229,8 @@ class UmpleInternalParser
     // See #460 - types are now nested
     t.flattenNameRecursive("type");
     analyzeCoreToken(t,aClass,analysisStep);
-    mixset Class {
-      analyzeClassToken(t,aClass,analysisStep);
-    }
-    mixset StateMachine {
-      analyzeStateMachineToken(t,aClass,analysisStep);
-    }
+    Lable_Class_65: ;
+    Lable_AspectInjection_64: ;
     analyzeDependentTokens(t,aClass,analysisStep);
   }
 
@@ -290,28 +249,14 @@ class UmpleInternalParser
       shouldProcessClassAgain = true;
       return;
     }
-    mixset Constraint {
-      if (t.is("modelConstraintBody"))
-      {
-        analyzeModelConstraint(t,aClass);
-      }
-    }
-    mixset AspectInjection {
-      else if (t.is("beforeCode") || t.is("afterCode"))
-      {
-        analyzeInjectionCode(t,aClass);
-      }
-    }
+    Lable_Constraint_67:;
+    Lable_AspectInjection_68: ;
     else if (t.is("key") || t.is("defaultKey"))
     {
       addKey(t, aClass, unlinkedKeysTokens);
     }
-    mixset Trace {
-      analyzeTraceToken(t,aClass);
-    }
-    mixset Layout {
-      analyzeLayoutToken(t,aClass,analysisStep);
-    }
+    Lable_Trace_69:;
+    Lable_Layout_70: ;
   }
 
   // Once you have analyze all tokens, you allowed a second 'pass' to apply any additional checks
@@ -328,52 +273,13 @@ class UmpleInternalParser
     {
       postTokenInterfaceAnalysis();
     }
-    mixset Class {
-      if (getParseResult().getWasSuccess())
-      {
-        postTokenClassAnalysis();
-      }
-    }
-    mixset Trace { 
-      if (getParseResult().getWasSuccess())
-      {
-        postTokenTraceAnalysis();
-      }
-    }
-    mixset Trait {
-      if (getParseResult().getWasSuccess())
-      {
-        postTokenTraitAnalysis();
-      }  
-      if (getParseResult().getWasSuccess())
-      {
-        applyTraits();
-        //Issue 686
-        checkCodeInjections();
-      } 
-     }
-    mixset Layout {
-      if (getParseResult().getWasSuccess())
-      {
-        postTokenLayoutAnalysis();
-      }
-    }
-    mixset Template {
-      if (getParseResult().getWasSuccess()) {
-        postTokenTemplateAnalysis();
-      }
-    }
-    mixset Structure {
-      if (getParseResult().getWasSuccess()) {
-        postTokenComponentAnalysis();
-      }
-    }
-    mixset Constraint {
-      if (getParseResult().getWasSuccess())
-      {
-        postTokenModelConstraintAnalysis();
-      }
-    }
+    Lable_Class_71:;
+    Lable_Trace_72: ;
+    Lable_Trait_73:;
+    Lable_Layout_74: ;
+    Lable_Template_75:;
+    Lable_Structure_76: ;
+    Lable_Constraint_77: ;
     if (getParseResult().getWasSuccess())
     {
       postTokenEnumerationAnalysis();

@@ -110,15 +110,8 @@ class UmpleTrait {
 	private boolean propagateImmutabilityToAllRelationships(boolean isImmutable){
 	    if (isImmutable)
 	    {
-        mixset StateMachine {
-	      if (this.hasStateMachines()) { return false; } 
-        }
-        mixset Association {
-          for (AssociationVariable av : associationVariables)
-          {
-            if (!immutabilityAssociationRulesSatisfied(av, true)) { return false; }
-          }
-        }
+        Lable_StateMachine_27:;
+        Lable_Association_28:;
 	    }	    
 	    return notifySubclassesAncestorImmutable(isImmutable);
 	}
@@ -473,14 +466,10 @@ class GeneralTPApplied {
     this.parameterMapping = new HashMap<String, String>(another.parameterMapping);
     this.inheritanceName = another.inheritanceName;
     positions = another.positions; 
-    mixset StateMachine {
-      stateMachineModifiers = new ArrayList<>(another.getStateMachineModifiers());
-    }
+    Lable_StateMachine_29:;
     parameters = new ArrayList<>( Arrays.asList(another.getParameters()));
     methodTemplateSignatures = new ArrayList<>(another.getMethodTemplateSignatures());
-    mixset StateMachine {
-      stateMachineTemplateSignatures = new ArrayList<>(another.getStateMachineTemplateSignatures());
-    }
+    Lable_StateMachine_30:;
   }
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------

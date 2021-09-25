@@ -182,7 +182,7 @@ class UmpleInternalParser
   	analyzeCoreToken(t,aTrait,analysisStep);
     analyzeTraitToken(t,aTrait,analysisStep);
     Lable_StateMachine_66: ;
-
+    Lable_StateMachine_105: ;
     analyzeDependentTokens(t,aTrait,analysisStep);
   }
 

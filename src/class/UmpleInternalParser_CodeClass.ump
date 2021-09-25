@@ -5387,25 +5387,6 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
       
       setFailedPosition(sub.getPosition(), 1007, sub.getValue("name"));
     }
-    else if(sub.is("malformedStatemachine1")||sub.is("malformedStatemachine2"))
-    {
-      String extraCode = "";
-      for(Token token:sub.getSubTokens())
-      {
-        if(token.is("stuff"))
-        {
-          if(!"".equals(token.getValue())&&!token.getValue().contains(" ")&&!Token.isValidIdentifier(token.getValue()))
-          {
-            setFailedPosition(token.getPosition(), 150, token.getValue("name"));
-          }
-          extraCode += token.getValue()+ " ";
-        }
-      }
-      extraCode += "\n  {\n    "+sub.getValue("innerstuff")+"\n  }";
-      aClass.appendExtraCode("// line " + exception.getPosition().getLineNumber() + " \"" + aClass.getRelativePath( exception.getPosition().getFilename(), "Java") + "\"");
-      aClass.appendExtraCode("  "+extraCode+"\n");
-      setFailedPosition(sub.getPosition(), 1006, sub.getValue("name"));
-    }
     else if(sub.is("malformedMethod"))
     {
       String extraCode = "";
@@ -5421,6 +5402,7 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
       aClass.appendExtraCode("  "+extraCode+"\n");
       setFailedPosition(sub.getPosition(), 1008, sub.getValue("name"));
     }
+    Lable_StateMachine_109: ;
   }
   
   private void analyzeException(Token exception, UmpleInterface aInterface)

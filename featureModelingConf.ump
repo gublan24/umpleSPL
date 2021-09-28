@@ -79,12 +79,17 @@ mixset AlloyGenerator{
 }
 mixset NuSMVGenerators{
    require [StateMachine];
+     // NuSMVGenerators depends on Trait.
+    require [Trait];
 }
 mixset StructureDiagramGenerator{ 
   require[Structure];
 }
 mixset JavaGenerator {  }
-mixset RTCppGenerator { }
+mixset RTCppGenerator { 
+  // cpp depends on Trait.
+  require [Trait];
+}
 mixset PhpGenerator { }
 mixset Uigu2Generator {  }
 mixset SqlGenerator {  }

@@ -1,0 +1,36 @@
+
+// Code for mixset Layout : 
+
+
+class UmpleGenerator { 
+    before Lable_Layout_14:initializeParser
+  {
+       parser.addGrammarFile("/layout/umple_layout.grammar");
+    }  }
+
+class UmpleInternalParser { 
+    before Lable_Layout_60:analyzeToken(Token,int)
+  {
+      analyzeLayoutToken(t,analysisStep);
+    }  }
+
+class UmpleInternalParser { 
+    before Lable_Layout_70:analyzeDependentTokens(Token,UmpleClass,int)
+  {
+      analyzeLayoutToken(t,aClass,analysisStep);
+    }  }
+
+class UmpleInternalParser { 
+    before Lable_Layout_74:postTokenAnalysis
+  {
+      if (getParseResult().getWasSuccess())
+      {
+        postTokenLayoutAnalysis();
+      }
+    }  }
+
+class UmpleInternalParser { 
+    before Lable_Layout_111:analyzeDependentTokens(Token,UmpleTrait,int)
+  {
+      analyzeLayoutToken(t,inTrait,analysisStep);
+    }  }

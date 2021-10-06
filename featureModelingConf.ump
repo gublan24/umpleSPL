@@ -14,12 +14,19 @@ mixset StateMachine {
 }
 mixset Trait {
   require [Class];
+
+  use trait/Trait_refactored.ump ;
+
 }
 mixset Layout {
   require [Class];
+  use layout/Layout_refactored.ump ;
+
 }
 mixset FeatureModel {
   require [Mixset];
+  use feature/FeatureModel_refactored.ump ;
+
 }
 
 
@@ -121,7 +128,10 @@ use Structure_StateMachine;
 // Fragment source file: UmpleInternalParser_Code.ump
 // Line : 530
 use strcture/UmpleInternalParser_CodeStructure.ump;
-  use Template_Strcture;
+
+use Template_Strcture;
+
+use strcture/Structure_refactored.ump ;
 
 }
 
@@ -135,6 +145,8 @@ use trace/Trace.ump;
 // Fragment source file: UmpleInternalParser_Code.ump
 // Line : 541
 use trace/UmpleInternalParser_CodeTrace.ump;
+
+use trace/Trace_refactored.ump ;
 }
 mixset Constraint { 
 // Fragment source file: Umple_Code.ump
@@ -143,10 +155,13 @@ use constraint/Umple_CodeConstraint.ump;
 // Fragment source file: UmpleInternalParser_Code.ump
 // Line : 527
 use constraint/UmpleInternalParser_CodeConstraints.ump;
+use constraint/Constraint_refactored.ump ;
+
 }
 
 mixset StateMachine {
   use stateMachine/stateAnnotative.ump;
+  use stateMachine/StateMachine_refactored.ump ;
 }
 
 mixset Trait{
@@ -162,10 +177,15 @@ use filter/Umple_Code_Filter.ump;
 // Line : 548
 use filter/UmpleInternalParser_CodeFilter.ump;
 
+use filter/Filter_refactored.ump ;
+
+
 }
 
 mixset Template { 
   use template/templateAnnotative.ump;
+  use template/Template_refactored.ump ;
+
 }
 
 mixset Mixset { 
@@ -176,6 +196,8 @@ use mixset/Mixset.ump;
 // Fragment source file: UmpleInternalParser_Code.ump
 // Line : 553
 use mixset/UmpleInternalParser_CodeMixset.ump;
+use mixset/Mixset_refactored.ump ;
+
 }
 
 
@@ -183,6 +205,8 @@ mixset FIXML {
 // Fragment source file: UmpleInternalParser_CodeTrait.ump
 // Line : 2057
 use fixml/UmpleInternalParser_FIXML.ump;
+use fixml/FIXML_refactored.ump ;
+
 
 }
 
@@ -197,6 +221,13 @@ mixset Class {
 // Fragment source file: UmpleInternalParser_Code.ump
 // Line : 521
 use class/UmpleInternalParser_CodeClass.ump;
+use class/Attribute_refactored.ump ;
+use class/Association_refactored.ump ;
+use class/Class_refactored.ump ;
+
+
+
+
 
 }
 
@@ -215,6 +246,7 @@ mixset AspectInjection{
   // Fragment source file: UmpleInternalParser_Code.ump
 // Line : 560
 use class/UmpleInternalPraser_CodeInjection.ump;
+use class/AspectInjection_refactored.ump ;
 
 }
 
@@ -242,6 +274,7 @@ mixset RubyGenerator {
 // Line : 91
   use generators/Generator_CodeRuby.ump; 
   use RubyGeneratorIntMixset;
+  use generators/RubyGeneratorIntMixset_refactored.ump ;
 
 }
 
@@ -544,3 +577,4 @@ mixset Template_Strcture {
     } } 
 
 }
+

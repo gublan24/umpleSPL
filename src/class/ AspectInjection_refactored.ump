@@ -3,6 +3,19 @@
 
 
 class UmpleInternalParser { 
+
+    mixset Template_Strcture {
+    // This MIXSET contains common code used by Template & Strcture.
+    public boolean reAnalyze() {
+      return shouldProcessAgain;
+    }
+    public void reAnalyze(boolean re) {
+  	shouldProcessAgain = re;
+    }
+  }
+
+
+
     before Label_AspectInjection_64:analyzeToken(Token,int)
   {
       analyzeInjectionToken(t, analysisStep);

@@ -3,13 +3,13 @@
 
 
 class UmpleInternalParser { 
-    before Lable_Constraint_48:init
+    before Label_Constraint_48:init
   {
       parser.addGrammarFile("/constraint/umple_constraints.grammar");  // TODO Under development
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Constraint_67:analyzeDependentTokens(Token,UmpleClass,int)
+    before Label_Constraint_67:analyzeDependentTokens(Token,UmpleClass,int)
   {
       if (t.is("modelConstraintBody"))
       {
@@ -18,7 +18,7 @@ class UmpleInternalParser {
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Constraint_77:postTokenAnalysis
+    before Label_Constraint_77:postTokenAnalysis
   {
       if (getParseResult().getWasSuccess())
       {

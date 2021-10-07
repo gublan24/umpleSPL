@@ -3,20 +3,20 @@
 
 
 class UmpleGenerator { 
-    before Lable_Trait_8:initializeParser
+    before Label_Trait_8:initializeParser
   {
       parser.addGrammarFile("/trait/umple_traits.grammar");
     }  }
 
 class UmpleModel { 
-    before Lable_Trait_23:getDefaultAssociationPosition(Association)
+    before Label_Trait_23:getDefaultAssociationPosition(Association)
   {
         if(getUmpleTraitTypeParameter(classOne) || getUmpleTrait(classOne)!=null) return null;
         if(getUmpleTraitTypeParameter(classTwo) || getUmpleTrait(classTwo)!=null) return null;
       }  }
 
 class PreconditionAnalyzer { 
-    before Lable_Trait_36:analyze(Token)
+    before Label_Trait_36:analyze(Token)
   {
     else if (uClassifier instanceof UmpleTrait)
     {
@@ -25,7 +25,7 @@ class PreconditionAnalyzer {
     }  }
 
 class PostconditionAnalyzer { 
-    before Lable_Trait_37:analyze(Token)
+    before Label_Trait_37:analyze(Token)
   {
       else if (uClassifier instanceof UmpleTrait)
       {
@@ -34,7 +34,7 @@ class PostconditionAnalyzer {
     }  }
 
 class InvariantAnalyzer { 
-    before Lable_Trait_38:analyze(Token)
+    before Label_Trait_38:analyze(Token)
   {
       else if (uClassifier instanceof UmpleTrait)
       {
@@ -43,7 +43,7 @@ class InvariantAnalyzer {
     }  }
 
 class ConstraintNameNameAnalyzer { 
-    before Lable_Trait_39:retrieveClass(ConstraintTree,UmpleClassifier)
+    before Label_Trait_39:retrieveClass(ConstraintTree,UmpleClassifier)
   {
               uClass = previouslyFoundAttribute.getAttribute().getUmpleTrait();
               UmpleModel model = ((UmpleTrait)uClass).getSourceModel();
@@ -51,7 +51,7 @@ class ConstraintNameNameAnalyzer {
               }  }
 
 class ConstraintNameNameAnalyzer { 
-    before Lable_Trait_40:retrieveClass(ConstraintTree,UmpleClassifier)
+    before Label_Trait_40:retrieveClass(ConstraintTree,UmpleClassifier)
   {
               uClass = previouslyFoundAssociation.getAssociation().getUmpleTrait();
               UmpleModel model = ((UmpleTrait)uClass).getSourceModel();
@@ -59,19 +59,19 @@ class ConstraintNameNameAnalyzer {
               }  }
 
 class ConstraintNameNameAnalyzer { 
-    before Lable_Trait_41:generateConstraintName(UmpleClassifier,String,Boolean)
+    before Label_Trait_41:generateConstraintName(UmpleClassifier,String,Boolean)
   {
         attribute = ((UmpleTrait)(uClassifier)).getAttribute(value);
       }  }
 
 class ConstraintNameNameAnalyzer { 
-    before Lable_Trait_42:generateConstraintName(UmpleClassifier,String,Boolean)
+    before Label_Trait_42:generateConstraintName(UmpleClassifier,String,Boolean)
   {
           association = ((UmpleTrait)(uClassifier)).getAssociationVariable(value);
         }  }
 
 class ConstraintNameNameAnalyzer { 
-    before Lable_Trait_44:generateConstraintName(UmpleClassifier,String,Boolean)
+    before Label_Trait_44:generateConstraintName(UmpleClassifier,String,Boolean)
   {
           mixset StateMachine {
             else if(uClassifier instanceof UmpleTrait)
@@ -82,7 +82,7 @@ class ConstraintNameNameAnalyzer {
         }  }
 
 class ConstraintNameNameAnalyzer { 
-    before Lable_Trait_47:generateConstraintName(UmpleClassifier,String,Boolean)
+    before Label_Trait_47:generateConstraintName(UmpleClassifier,String,Boolean)
   {
     else if(uClassifier instanceof UmpleTrait)
     {
@@ -98,13 +98,13 @@ class ConstraintNameNameAnalyzer {
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_54:analyzeToken(Token,int)
+    before Label_Trait_54:analyzeToken(Token,int)
   {
       analyzeTraitToken(t,analysisStep);
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_73:postTokenAnalysis
+    before Label_Trait_73:postTokenAnalysis
   {
       if (getParseResult().getWasSuccess())
       {
@@ -119,26 +119,26 @@ class UmpleInternalParser {
      }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_81:checkAssociationsForDistributed
+    before Label_Trait_81:checkAssociationsForDistributed
   { 
          if (associationIsBetweenClassAndTrait(association)){continue;} 
        }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_82:checkAssociationsForDistributed
+    before Label_Trait_82:checkAssociationsForDistributed
   {
       if(getModel().getUmpleTraitTypeParameter(myEnd.getClassName()) || getModel().getUmpleTrait(myEnd.getClassName())!=null) return ;
       if(getModel().getUmpleTraitTypeParameter(yourEnd.getClassName()) || getModel().getUmpleTrait(yourEnd.getClassName())!=null) return ;
       }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_85:addExtendsTo(Token,UmpleClassifier,Map<UmpleClassifier,List<String>>,Map<UmpleClassifier,List<Token>>)
+    before Label_Trait_85:addExtendsTo(Token,UmpleClassifier,Map<UmpleClassifier,List<String>>,Map<UmpleClassifier,List<Token>>)
   {
           processGTemplateParameterAssignment(extendsToken, aClassifier, extendName);
         }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_86:verifyClassesInUse
+    before Label_Trait_86:verifyClassesInUse
   {
         boolean isTraitTypeParameter = model.getUmpleTraitTypeParameter(e.getValue());
         boolean isATrait = model.getUmpleTrait(e.getValue()) != null;
@@ -146,13 +146,13 @@ class UmpleInternalParser {
       }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_87:addUnlinkedExtends
+    before Label_Trait_87:addUnlinkedExtends
   {
           isTraitCheck = isUmpleTrait(extendName);
         }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_88:addUnlinkedExtends
+    before Label_Trait_88:addUnlinkedExtends
   {
               UmpleTrait parent = model.getUmpleTrait(extendName);     
               boolean wasSet = child.addExtendsTrait(parent);
@@ -174,13 +174,13 @@ class UmpleInternalParser {
             }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_90:addImplementedMethodsFromInterface(List<UmpleInterface>,UmpleClass)
+    before Label_Trait_90:addImplementedMethodsFromInterface(List<UmpleInterface>,UmpleClass)
   {
             hasMethodTraitsCheck = !(uClass.hasMethodInTraits(aMethod));
           }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_91:createSpecializedLinks
+    before Label_Trait_91:createSpecializedLinks
   {
         if (model.getUmpleTrait(aLeftEnd.getClassName()) != null || model.getUmpleTrait(aRightEnd.getClassName()) != null)
         {
@@ -189,7 +189,7 @@ class UmpleInternalParser {
       }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_92:createSpecializedLinks
+    before Label_Trait_92:createSpecializedLinks
   {
           if (model.getUmpleTrait(bLeftEnd.getClassName()) != null || model.getUmpleTrait(bRightEnd.getClassName()) != null)
           {
@@ -198,26 +198,26 @@ class UmpleInternalParser {
        }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_93:checkSingletonAssociations
+    before Label_Trait_93:checkSingletonAssociations
   { 
         if (associationIsBetweenClassAndTrait(association)){continue;} 
       }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_94:checkSingletonAssociations
+    before Label_Trait_94:checkSingletonAssociations
   {
         if(getModel().getUmpleTraitTypeParameter(myEnd.getClassName()) || getModel().getUmpleTrait(myEnd.getClassName())!=null) return ;
         if(getModel().getUmpleTraitTypeParameter(yourEnd.getClassName()) || getModel().getUmpleTrait(yourEnd.getClassName())!=null) return ;
       }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_95:addUnlinkedAssociations
+    before Label_Trait_95:addUnlinkedAssociations
   { 
          if (associationIsBetweenClassAndTrait(association)){continue;}
        }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_99:analyzeMethod(Token,UmpleElement,boolean)
+    before Label_Trait_99:analyzeMethod(Token,UmpleElement,boolean)
   {
     else if (uElement instanceof UmpleTrait)
     {
@@ -254,20 +254,20 @@ class UmpleInternalParser {
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_103:fixImportFromDefaultPackage
+    before Label_Trait_103:fixImportFromDefaultPackage
   { 
              if (associationIsBetweenClassAndTrait(association)){continue;} 
            }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_104:fixImportFromDefaultPackage
+    before Label_Trait_104:fixImportFromDefaultPackage
   {
             if(getModel().getUmpleTraitTypeParameter(myEnd.getClassName()) || getModel().getUmpleTrait(myEnd.getClassName())!=null) return ;
             if(getModel().getUmpleTraitTypeParameter(yourEnd.getClassName()) || getModel().getUmpleTrait(yourEnd.getClassName())!=null) return ;
           }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_150:analyzeToplevelInjectionCode(Token,int,String)
+    before Label_Trait_150:analyzeToplevelInjectionCode(Token,int,String)
   {
           for (String umpleTraitName:traitNames)
           {
@@ -279,7 +279,7 @@ class UmpleInternalParser {
         }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_149:analyzeToplevelInjectionCode(Token,int,String)
+    before Label_Trait_149:analyzeToplevelInjectionCode(Token,int,String)
   {
               traitNames = (ArrayList<String>) mapElement.getValue();
               ArrayList<String> newTraitNames = (ArrayList<String>) traitNames.clone();
@@ -294,7 +294,7 @@ class UmpleInternalParser {
             }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_146:getMixsetFragmentWithEnclosingElement(Token,String)
+    before Label_Trait_146:getMixsetFragmentWithEnclosingElement(Token,String)
   {
       else if (token.is("traitDefinition"))
       {
@@ -305,7 +305,7 @@ class UmpleInternalParser {
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_141:postTokenModelEnumerationAnalysis
+    before Label_Trait_141:postTokenModelEnumerationAnalysis
   {      
       // Check that the enumeration doesn't conflict with any traits
       for (UmpleTrait uT : model.getUmpleTraits()) {
@@ -322,7 +322,7 @@ class UmpleInternalParser {
       }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_129:analyzeTransition(boolean,Token,State,String)
+    before Label_Trait_129:analyzeTransition(boolean,Token,State,String)
   {
         if (fromState.getStateMachine().getRootStateMachine().getUmpleClass()==null){
     		uClassifier = fromState.getStateMachine().getRootStateMachine().getUmpleTrait();
@@ -330,7 +330,7 @@ class UmpleInternalParser {
       }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_126:analyzeStateMachine(Token,UmpleClassifier)
+    before Label_Trait_126:analyzeStateMachine(Token,UmpleClassifier)
   {
           if (uClassifier instanceof UmpleTrait) {
           //TODO --Trait's code
@@ -339,7 +339,7 @@ class UmpleInternalParser {
       }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_125:analyzeStateMachine(Token,UmpleClassifier)
+    before Label_Trait_125:analyzeStateMachine(Token,UmpleClassifier)
   {
        if (uClassifier instanceof UmpleTrait) {
     	wasSet = sm.setUmpleTrait((UmpleTrait)uClassifier);
@@ -347,7 +347,7 @@ class UmpleInternalParser {
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_124:analyzeStateMachine(Token,UmpleClassifier)
+    before Label_Trait_124:analyzeStateMachine(Token,UmpleClassifier)
   {
             if (uClassifier instanceof UmpleTrait){
             sm.setUmpleTrait((UmpleTrait)uClassifier);
@@ -355,7 +355,7 @@ class UmpleInternalParser {
         }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_123:analyzedReferencedStateMachine(Token,UmpleClassifier)
+    before Label_Trait_123:analyzedReferencedStateMachine(Token,UmpleClassifier)
   {
         else if (uClassifier instanceof UmpleTrait) {
           //TODO --Trait's code
@@ -364,7 +364,7 @@ class UmpleInternalParser {
       }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_122:analyzedReferencedStateMachine(Token,UmpleClassifier)
+    before Label_Trait_122:analyzedReferencedStateMachine(Token,UmpleClassifier)
   {
         else if (uClassifier instanceof UmpleTrait) {
         wasSet = sm.setUmpleTrait((UmpleTrait)uClassifier);
@@ -372,7 +372,7 @@ class UmpleInternalParser {
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_121:analyzedReferencedStateMachine(Token,UmpleClassifier)
+    before Label_Trait_121:analyzedReferencedStateMachine(Token,UmpleClassifier)
   {
       if (uClassifier instanceof UmpleTrait){
         sm.setUmpleTrait((UmpleTrait)uClassifier);
@@ -380,7 +380,7 @@ class UmpleInternalParser {
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Trait_120:analyzeStateMachineToken(Token,UmpleClassifier,int)
+    before Label_Trait_120:analyzeStateMachineToken(Token,UmpleClassifier,int)
   {
       else if (uClassifier instanceof UmpleTrait) {
         if (((UmpleTrait)uClassifier).isImmutable())

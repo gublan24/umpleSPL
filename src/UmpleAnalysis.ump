@@ -59,7 +59,7 @@ class PreconditionAnalyzer
     {
       ((UmpleClass)(uClassifier)).addPreCond((Precondition)rawLine);
     }
-    Lable_Trait_36:;
+    Label_Trait_36:;
 
     rawLine = new ConstraintTree();
   }
@@ -88,7 +88,7 @@ class PostconditionAnalyzer
     {
       ((UmpleClass)(uClassifier)).addPostCond((Postcondition)rawLine);
     } 
-    Lable_Trait_37:;
+    Label_Trait_37:;
     rawLine = new ConstraintTree();
   }
 }
@@ -127,7 +127,7 @@ class InvariantAnalyzer
     {
       ((UmpleClass)uClassifier).addConstraintTree(rawLine);
     } 
-    Lable_Trait_38:;
+    Label_Trait_38:;
 
     rawLine = new ConstraintTree();
   }
@@ -792,7 +792,7 @@ class ConstraintNameNameAnalyzer
             uClass = previouslyFoundAttribute.getAttribute().getUmpleClass();
             if(uClass==null)
             {
-              Lable_Trait_39:;
+              Label_Trait_39:;
             }
             else
             {
@@ -806,7 +806,7 @@ class ConstraintNameNameAnalyzer
             uClass = previouslyFoundAssociation.getAssociation().getUmpleClass();
             if(uClass==null)
             {
-              Lable_Trait_40:;
+              Label_Trait_40:;
             }
             else
             {
@@ -833,7 +833,7 @@ class ConstraintNameNameAnalyzer
     }
     else
     {
-      Lable_Trait_41:;
+      Label_Trait_41:;
     }
     if(attribute!=null)
     {
@@ -850,7 +850,7 @@ class ConstraintNameNameAnalyzer
       }
       else
       {
-        Lable_Trait_42:;
+        Label_Trait_42:;
       }
       if(association!=null)
       {
@@ -859,10 +859,10 @@ class ConstraintNameNameAnalyzer
       }
       else
       {
-        Lable_StateMachine_43:;
-        Lable_Trait_44:;
-        Lable_StateMachine_45: ;
-        Lable_Structure_46:;
+        Label_StateMachine_43:;
+        Label_Trait_44:;
+        Label_StateMachine_45: ;
+        Label_Structure_46:;
         
       }
     }
@@ -874,7 +874,7 @@ class ConstraintNameNameAnalyzer
         return generateConstraintName(uClass,value,hasParameter);
       }
     }
-    Lable_Trait_47:;
+    Label_Trait_47:;
 
     return new ConstraintUnassignedName(value);
   }

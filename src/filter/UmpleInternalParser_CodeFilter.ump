@@ -49,7 +49,7 @@ class UmpleInternalParser
           {
             addSubValue(f,t);
           }
-          Lable_Association_140: ;
+          Label_Association_140: ;
  
           if(t.is("filterValue"))
           {

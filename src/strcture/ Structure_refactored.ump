@@ -3,13 +3,13 @@
 
 
 class UmpleGenerator { 
-    before Lable_Structure_13:initializeParser
+    before Label_Structure_13:initializeParser
   {
       parser.addGrammarFile("/strcture/umple_structure.grammar");
     }  }
 
 class ConstraintNameNameAnalyzer { 
-    before Lable_Structure_46:generateConstraintName(UmpleClassifier,String,Boolean)
+    before Label_Structure_46:generateConstraintName(UmpleClassifier,String,Boolean)
   {
             Port port = null;
             if (uClassifier instanceof UmpleClass)
@@ -24,13 +24,13 @@ class ConstraintNameNameAnalyzer {
         }  }
 
 class UmpleInternalParser { 
-    before Lable_Structure_57:analyzeToken(Token,int)
+    before Label_Structure_57:analyzeToken(Token,int)
   {
       analyzeComponentToken(t,analysisStep);
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Structure_76:postTokenAnalysis
+    before Label_Structure_76:postTokenAnalysis
   {
       if (getParseResult().getWasSuccess()) {
         postTokenComponentAnalysis();

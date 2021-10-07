@@ -235,7 +235,7 @@ class UmpleInternalParser
 		    return;
 		}
 	  } 
-    Lable_Trait_120: ;
+    Label_Trait_120: ;
 
       
       Token subToken = token.getSubToken(0);
@@ -462,7 +462,7 @@ class UmpleInternalParser
     }
 
     StateMachine sm = new StateMachine(name);
-    Lable_Trait_121: ;
+    Label_Trait_121: ;
    if (uClassifier instanceof UmpleClass){
       sm.setUmpleClass((UmpleClass)uClassifier);
     }
@@ -471,7 +471,7 @@ class UmpleInternalParser
     if (uClassifier instanceof UmpleClass) {
     	wasSet = sm.setUmpleClass((UmpleClass)uClassifier);
     } 
-    Lable_Trait_125: ;
+    Label_Trait_125: ;
     //------------
     if (!wasSet)
     {
@@ -480,7 +480,7 @@ class UmpleInternalParser
     	if (uClassifier instanceof UmpleClass) {
 	    	setFailedPosition(stateMachineToken.getPosition(), 15, uClassifier.getName());
 	    }
-      Lable_Trait_123: ;
+      Label_Trait_123: ;
     }
     
     populateStateMachine(stateMachineDefinitionToken,sm, uClassifier);
@@ -580,7 +580,7 @@ class UmpleInternalParser
 	    else
 	    {
 	      sm = new StateMachine(name);
-        Lable_Trait_124: ;
+        Label_Trait_124: ;
         if (uClassifier instanceof UmpleClass){
           sm.setUmpleClass((UmpleClass)uClassifier);
         }
@@ -592,7 +592,7 @@ class UmpleInternalParser
     if (uClassifier instanceof UmpleClass) {
     	wasSet = sm.setUmpleClass((UmpleClass)uClassifier);
     } 
-    Lable_Trait_122: ;
+    Label_Trait_122: ;
 
     if (!wasSet)
     {
@@ -600,7 +600,7 @@ class UmpleInternalParser
     	if (uClassifier instanceof UmpleClass) {
 	    	setFailedPosition(stateMachineToken.getPosition(), 15, uClassifier.getName());
 	    } 
-      Lable_Trait_126: ;
+      Label_Trait_126: ;
     }
       
     
@@ -743,7 +743,7 @@ class UmpleInternalParser
       }
     }
     
-    Lable_Mixset_127: ;
+    Label_Mixset_127: ;
 
  
     return sm;
@@ -930,7 +930,7 @@ class UmpleInternalParser
       {
         setFailedPosition(stateMachineToken.getPosition(), 53, sm.getName());
       }
-      Lable_Trace_128: ;
+      Label_Trace_128: ;
 
       
       if (!stateToken.is("state") && !stateToken.is("stateName"))
@@ -1879,7 +1879,7 @@ class UmpleInternalParser
     {
       if(((GuardAnalyzer)model.getAnalyzer("guard"))!=null){
         UmpleClassifier uClassifier = fromState.getStateMachine().getRootStateMachine().getUmpleClass();
-    	  Lable_Trait_129: ;
+    	  Label_Trait_129: ;
         ((GuardAnalyzer)model.getAnalyzer("guard")).setUClassifier(uClassifier);
         ((GuardAnalyzer)model.getAnalyzer("guard")).setT(t);
         model.getAnalyzer("guard").analyzeToken(guardToken);

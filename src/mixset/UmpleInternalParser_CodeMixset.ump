@@ -110,10 +110,10 @@ class UmpleInternalParser
     String tokenKey ="";
     String prefix ="";
     boolean returnMixsetBody= false;
-    Lable_Class_144: ;
-    Lable_StateMachine_145: ;
-    Lable_Trait_146: ;
-    Lable_Association_147: ;
+    Label_Class_144: ;
+    Label_StateMachine_145: ;
+    Label_Trait_146: ;
+    Label_Association_147: ;
 
     if(! tokenKey.equals("")) 
     {

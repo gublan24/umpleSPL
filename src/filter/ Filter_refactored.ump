@@ -3,19 +3,19 @@
 
 
 class UmpleGenerator { 
-    before Lable_Filter_15:initializeParser
+    before Label_Filter_15:initializeParser
   {
       parser.addGrammarFile("/filter/umple_filter.grammar"); // TODO Under development
     }  }
 
 class UmpleModel { 
-    before Lable_Filter_22:generate
+    before Label_Filter_22:generate
   {
       applyFilter(null);
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Filter_59:analyzeToken(Token,int)
+    before Label_Filter_59:analyzeToken(Token,int)
   {
       analyzeFilterToken(t,analysisStep);
     }  }

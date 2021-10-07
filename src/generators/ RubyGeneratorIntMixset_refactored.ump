@@ -3,7 +3,7 @@
 
 
 class GeneratorHelper { 
-    before Lable_RubyGeneratorIntMixset_6:toCode(List<CodeInjection>)
+    before Label_RubyGeneratorIntMixset_6:toCode(List<CodeInjection>)
   {
           comment = RubyGenerator.class.isInstance(generator)?"#":"//";
         }  }

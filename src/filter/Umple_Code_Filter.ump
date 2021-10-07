@@ -51,7 +51,7 @@
         }  
         }
 
-        Lable_Association_24:;
+        Label_Association_24:;
 
         if(!f.hasSuper())
         {
@@ -75,7 +75,7 @@
         UmpleClass clazz = umpleClasses.get(i);
         if (!clazz.getFilteredin())
         {
-          Lable_Association_25:;
+          Label_Association_25:;
         }
         else {
             // Flag its interfaces to keep

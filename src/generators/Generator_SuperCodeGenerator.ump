@@ -51,7 +51,7 @@ class SuperCodeGenerator {
   	{
   		return false;
   	}
-  	Lable_StateMachine_17: ;
+  	Label_StateMachine_17: ;
     if((variable instanceof ConstraintAttribute)&&(UmpleToPrimitiveMap.containsValue(((ConstraintAttribute)variable).getAttribute().getType()) || UmpleToPrimitiveMap.containsKey(((ConstraintAttribute)variable).getAttribute().getType())))
     {
         return !"String".equals(((ConstraintAttribute)variable).getAttribute().getType());
@@ -300,7 +300,7 @@ class SuperCodeGenerator {
     {
       return ConstraintLookupMap.get("accessor")+((ConstraintMethodParameter)cv).getParameter().getName();
     }
-    Lable_StateMachine_18:;
+    Label_StateMachine_18:;
     else if("literal".equals(id))
     {
       return ((ConstraintLiteral)cv).getValue();

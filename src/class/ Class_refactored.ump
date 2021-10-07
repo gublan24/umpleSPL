@@ -3,25 +3,25 @@
 
 
 class UmpleGenerator { 
-    before Lable_Class_7:initializeParser
+    before Label_Class_7:initializeParser
   {
       parser.addGrammarFile("/class/umple_classes.grammar");
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Class_53:analyzeToken(Token,int)
+    before Label_Class_53:analyzeToken(Token,int)
   {
       analyzeClassToken(t,analysisStep);
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Class_65:analyzeToken(Token,UmpleClass,int)
+    before Label_Class_65:analyzeToken(Token,UmpleClass,int)
   {
       analyzeClassToken(t,aClass,analysisStep);
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Class_71:postTokenAnalysis
+    before Label_Class_71:postTokenAnalysis
   {
       if (getParseResult().getWasSuccess())
       {
@@ -30,7 +30,7 @@ class UmpleInternalParser {
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Class_144:getMixsetFragmentWithEnclosingElement(Token,String)
+    before Label_Class_144:getMixsetFragmentWithEnclosingElement(Token,String)
   {
       if (token.is("classDefinition"))
       {

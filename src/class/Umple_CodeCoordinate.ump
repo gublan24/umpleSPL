@@ -46,7 +46,7 @@ namespace cruise.umple.compiler;
       String classOne = a.getEnd(0).getClassName();
       String classTwo = a.getEnd(1).getClassName();
 
-      Lable_Trait_23:;
+      Label_Trait_23:;
      
       Coordinate classOnePos = getUmpleClass(classOne).getCoordinates();
       Coordinate classTwoPos = getUmpleClass(classTwo).getCoordinates();

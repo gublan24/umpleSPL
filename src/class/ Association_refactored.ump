@@ -3,7 +3,7 @@
 
 
 class UmpleModel { 
-    before Lable_Association_24:markIncludedClasses(Filter)
+    before Label_Association_24:markIncludedClasses(Filter)
   {
           if(f.hasAssociation())
           {
@@ -12,7 +12,7 @@ class UmpleModel {
         }  }
 
 class UmpleModel { 
-    before Lable_Association_25:filterOutClasses
+    before Label_Association_25:filterOutClasses
   {
             // Chop out it and its associations
             for(Association a : clazz.getAssociations())
@@ -51,7 +51,7 @@ class UmpleModel {
           }  }
 
 class ConstraintOperator { 
-    before Lable_Association_26:correctForCardinality(ConstraintVariable)
+    before Label_Association_26:correctForCardinality(ConstraintVariable)
   {
       else if((variable instanceof ConstraintAssociation)&&value.contains("cardinality"))
       {
@@ -60,7 +60,7 @@ class ConstraintOperator {
     }  }
 
 class UmpleTrait { 
-    before Lable_Association_28:propagateImmutabilityToAllRelationships(boolean)
+    before Label_Association_28:propagateImmutabilityToAllRelationships(boolean)
   {
           for (AssociationVariable av : associationVariables)
           {
@@ -69,7 +69,7 @@ class UmpleTrait {
         }  }
 
 class AssociationVariable { 
-    before Lable_Association_31:getTraced(String,UmpleClass)
+    before Label_Association_31:getTraced(String,UmpleClass)
   {
 				for(AssociationTraceItem ast: td.getAssociationTraceItems())
 				{
@@ -102,7 +102,7 @@ class AssociationVariable {
 			}  }
 
 class ModelConstraintAssociation { 
-    before Lable_Association_32:evaluate(UmpleClassifier)
+    before Label_Association_32:evaluate(UmpleClassifier)
   {
         for(Association association:uClass.getAssociations())
         {
@@ -224,7 +224,7 @@ class ModelConstraintAssociation {
         }  }
 
 class AttributeTraceItem { 
-    before Lable_Association_33:trace(CodeTranslator,Object,String,UmpleClass,String...)
+    before Label_Association_33:trace(CodeTranslator,Object,String,UmpleClass,String...)
   {
 				  else if(o instanceof AssociationVariable)
 				  {
@@ -233,7 +233,7 @@ class AttributeTraceItem {
 				}  }
 
 class AssociationTraceItem { 
-    before Lable_Association_35:trace(CodeTranslator,Object,String,UmpleClass,String...)
+    before Label_Association_35:trace(CodeTranslator,Object,String,UmpleClass,String...)
   {
 		for(AssociationVariable ass: uClass.getAssociationVariables())
 		{
@@ -312,7 +312,7 @@ class AssociationTraceItem {
 		}  }
 
 class CompositeStructureTokenAnalyzer { 
-    before Lable_Association_155:analyzeInvariantConstraint(Token)
+    before Label_Association_155:analyzeInvariantConstraint(Token)
   {
 			     else if (invariantToken.is("associationExpr"))
 			     {
@@ -321,7 +321,7 @@ class CompositeStructureTokenAnalyzer {
 			   }  }
 
 class CompositeStructureTokenAnalyzer { 
-    before Lable_Association_154:analyzeAssociationConstraintExpression(Token,UmpleClassifier)
+    before Label_Association_154:analyzeAssociationConstraintExpression(Token,UmpleClassifier)
   {
 			  else if(sub.is("associationLit"))
 			  {
@@ -330,7 +330,7 @@ class CompositeStructureTokenAnalyzer {
 			}  }
 
 class CompositeStructureTokenAnalyzer { 
-    before Lable_Association_152:analyzeConstraint(Token,UmpleClassifier)
+    before Label_Association_152:analyzeConstraint(Token,UmpleClassifier)
   {
 		else if (invariantToken.is("associationExpr"))
 		{
@@ -339,7 +339,7 @@ class CompositeStructureTokenAnalyzer {
 	   }  }
 
 class UmpleInternalParser { 
-    before Lable_Association_147:getMixsetFragmentWithEnclosingElement(Token,String)
+    before Label_Association_147:getMixsetFragmentWithEnclosingElement(Token,String)
   {
       else if (token.is("associationDefinition"))
       {
@@ -349,7 +349,7 @@ class UmpleInternalParser {
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Association_140:analyzeFilterToken(Token,int)
+    before Label_Association_140:analyzeFilterToken(Token,int)
   {
             if(t.is("association"))
 	        {
@@ -358,7 +358,7 @@ class UmpleInternalParser {
           }  }
 
 class UmpleInternalParser { 
-    before Lable_Association_139:layoutNewElements
+    before Label_Association_139:layoutNewElements
   {
       // Layout associations
       for (int i=0; i<model.numberOfAssociations(); i++)
@@ -383,7 +383,7 @@ class UmpleInternalParser {
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Association_138:analyzeLayoutToken(Token,UmpleClassifier,int)
+    before Label_Association_138:analyzeLayoutToken(Token,UmpleClassifier,int)
   {
       else if (token.is("associationPosition"))
       {
@@ -405,7 +405,7 @@ class UmpleInternalParser {
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Association_137:traceItemType(Token)
+    before Label_Association_137:traceItemType(Token)
   {
     // --- check if association
     for( AssociationVariable aVar : aClass.getAssociationVariables() )
@@ -426,13 +426,13 @@ class UmpleInternalParser {
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Association_135:traceItemType(Token)
+    before Label_Association_135:traceItemType(Token)
   {  
     attr = attr==null?aClass.getAssociationVariable(traceToken.getValue("traceEntity")):attr;
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Association_134:anaylzeTraceWildCard(Token)
+    before Label_Association_134:anaylzeTraceWildCard(Token)
   {
     //------------- trace all associations [wildcard]
     if( traceToken.getValue("traceEntity").toLowerCase().equals("allassociations") )
@@ -448,49 +448,49 @@ class UmpleInternalParser {
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Association_132:analyzeTraceStatement(UmpleClass,Token)
+    before Label_Association_132:analyzeTraceStatement(UmpleClass,Token)
   {
           attr = traceDirective.getUmpleClass().getAssociationVariable(token.getValue("LHS"));
           }  }
 
 class UmpleInternalParser { 
-    before Lable_Association_131:analyzeTraceStatement(UmpleClass,Token)
+    before Label_Association_131:analyzeTraceStatement(UmpleClass,Token)
   {
           tracedAssoc.setConstraint(constraint);
           }  }
 
 class UmpleInternalParser { 
-    before Lable_Association_130:analyzeTraceStatement(UmpleClass,Token)
+    before Label_Association_130:analyzeTraceStatement(UmpleClass,Token)
   {
     tracedAssoc = new AssociationTraceItem(traceDirective);
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Association_119:analyzeFIXMLextendedContentContetnt(Token)
+    before Label_Association_119:analyzeFIXMLextendedContentContetnt(Token)
   {
 				  addAssociation(uClass, rUClass,subToken); // based-on-single-associations
 				}  }
 
 class UmpleInternalParser { 
-    before Lable_addAssociation_118:analyzeFIXMLextendedContentContetnt(Token)
+    before Label_addAssociation_118:analyzeFIXMLextendedContentContetnt(Token)
   {
 				  addAssociation(uClass, rUClass,subToken); // based-on-single-associations
 				}  }
 
 class UmpleInternalParser { 
-    before Lable_Association_117:analyzeFIXMLDefinition(Token)
+    before Label_Association_117:analyzeFIXMLDefinition(Token)
   {
 				  assignAssociationInitialValues(); // based-on-single-associations
 				}  }
 
 class UmpleInternalParser { 
-    before Lable_Association_112:applyTraits
+    before Label_Association_112:applyTraits
   {
             if (getParseResult().getWasSuccess()) copyAssociationsFromTraitToClass(uClass);
           }  }
 
 class UmpleInternalParser { 
-    before Lable_Association_107:analyzeTraitToken(Token,UmpleTrait,int)
+    before Label_Association_107:analyzeTraitToken(Token,UmpleTrait,int)
   {
       else if (token.is("inlineAssociation"))
       {

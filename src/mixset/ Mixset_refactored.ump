@@ -3,32 +3,32 @@
 
 
 class GeneratorHelper { 
-    before Lable_Mixset_5:toCode(List<CodeInjection>)
+    before Label_Mixset_5:toCode(List<CodeInjection>)
   {
 	      if(inject.hasCodeLabel())
           continue;// handle the case when labels are used. // Do nothing  
         }  }
 
 class UmpleGenerator { 
-    before Lable_Mixset_16:initializeParser
+    before Label_Mixset_16:initializeParser
   {
       parser.addGrammarFile("/mixset/umple_mixsets.grammar");
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Mixset_52:analyzeToken(Token,int)
+    before Label_Mixset_52:analyzeToken(Token,int)
   {
       analyzeMixsetUseStatement(t, analysisStep);
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Mixset_62:analyzeToken(Token,int)
+    before Label_Mixset_62:analyzeToken(Token,int)
   {
       analyzeMixsetToken(t, analysisStep);
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Mixset_78:analyzeClassToken(Token,int)
+    before Label_Mixset_78:analyzeClassToken(Token,int)
   {
       // add parsed files to parsedUmpfiles hashMap.
       String umpFileName = t.getSubToken("use").getValue();
@@ -37,7 +37,7 @@ class UmpleInternalParser {
       }  }
 
 class UmpleInternalParser { 
-    before Lable_Mixset_79:analyzeClassToken(Token,UmpleClass,int)
+    before Label_Mixset_79:analyzeClassToken(Token,UmpleClass,int)
   {
       else if (token.getValue("mixsetDefinition") != null)  {
         analyzeMixsetBodyToken(token);
@@ -45,7 +45,7 @@ class UmpleInternalParser {
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Mixset_83:analyzeAllAssociations(Token)
+    before Label_Mixset_83:analyzeAllAssociations(Token)
   {
         if (token.is("mixsetDefinition"))
         {
@@ -54,25 +54,25 @@ class UmpleInternalParser {
       }  }
 
 class UmpleInternalParser { 
-    before Lable_Mixset_96:analyzeMethod(Token,UmpleElement,boolean)
+    before Label_Mixset_96:analyzeMethod(Token,UmpleElement,boolean)
   {
               methodCode = processInlineMixset(token.getValue(), meth);
             }  }
 
 class UmpleInternalParser { 
-    before Lable_Mixset_101:makeCodeInject(Token,CodeInjection,CodeBlock,UmpleClassifier)
+    before Label_Mixset_101:makeCodeInject(Token,CodeInjection,CodeBlock,UmpleClassifier)
   {
         aspectCode = processInlineMixset(sub.getValue(), null);
         }  }
 
 class TemplateDefinitionWalker { 
-    before Lable_Mixset_157:analyzeToken(Token,TemplateTokenAnalyzer,int)
+    before Label_Mixset_157:analyzeToken(Token,TemplateTokenAnalyzer,int)
   {
           processInlineMixset(aToken);
         }  }
 
 class UmpleInternalParser { 
-    before Lable_Mixset_151:analyzeInjectionCode(Token,UmpleClassifier)
+    before Label_Mixset_151:analyzeInjectionCode(Token,UmpleClassifier)
   {
       // check if the aspect needs to be injected before/after a label.
       if(codeLabelToken != null)
@@ -80,13 +80,13 @@ class UmpleInternalParser {
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Mixset_127:analyzeStateMachine(Token,UmpleClassifier)
+    before Label_Mixset_127:analyzeStateMachine(Token,UmpleClassifier)
   {
       analyzeMixsetDefinition(innerMixsetTokens, sm);
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Mixset_106:analyzeTraitToken(Token,UmpleTrait,int)
+    before Label_Mixset_106:analyzeTraitToken(Token,UmpleTrait,int)
   {
       else if (token.is("mixsetDefinition"))
       {

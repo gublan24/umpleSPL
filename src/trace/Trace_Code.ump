@@ -289,7 +289,7 @@ class AssociationVariable
 
 		for(TraceDirective td: uClass.getAllTraceDirectives())
 		{
-			Lable_Association_31:;
+			Label_Association_31:;
 		}
 
 		return traceItems;
@@ -489,7 +489,7 @@ mixset StateMachine {
 					extra += concatinator + param.getName();
 				}
 			}
-			Lable_StateMachine_34:;
+			Label_StateMachine_34:;
 			if(getTraceDirective().getTraceRecord()!=null)
 			{
 				for(Attribute record:getTraceDirective().getTraceRecord().getAttributes())
@@ -565,7 +565,7 @@ class AssociationTraceItem
 	 * @return the message for the trace 
 	 */  
 	public String trace(CodeTranslator gen, Object o, String methodname, UmpleClass uClass, String... args){
-		Lable_Association_35:;
+		Label_Association_35:;
 
 		return "";
 	}

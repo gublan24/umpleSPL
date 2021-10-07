@@ -3,37 +3,37 @@
 
 
 class GeneratorHelper { 
-    before Lable_Trace_2:postpare(UmpleModel)
+    before Label_Trace_2:postpare(UmpleModel)
   {
       postpareTrace(model);
     }  }
 
 class GeneratorHelper { 
-    before Lable_Trace_4:postpare(UmpleClass)
+    before Label_Trace_4:postpare(UmpleClass)
   {
       postpareTrace(aClass);
     }  }
 
 class UmpleGenerator { 
-    before Lable_Trace_11:initializeParser
+    before Label_Trace_11:initializeParser
   {
       parser.addGrammarFile("/trace/umple_traces.grammar");
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Trace_58:analyzeToken(Token,int)
+    before Label_Trace_58:analyzeToken(Token,int)
   {
       analyzeTraceToken(t,analysisStep);
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Trace_69:analyzeDependentTokens(Token,UmpleClass,int)
+    before Label_Trace_69:analyzeDependentTokens(Token,UmpleClass,int)
   {
       analyzeTraceToken(t,aClass);
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Trace_72:postTokenAnalysis
+    before Label_Trace_72:postTokenAnalysis
   { 
       if (getParseResult().getWasSuccess())
       {
@@ -42,7 +42,7 @@ class UmpleInternalParser {
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Trace_128:populateStateMachine(Token,StateMachine,UmpleClassifier)
+    before Label_Trace_128:populateStateMachine(Token,StateMachine,UmpleClassifier)
   {
         if(stateToken.is("trace"))
         {

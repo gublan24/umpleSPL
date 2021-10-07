@@ -258,7 +258,7 @@ class UmpleModel
   public String generate()
   {
     String lang="Unknown";
-    Lable_Filter_22: ;
+    Label_Filter_22: ;
     boolean foundGenerator;
     parsingTime = System.currentTimeMillis()/1000.0;
     try

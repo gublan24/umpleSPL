@@ -161,7 +161,7 @@ class UmpleInternalParser
   private void analyzeTraceStatement(UmpleClass aClass, Token token){
     traceDirective = new TraceDirective(model.getTracer());
     traceAttr = new AttributeTraceItem(traceDirective);
-    Lable_Association_130: ;
+    Label_Association_130: ;
 
     mte = new MethodTraceItem(traceDirective);
     post = new Postfix(traceDirective);
@@ -220,7 +220,7 @@ class UmpleInternalParser
         if(others.isEmpty())
         {
         	cond.setConstraint(constraint);
-          Lable_Association_131: ;
+          Label_Association_131: ;
           mte.setConstraint(constraint);
         }
         else
@@ -256,7 +256,7 @@ class UmpleInternalParser
         UmpleVariable attr = traceDirective.getUmpleClass().getAttribute(token.getValue("LHS"));
         if(attr==null)
         {
-          Lable_Association_132: ;
+          Label_Association_132: ;
         }
         traceAttr.addUmpleVariable(attr);
       }     
@@ -353,7 +353,7 @@ class UmpleInternalParser
     {
       analyzeAttributeTraceItem(traceToken);
     }
-    Lable_StateMachine_133: ;
+    Label_StateMachine_133: ;
 
     if( traceItemType == 3 )
     {
@@ -392,7 +392,7 @@ class UmpleInternalParser
         traceAttr.setTraceSet(true);
       }
     }
-    Lable_Association_134: ;
+    Label_Association_134: ;
     //------------- trace all non-api methods [wildcard]
     if( traceToken.getValue("traceEntity").toLowerCase().equals("allnonapimethods") )
     {
@@ -416,14 +416,14 @@ class UmpleInternalParser
 
     // --- check if attribute
     UmpleVariable attr = aClass.getAttribute(traceToken.getValue("traceEntity"));
-    Lable_Association_135: ;
+    Label_Association_135: ;
     if( attr != null )
     {
       traceItemType = 1;
     }
 
-    Lable_StateMachine_136: ;
-    Lable_Association_137: ;
+    Label_StateMachine_136: ;
+    Label_Association_137: ;
 
     // --- check if method
     for( Method mVar : aClass.getMethods() )

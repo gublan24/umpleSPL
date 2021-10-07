@@ -3,13 +3,13 @@
 
 
 class UmpleInternalParser { 
-    before Lable_AspectInjection_64:analyzeToken(Token,int)
+    before Label_AspectInjection_64:analyzeToken(Token,int)
   {
       analyzeInjectionToken(t, analysisStep);
     }  }
 
 class UmpleInternalParser { 
-    before Lable_AspectInjection_68:analyzeDependentTokens(Token,UmpleClass,int)
+    before Label_AspectInjection_68:analyzeDependentTokens(Token,UmpleClass,int)
   {
       else if (t.is("beforeCode") || t.is("afterCode"))
       {
@@ -18,7 +18,7 @@ class UmpleInternalParser {
     }  }
 
 class UmpleInternalParser { 
-    before Lable_AspectInjection_114:applyTraitProperties(UmpleClass,UmpleTrait)
+    before Label_AspectInjection_114:applyTraitProperties(UmpleClass,UmpleTrait)
   {
        // copy injection codes
        for (CodeInjection cj : inTrait.getCodeInjections()) {
@@ -28,7 +28,7 @@ class UmpleInternalParser {
     }  }
 
 class UmpleInternalParser { 
-    before Lable_AspectInjection_110:analyzeDependentTokens(Token,UmpleTrait,int)
+    before Label_AspectInjection_110:analyzeDependentTokens(Token,UmpleTrait,int)
   {
       else if (t.is("beforeCode") || t.is("afterCode"))
       {

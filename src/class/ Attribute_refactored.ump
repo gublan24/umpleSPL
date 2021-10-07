@@ -3,7 +3,7 @@
 
 
 class UmpleInternalParser { 
-    before Lable_Attribute_50:analyze(boolean)
+    before Label_Attribute_50:analyze(boolean)
   {
         mixset Method {
           checkDefaultedNameConflict();

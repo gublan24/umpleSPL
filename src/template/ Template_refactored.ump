@@ -3,19 +3,19 @@
 
 
 class UmpleGenerator { 
-    before Lable_Template_12:initializeParser
+    before Label_Template_12:initializeParser
   {
       parser.addGrammarFile("/template/umple_template.grammar");
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Template_55:analyzeToken(Token,int)
+    before Label_Template_55:analyzeToken(Token,int)
   {
       analyzeTemplateToken(t,analysisStep);
     }  }
 
 class UmpleInternalParser { 
-    before Lable_Template_75:postTokenAnalysis
+    before Label_Template_75:postTokenAnalysis
   {
       if (getParseResult().getWasSuccess()) {
         postTokenTemplateAnalysis();

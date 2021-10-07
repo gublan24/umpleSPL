@@ -61,9 +61,9 @@ class GeneratorHelper
     {
       for (CodeInjection inject : allCodeInjections)
       {
-        Lable_Mixset_5: ;
+        Label_Mixset_5: ;
         String comment = "//";
-        Lable_RubyGeneratorIntMixset_6: ;
+        Label_RubyGeneratorIntMixset_6: ;
         String positionString = "";
         Position p = inject.getPosition();
         Position codeP = inject.getCodePosition();

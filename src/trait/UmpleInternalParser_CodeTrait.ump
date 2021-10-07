@@ -181,8 +181,8 @@ class UmpleInternalParser
 
   	analyzeCoreToken(t,aTrait,analysisStep);
     analyzeTraitToken(t,aTrait,analysisStep);
-    Lable_StateMachine_66: ;
-    Lable_StateMachine_105: ;
+    Label_StateMachine_66: ;
+    Label_StateMachine_105: ;
     analyzeDependentTokens(t,aTrait,analysisStep);
   }
 
@@ -210,7 +210,7 @@ class UmpleInternalParser
     {
       shouldConsumeComment = false;
     }
-    Lable_Mixset_106: ;
+    Label_Mixset_106: ;
 
     if (token.is("testCase"))
     {
@@ -276,7 +276,7 @@ class UmpleInternalParser
       Depend d = new Depend(token.getValue());
       aTrait.addDepend(d);
     }
-    Lable_Association_107: ;    
+    Label_Association_107: ;    
     if (token.is("exception"))
     {
       analyzeException(token,aTrait);
@@ -484,7 +484,7 @@ class UmpleInternalParser
    private void analyzeExtraCode(Token token, UmpleTrait aTrait){
     //This is a catch all and will be used less often as the grammar gets updated.
     
-    Lable_StateMachine_108: ;
+    Label_StateMachine_108: ;
     //Append #line comment to indicate line and position of source
     if (token.getPosition() != null)
     {
@@ -583,7 +583,7 @@ class UmpleInternalParser
 
       setFailedPosition(sub.getPosition(), 1007, sub.getValue("name"));
     }
-    Lable_StateMachine_109: ;
+    Label_StateMachine_109: ;
     
   }
 //---------------------------------end----------------------------------------
@@ -602,14 +602,14 @@ class UmpleInternalParser
     {
       analyzeInvariant(t,inTrait);
     }
-    Lable_AspectInjection_110: ;
+    Label_AspectInjection_110: ;
     else if (t.is("key") || t.is("defaultKey"))
     {
     //TODO should applied for traits
     //  analyzeKey(t,aClass);
     }
     //analyzeTraceToken(t,aClass);
-    Lable_Layout_111: ;
+    Label_Layout_111: ;
 
   }
 //---------------------------------end----------------------------------------
@@ -626,9 +626,9 @@ class UmpleInternalParser
         if (uClass.hasExtendsTraits()) {
           if (getParseResult().getWasSuccess()) copyAttributesFromTraitsToClass(uClass);
           if (getParseResult().getWasSuccess()) copyMethodsFromTraitToClass(uClass);
-          Lable_Association_112: ;
+          Label_Association_112: ;
  
-          Lable_StateMachine_113: ;
+          Label_StateMachine_113: ;
 
           if (getParseResult().getWasSuccess()) copyTestCasesFromTraitsToClass(uClass);
           if (getParseResult().getWasSuccess()) {
@@ -932,7 +932,7 @@ private void checkClassSupportTraitsInterfaces(	GeneralTPApplied inGeneralTPAppl
 		for(ConstraintTree aConstraint : inTrait.getConstraintTrees()) {
 			inClass.addConstraintTree(aConstraint);
 		}	
-		Lable_AspectInjection_114: ;
+		Label_AspectInjection_114: ;
        // copy Extra code
        inClass.appendExtraCode(inTrait.getExtraCode());
        
@@ -1222,7 +1222,7 @@ private void recursiveCheckRequiredInterfaces(UmpleClass inClass,	UmpleTrait inT
       for(Token subToken : mainToken.getSubTokens()) {
         if (subToken.is("iEFunction") || subToken.is("functionAliasName")) {
           if (subToken.getSubToken("smName")!=null | subToken.getSubToken("smPattern")!=null ){
-              Lable_StateMachine_115: ;
+              Label_StateMachine_115: ;
           
           }else{
             MethodTemplateSignature mtSignature =obtainMethodTemplateSignature(subToken);
@@ -1234,7 +1234,7 @@ private void recursiveCheckRequiredInterfaces(UmpleClass inClass,	UmpleTrait inT
             }
           }
         } 
-        Lable_StateMachine_116: ;
+        Label_StateMachine_116: ;
         else if (subToken.is("traitAppliedParameters")){
             parameterName = subToken.getValue("pName");
             if (aGeneralTPApplied.getParameterMapping().containsKey(parameterName)){

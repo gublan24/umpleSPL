@@ -544,11 +544,11 @@ private void checkAssociationsForDistributed()
     for (Association association : model.getAssociations()) 
     {  
       if (associationIsBetweenClassAndInterface (association)){continue;} 
-       Lable_Trait_103: ;
+       Label_Trait_103: ;
       
       AssociationEnd myEnd = association.getEnd(0);
       AssociationEnd yourEnd = association.getEnd(1);
-      Lable_Trait_104: ;
+      Label_Trait_104: ;
 
       UmpleClass myClass = model.getUmpleClass(myEnd.getClassName());
       UmpleClass yourClass = model.getUmpleClass(yourEnd.getClassName());
@@ -1140,7 +1140,7 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
     // Go through every token that is a child of the current token (all associations part of this association).
     for(Token token : associationToken.getSubTokens()){
       boolean isAssociationToken = token.is("association");
-      Lable_Mixset_83: ;
+      Label_Mixset_83: ;
       //Issue 213/131: [association] elements inside associationClasses generate 2 associations instead of one
       if (isAssociationToken && associationToken.is("associationClassDefinition")) {
         for (Token t : token.getSubTokens()) {
@@ -1170,7 +1170,7 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
   private UmpleClass analyzeClass(Token classToken)
   {
   
-    Lable_StateMachine_84: ;
+    Label_StateMachine_84: ;
     String className = classToken.getValue("name").split(" ")[classToken.getValue("name").split(" ").length-1];
     //Check to ensure the name is valid (starts with a letter, and only contains letters, numbers, or underscores
     if (Token.isValidIdentifier(className, "[A-Za-z]") != true) {
@@ -1341,7 +1341,7 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
         }
         extendName = extendsToken.getValue("extendsName");
       } else if (extendsToken.getValue("gTemplateParameter") !=null ){
-        Lable_Trait_85: ;
+        Label_Trait_85: ;
       }
     }
     
@@ -1650,7 +1650,7 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
       boolean isAClass = model.getUmpleClass(e.getValue()) != null;
       boolean isAInterface = model.getUmpleInterface(e.getValue()) != null;
       boolean condToCheck = !isAClass && !isAInterface ;
-      Lable_Trait_86: ;
+      Label_Trait_86: ;
       
       if ( condToCheck ) //item referenced not a class or interface or a trait or a type parameter
       {
@@ -1828,13 +1828,13 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
       {
         String extendName= extendsNames.get(i);
         boolean isTraitCheck = false;
-        Lable_Trait_87: ;
+        Label_Trait_87: ;
 
         if (isUmpleClass(extendName))
         {
           if (isTraitCheck )
           {
-            Lable_Trait_88: ;        
+            Label_Trait_88: ;        
           }
           else
           {
@@ -1938,7 +1938,7 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
                 }
             }
 
-            Lable_StateMachine_89: ;
+            Label_StateMachine_89: ;
           
           if(c instanceof AssociationClass) 
           {
@@ -2033,7 +2033,7 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
         {
           boolean shouldAddMethod = !isConstructorOrGetSet(uClass, aMethod, true);
           boolean hasMethodTraitsCheck = true;
-          Lable_Trait_90: ;
+          Label_Trait_90: ;
 
           if (!(uClass.hasImplementedMethodIncludingWithinParentClasses(aMethod))
           && hasMethodTraitsCheck && !(uClass.isIsAbstract()) && shouldAddMethod)
@@ -2359,7 +2359,7 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
         continue;
       }
       
-      Lable_Trait_91:;
+      Label_Trait_91:;
 
       for (Association B : visited)
       {  
@@ -2382,7 +2382,7 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
   {
           continue;
         }
-       Lable_Trait_92: ;
+       Label_Trait_92: ;
  
         // if A -- B twice, we don't want that.
         if (aLeftEnd.getClassName().equals(bLeftEnd.getClassName()) && aRightEnd.getClassName().equals(bRightEnd.getClassName()))
@@ -2854,12 +2854,12 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
     for (Association association : model.getAssociations()) 
     {
       if (associationIsBetweenClassAndInterface (association)){continue;} 
-      Lable_Trait_93: ;  
+      Label_Trait_93: ;  
     
       AssociationEnd myEnd = association.getEnd(0);
       AssociationEnd yourEnd = association.getEnd(1);
 
-      Lable_Trait_94: ;
+      Label_Trait_94: ;
     
       UmpleClass myClass = model.getUmpleClass(myEnd.getClassName());
       UmpleClass yourClass = model.getUmpleClass(yourEnd.getClassName());
@@ -2895,7 +2895,7 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
     for (Association association : unlinkedAssociations)
     {         
       if (associationIsBetweenClassAndInterface (association)){continue;}  
-       Lable_Trait_95: ;
+       Label_Trait_95: ;
       
       AssociationEnd myEnd = association.getEnd(0);
       AssociationEnd yourEnd = association.getEnd(1);
@@ -3217,7 +3217,7 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
           {
             String methodCode = token.getValue();
             // process mixsets inside code 
-            Lable_Mixset_96: ;
+            Label_Mixset_96: ;
             // end of MIXSET 
             cb.setCode(methodCode);
             aMethod.setCodePosition(token.getPosition());
@@ -3443,7 +3443,7 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
       {
         // See issue #1351. Convert regular methods to default bodies for state-dependent methods
         // if they exist.
-        Lable_StateMachine_97: ;
+        Label_StateMachine_97: ;
         {
           uClass.addMethod(aMethod);
         }
@@ -3462,13 +3462,13 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
       {
         //Issue 567 and 1351
         boolean stateDependentMethodsflag = true;
-        Lable_StateMachine_98:;
+        Label_StateMachine_98:;
       if(shouldAddMethod && stateDependentMethodsflag)
           uClass.addUnimplementedMethod(aMethod);
       }
     }
    
-    Lable_Trait_99: ;
+    Label_Trait_99: ;
     else if (uElement instanceof UmpleInterface)
     {
       UmpleInterface uInterface = (UmpleInterface) uElement;
@@ -3952,7 +3952,7 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
         final String operationFinal = operation;
         boolean stateDependentMethodsFlag = true;
    
-        Lable_StateMachine_100: ;
+        Label_StateMachine_100: ;
         if (!matches && stateDependentMethodsFlag )
         {
           matches = true;
@@ -3996,7 +3996,7 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
       if(sub.is("code"))
       {
         String aspectCode = sub.getValue();
-        Lable_Mixset_101: ;
+        Label_Mixset_101: ;
         if(langs.size()==0)
         {
           cb.setCode(aspectCode);
@@ -5402,7 +5402,7 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
       aClass.appendExtraCode("  "+extraCode+"\n");
       setFailedPosition(sub.getPosition(), 1008, sub.getValue("name"));
     }
-    Lable_StateMachine_109: ;
+    Label_StateMachine_109: ;
   }
   
   private void analyzeException(Token exception, UmpleInterface aInterface)
@@ -5515,7 +5515,7 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
   
   private void analyzeExtraCode(Token token, UmpleClass aClass)
   {
-    Lable_StateMachine_102: ;
+    Label_StateMachine_102: ;
     //Append #line comment to indicate line and position of source
     if (token.getPosition() != null)
     {
@@ -5674,11 +5674,11 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
       if(model.hasAssociations())
         for (Association association : model.getAssociations()) 
         {  
-          Lable_Trait_81: ;
+          Label_Trait_81: ;
           AssociationEnd myEnd = association.getEnd(0);
           AssociationEnd yourEnd = association.getEnd(1);
 
-          Lable_Trait_82:;
+          Label_Trait_82:;
           UmpleClassifier myClass = model.getUmpleClass(myEnd.getClassName());
           if(myClass == null)
             myClass = model.getUmpleInterface(myEnd.getClassName());

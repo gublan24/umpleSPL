@@ -113,7 +113,7 @@ class UmpleClass
     {
       methodNames.addAll(av.getMethodNames());
     }
-    Lable_StateMachine_19:;
+    Label_StateMachine_19:;
 
     for (Method m: this.getMethods()) {
       if (!isGetterSetter(m) && !m.isIsConstructor()) {
@@ -369,7 +369,7 @@ class UmpleClass
     if(aMethod!=null&&!aMethod.isIsAbstract()){
       return true;
     }
-    Lable_StateMachine_20:;
+    Label_StateMachine_20:;
     if(getExtendsClass()!=null&&getExtendsClass().hasImplementedMethodIncludingWithinParentClasses(comparedMethod)){
       return true;
     }
@@ -513,7 +513,7 @@ class UmpleClass
     
     if (isImmutable)
     {
-      Lable_StateMachine_21:;
+      Label_StateMachine_21:;
 
       for (AssociationVariable av : associationVariables)
       {

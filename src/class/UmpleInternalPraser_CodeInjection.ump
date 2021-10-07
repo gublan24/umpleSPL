@@ -241,12 +241,12 @@ class UmpleInternalParser
           Map.Entry mapElement = (Map.Entry)hmIterator.next(); 
           if (((UmpleClass)mapElement.getKey()).equals(model.getUmpleClass(className)))
           {
-            Lable_Trait_149: ;
+            Label_Trait_149: ;
           }
         } 
 
         ArrayList<String> methodNames = model.getUmpleClass(className).getMethodNames();
-        Lable_Trait_150: ;
+        Label_Trait_150: ;
 
         for (String operationName : operationNames)
         {
@@ -294,7 +294,7 @@ class UmpleInternalParser
 
     CodeInjection injection = new CodeInjection(type,operationName,"",uClassifier);
     injection.setOperationSource(operationSource);
-    Lable_Mixset_151: ;
+    Label_Mixset_151: ;
     List<String> operationsParameters = getOperationsParameters(injectToken);
     for(String operationParameters : operationsParameters) {
       injection.addParameter(operationParameters);      

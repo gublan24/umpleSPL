@@ -98,7 +98,7 @@ class UmpleInternalParser
         }
       }
 
-      Lable_Trait_141: ;
+      Label_Trait_141: ;
 
       
       for (UmpleClass uClass : model.getUmpleClasses()) {
@@ -153,7 +153,7 @@ class UmpleInternalParser
         }
       }
       
-      Lable_StateMachine_142: ;
+      Label_StateMachine_142: ;
      // Check if the enumeration is used in any of the class's associations
      String className = uClass.getName();
      for (Association a : uClass.getAssociations()) {
@@ -185,7 +185,7 @@ class UmpleInternalParser
         }
       }
     }
-    Lable_StateMachine_143: ;
+    Label_StateMachine_143: ;
      if (classUsesEnum) {
        for (Association a : uClass.getAssociations()) {
          validateEnumerationInAssociation(uEnum, a, className);

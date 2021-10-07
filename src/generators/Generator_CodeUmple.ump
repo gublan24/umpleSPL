@@ -582,20 +582,20 @@ class UmpleGenerator
     parser = new cruise.umple.parser.analysis.RuleBasedParser();
     // Populate the parser with Umple's grammar (see GrammarParsing_Code.ump)
     parser.addGrammarFile("/umple_core.grammar");
-    Lable_Class_7:;
-    Lable_Trait_8:;
-    Lable_FIXML_9:;
+    Label_Class_7:;
+    Label_Trait_8:;
+    Label_FIXML_9:;
     parser.addGrammarFile("/umple_patterns.grammar");
-    Lable_StateMachine_10:;
-    Lable_Trace_11:;
-    Lable_Template_12:;
-    Lable_Structure_13:;
+    Label_StateMachine_10:;
+    Label_Trace_11:;
+    Label_Template_12:;
+    Label_Structure_13:;
     parser.addGrammarFile("/constraint/umple_constraints.grammar");  // TODO Under development
-    Lable_Layout_14:;
+    Label_Layout_14:;
     parser.addGrammarFile("/umple_exceptions.grammar");
     parser.addGrammarFile("/use.grammar");
-    Lable_Filter_15:;
-    Lable_Mixset_16:;
+    Label_Filter_15:;
+    Label_Mixset_16:;
     parser.setupRules(true);    // Compute the Umple grammar rules
     rootRuleToken = parser.getRootToken();
     if(rootRuleToken == null) {

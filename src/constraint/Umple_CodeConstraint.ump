@@ -443,7 +443,7 @@ class ConstraintOperator
     {
       return;
     }
-    Lable_Association_26:;
+    Label_Association_26:;
     else if((variable instanceof ConstraintTree)&&((ConstraintTree)variable).getNumberOfElements()>0)
     {
       correctForCardinality(((ConstraintTree)variable).getRoot());
@@ -931,7 +931,7 @@ mixset Association {
         {
           return new ModelConstraintResult(getPosition(),94,getTarget(),getSource());
         }
-        Lable_Association_32:;
+        Label_Association_32:;
         
         return new ModelConstraintResult(getPosition(),94,getTarget(),getSource());
       }

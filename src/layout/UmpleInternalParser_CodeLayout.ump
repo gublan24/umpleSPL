@@ -49,7 +49,7 @@ class UmpleInternalParser
       if(!theColor.endsWith("\"")) theColor= theColor+"\"";
       inUmpleClassifier.setDisplayColor(theColor);
     }
-    Lable_Association_138: ;
+    Label_Association_138: ;
   }
 
   // Perform post token analysis on core elements of the Umple language
@@ -92,7 +92,7 @@ class UmpleInternalParser
         c.getCoordinates().setStatus(Coordinate.Status.Defaulted);
       }
     }
-    Lable_Association_139: ;
+    Label_Association_139: ;
 
 
   }  

@@ -47,3 +47,16 @@ class UmpleInternalParser {
         postTokenComponentAnalysis();
       }
     }  }
+
+
+mixset Structure_StateMachine // Interaction between Structure & StateMachine
+{
+class ConstraintPort
+{
+  String getName()
+  {
+    return port==null?null:port.getName();
+  }
+  public String getType(){ return "port"; }
+}
+}

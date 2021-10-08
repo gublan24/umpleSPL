@@ -671,31 +671,7 @@ class ConstraintUnassignedName
 }
 
 
-mixset Association {
-    class ConstraintAssociation
-  {
-    String getName()
-    {
-      return association==null?null:association.getName();
-    }
-    /*
-    * A method for conveniently getting the contained association's container class.
-    */
-    UmpleClassifier retrieveClassifier(){
-      UmpleClass containerClass = association.getUmpleClass();
-      if(containerClass==null)
-      {
-        UmpleTrait containerTrait = association.getUmpleTrait();
-        return containerTrait;
-      }
-      else
-      {
-        return containerClass;
-      }
-    }
-    public String getType(){ return numberOf?"associationNumberOf":index==-1?"associationList":"associationGet"; }
-  }
-}
+
 
 class ConstraintMethodParameter
 {
@@ -755,37 +731,9 @@ class ConstraintVariable
   public abstract String getType();
 }
 
-mixset StateMachine {
-  class ConstraintState
-  {
-    String getName()
-    {
-      return state==null?null:state.getName();
-    }
-    public String getType() { return "state"; }
-  }
 
-  class ConstraintStateMachine
-  {
-    String getName()
-    {
-      return stateMachine==null?null:stateMachine.getName();
-    }
-    public String getType(){ return "statemachine"; }
-  }
-}
 
-mixset Structure_StateMachine
-{
-class ConstraintPort
-{
-  String getName()
-  {
-    return port==null?null:port.getName();
-  }
-  public String getType(){ return "port"; }
-}
-}
+
 class ModelConstraintResult
 {
   depend cruise.umple.parser.Position;
@@ -814,22 +762,6 @@ class ModelConstraint
 
   before addModelConstraint { if(numberOfModelConstraints()>0)getMostRecent().setLink(getLinkNext()); }
 
-  mixset Association {
-    public void addAssociationEnd(Multiplicity multiplicity)
-    {
-      if(getModelConstraint(numberOfModelConstraints()-1) instanceof ModelConstraintAssociation)
-      {
-        getModelConstraint(numberOfModelConstraints()-1).addAssociationEnd(multiplicity);
-      }
-    }
-    public void setAssociationType(String type)
-    {
-      if(getModelConstraint(numberOfModelConstraints()-1) instanceof ModelConstraintAssociation)
-      {
-        getModelConstraint(numberOfModelConstraints()-1).setAssociationType(type);
-      }
-    }
-  }
 
   public ModelConstraintResult evaluate(UmpleClassifier uClassifier){
     List<ModelConstraintResult> results = new ArrayList<ModelConstraintResult>();
@@ -870,75 +802,7 @@ class ModelConstraint
     return results.size()>0?results.get(0):ModelConstraint.SUCCESS;
   }
 }
-mixset Association {
-  class ModelConstraintAssociation
-  {
-    isA ModelConstraint;
-    depend cruise.umple.compiler.*;
-    depend cruise.umple.parser.Position;
 
-    Multiplicity leftHandMultiplicity = new Multiplicity();
-    Multiplicity rightHandMultiplicity = new Multiplicity();
-    type = "--";
-    boolean left = true;
-    after constructor { leftHandMultiplicity.setBound("*"); }
-    after constructor { rightHandMultiplicity.setBound("*"); }
-    public void addAssociationEnd(Multiplicity multiplicity)
-    {
-      if(left)
-      {
-        leftHandMultiplicity = multiplicity;
-      }
-      else
-      {
-        rightHandMultiplicity = multiplicity;
-      }
-      left = false;
-    }
-    public void setAssociationType(String aType)
-    {
-      type = aType;
-      left = false;
-    }
-
-    public ModelConstraintResult evaluate(UmpleClassifier uClassifier)
-    {
-      ModelConstraintResult evaluation = super.evaluate(uClassifier);
-      if(!evaluation.equals(ModelConstraint.SUCCESS))
-      {
-        return evaluation;
-      }
-
-      if("this".equals(getSource()))
-      {
-        setSource(uClassifier.getName());
-      }
-      if(type.equals("<-"))
-      {
-        String temp = getSource();
-        setSource(getTarget());
-        setTarget(temp);
-        Multiplicity tempMultiplicity = rightHandMultiplicity;
-        rightHandMultiplicity = leftHandMultiplicity;
-        leftHandMultiplicity = tempMultiplicity;
-      }
-      if(uClassifier instanceof UmpleClass)
-      {
-        UmpleClass uClass = null;
-        uClass = ((UmpleClass)uClassifier).getSourceModel().getUmpleClass(getSource());
-
-        if(uClass == null)
-        {
-          return new ModelConstraintResult(getPosition(),94,getTarget(),getSource());
-        }
-        Label_Association_32:;
-        
-        return new ModelConstraintResult(getPosition(),94,getTarget(),getSource());
-      }
-      return ModelConstraint.SUCCESS;
-    }
-  }
-}
 
 class ModelConstraintSuperClass
 {

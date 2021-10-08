@@ -489,7 +489,6 @@ class StateMachineTraceItem
 					extra += concatinator + param.getName();
 				}
 			}
-			mixset StateMachine {
 				else if(o instanceof State)
 				{
 					State state = (State)o;
@@ -514,7 +513,7 @@ class StateMachineTraceItem
 					else if(methodname.equals("sm_di"))
 						obj += ",doActivitedInterrupted";
 				}
-			}
+			
 			if(getTraceDirective().getTraceRecord()!=null)
 			{
 				for(Attribute record:getTraceDirective().getTraceRecord().getAttributes())
@@ -630,7 +629,6 @@ class StatemachineExprStateNameAnalyzer
   {
     rawLine = cv.createNew();
   }
-  mixset StateMachine {
   public void analyze(Token token)
   {
     StateMachine stateMachine = null;
@@ -658,7 +656,7 @@ class StatemachineExprStateNameAnalyzer
       //TODO: add error
     }
   }
-}
+
 }
 
 // Fragment source file: Master.ump

@@ -223,15 +223,7 @@ class ModelConstraintAssociation {
         }
         }  }
 
-class AttributeTraceItem { 
-    before Label_Association_33:trace(CodeTranslator,Object,String,UmpleClass,String...)
-  {
-				  else if(o instanceof AssociationVariable)
-				  {
-					name = gen.translate("associationMany",(AssociationVariable)o);
-				  }
-				}  }
-
+mixset Trace {  //Interaction between Trace and Association 
 class AssociationTraceItem { 
     before Label_Association_35:trace(CodeTranslator,Object,String,UmpleClass,String...)
   {
@@ -309,6 +301,7 @@ class AssociationTraceItem {
 			}
 		}
 		}  }
+}
 
 class CompositeStructureTokenAnalyzer { 
     before Label_Association_155:analyzeInvariantConstraint(Token)

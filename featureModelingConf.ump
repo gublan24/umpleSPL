@@ -147,6 +147,11 @@ use src/trace/Trace.ump;
 use src/trace/UmpleInternalParser_CodeTrace.ump;
 
 use src/trace/Trace_refactored.ump ;
+
+mixset StateMachine {
+  use stateMachine/UmpleInternalParser_CodeTraceStateMachine.ump;
+}
+
 }
 mixset Constraint { 
 // Fragment source file: Umple_Code.ump

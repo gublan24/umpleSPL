@@ -98,7 +98,7 @@ class UmpleVariable
 	}
 }
 
-mixset StateMachine {
+mixset StateMachine { // Interaction between StateMachine and Trace
 	class State
 	{
 		/*
@@ -365,7 +365,7 @@ class AttributeTraceItem
 				{
 					name = gen.translate("attributeOne",(Attribute)o);
 				}
-				mixset Association {
+				mixset Association { // Interaction between Association and Trace
 				  else if(o instanceof AssociationVariable)
 				  {
 					name = gen.translate("associationMany",(AssociationVariable)o);
@@ -442,8 +442,8 @@ class AttributeTraceItem
 		((SuperCodeGenerator)gen).setParameterConstraintName(name);
 		return gen.translate("Closed",getTraceDirective().getPostfix().getCondition().getConstraint());
 	}
-}
-mixset StateMachine {
+} 
+mixset StateMachine { // Interaction between StateMachine and Trace
 	class StateMachineTraceItem
 	{
 		depend cruise.umple.util.*;

@@ -274,28 +274,7 @@ class ModelConstraintAssociation
 
 // Fragment source file: Trace.ump
 // Line : 217
-class AssociationTraceItem
-  {
-    depend cruise.umple.parser.Position;
-
-    isA TraceItem;
-    
-    ConstraintTree constraint = null;
-    tracerType = {getTraceDirective().getTracerType()}
-
-    * -> * AssociationVariable;
-    * -> * Association;
-
-    //default case tracing Cardinality
-    boolean traceCardinality = true;
-    boolean traceAdd = false;
-    boolean traceRemove = false;
-
-    Position position = null;
-    periodClause = null;
-    Boolean conditionallyWhere = false; 
-    conditionType = "where";
-  }
+// deleted .
 
 // Fragment source file: UmpleInternalParser_CodeTrait.ump
 // Line : 536

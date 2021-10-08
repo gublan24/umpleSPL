@@ -206,71 +206,11 @@ class ModelConstraintAssociation
 
 // Fragment source file: Umple_Code_Trait.ump
 // Line : 80
- class UmpleTrait { public AssociationVariable getAssociationVariable(String name){
-    for (AssociationVariable av : associationVariables)
-    {
-      if (av.getName().equals(name))
-      {
-        return av;
-      }
-    }
-    return null;
-    } } 
+// deleted .
 
 // Fragment source file: Umple_Code_Trait.ump
 // Line : 127
- class UmpleTrait { protected boolean immutabilityAssociationRulesSatisfied(AssociationVariable myAV, boolean myTraitImmutable){
-    AssociationVariable relatedAV = myAV.getRelatedAssociation();
-    UmpleTrait relatedTrait = (relatedAV == null) ? null : relatedAV.getUmpleTrait();
-    boolean relatedTraitImmutable = (relatedTrait == null) ? false : ((relatedTrait == this) ? myTraitImmutable : relatedTrait.isImmutable());
-
-    return immutabilityAssociationRulesSatisfied(myAV, this, myTraitImmutable, relatedAV, relatedTrait, relatedTraitImmutable);
-  } 	
-
-   protected static  boolean immutabilityAssociationRulesSatisfied(AssociationVariable myAV, UmpleTrait myTrait, boolean myTraitImmutable, AssociationVariable yourAV, UmpleTrait yourTrait, boolean yourTraitImmutable){
-    boolean satisfied = false;
-    if (myAV == null || yourAV == null)
-    {
-      satisfied = true;
-    }
-    else if (!myTraitImmutable && !yourTraitImmutable && !"immutable".equals(myAV.getModifier()) && !"immutable".equals(yourAV.getModifier()))
-    {
-      satisfied = true;
-    } 
-    else if (myAV.getIsNavigable() && yourAV.getIsNavigable())
-    {
-      //satisfied = false;
-    }
-    else if (myTrait == null && yourTrait == null)
-    {
-      satisfied = true;
-    }
-    else if (!yourAV.getIsNavigable() && (yourTrait == null || yourTraitImmutable))
-    {
-      if (yourTrait != null && yourTrait == myTrait && myAV.isMandatory())
-      {
-        // reflexive associations may not be mandatory:
-        //satisfied = false
-      }
-      else
-      {
-        satisfied = true;
-      }
-    }
-    else if (!myAV.getIsNavigable() && (myTrait == null || myTraitImmutable))
-    {
-      if (myTrait != null && yourTrait == myTrait && yourAV.isMandatory())
-      {
-        // reflexive associations may not be mandatory:
-        //satisfied = false
-      }
-      else
-      {
-        satisfied = true;
-      }
-    }
-    return satisfied;
-  } } 
+// deleted .
 
 // Fragment source file: Trace.ump
 // Line : 217

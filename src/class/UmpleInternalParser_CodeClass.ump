@@ -1615,8 +1615,7 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
 
       UmpleClass aClass = model.getUmpleClass(av.getType());
       UmpleClass bClass = model.getUmpleClass(relatedAv.getType());   
-
-      if (aClass == null || bClass == null){ //Association is between Class and Interface
+      if (aClass == null || bClass == null){ 
         continue;
       }   
 

@@ -75,8 +75,8 @@ class UmpleTrait {
     }
     return null;
   }
-
-  mixset Association { // Interaction between Association and Trait
+// Interaction between Association and Trait
+  mixset Association { 
    public AssociationVariable getAssociationVariable(String name){
     for (AssociationVariable av : associationVariables)
     {
@@ -115,8 +115,8 @@ class UmpleTrait {
 	    }	    
 	    return notifySubclassesAncestorImmutable(isImmutable);
 	}
-
-  mixset Association { // Interaction between Association and Trait
+// Interaction between Association and Trait
+  mixset Association { 
    protected boolean immutabilityAssociationRulesSatisfied(AssociationVariable myAV, boolean myTraitImmutable){
     AssociationVariable relatedAV = myAV.getRelatedAssociation();
     UmpleTrait relatedTrait = (relatedAV == null) ? null : relatedAV.getUmpleTrait();
@@ -283,8 +283,8 @@ class UmpleTrait {
     }
     return null;
   }
-
-mixset StateMachine { // Interaction between StateMachine and Trait
+// Interaction between StateMachine and Trait
+mixset StateMachine { 
   public StateMachine getStateMachine(String name){
     for (StateMachine sm : stateMachines)
     {
@@ -483,7 +483,8 @@ class GeneralTPApplied {
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------
 //---------------------------------Start--------------------------------------
-mixset StateMachine { // Interaction between StateMachine and Trait
+// Interaction between StateMachine and Trait
+mixset StateMachine { 
 	boolean hasStateMachineTemplateSignature(StateMachineTemplateSignature inSMTSignature) {
    for (StateMachineTemplateSignature smTSignature : getStateMachineTemplateSignatures()) {
       if (smTSignature.getSrcStateMachine().equals(inSMTSignature.getSrcStateMachine()) && smTSignature.numberOfSrcStates()==inSMTSignature.numberOfSrcStates()){
@@ -612,7 +613,8 @@ mixset StateMachine { // Interaction between StateMachine and Trait
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------
 //---------------------------------Start--------------------------------------
-mixset StateMachine { // Interaction between StateMachine and Trait
+// Interaction between StateMachine and Trait
+mixset StateMachine { 
   public String getAssignedStateMachineNewName(String srName){
     for (StateMachineTemplateSignature smTSignature : getStateMachineTemplateSignatures()) {
       if (smTSignature.getSrcStateMachine().equals(srName) && smTSignature.getSrcStates().length==0 && smTSignature.getAlias()!="" ) return smTSignature.getAlias();

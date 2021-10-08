@@ -98,7 +98,8 @@ class TraceDirective
   1 -> 1 TracerDirective;
 
   1 -- * AttributeTraceItem;
-  mixset StateMachine { // Interaction between StateMachine and Trace
+  // Interaction between StateMachine and Trace
+  mixset StateMachine { 
     1 -- * StateMachineTraceItem;
   }
   1 -- * MethodTraceItem;
@@ -180,7 +181,8 @@ class AttributeTraceItem
  * An element of a trace directive that indicates to trace one or more state machines
  * or transitions
  */
-mixset StateMachine { // Interaction between StateMachine and Trace
+ // Interaction between StateMachine and Trace
+mixset StateMachine { 
   class StateMachineTraceItem
   {
     depend cruise.umple.parser.Position;
@@ -213,7 +215,8 @@ mixset StateMachine { // Interaction between StateMachine and Trace
 /*
  * An element of a trace directive that indicates to trace one or more associations
  */
- mixset Association { // Interaction between Association and Trace
+ // Interaction between Association and Trace
+ mixset Association { 
   class AssociationTraceItem
   {
     depend cruise.umple.parser.Position;
@@ -293,7 +296,8 @@ class TraceRecord
 {
   boolean recordOnly = false;
   * -- * Attribute;
-  mixset StateMachine { // Interaction between StateMachine and Trace
+  // Interaction between StateMachine and Trace
+  mixset StateMachine { 
     * -- * StateMachine;
   }
   String[] record;

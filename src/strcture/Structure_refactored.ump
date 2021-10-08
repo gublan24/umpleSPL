@@ -48,8 +48,8 @@ class UmpleInternalParser {
       }
     }  }
 
-
-mixset Structure_StateMachine // Interaction between Structure & StateMachine
+// Interaction between Structure & StateMachine
+mixset Structure_StateMachine 
 {
 class ConstraintPort
 {

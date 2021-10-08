@@ -3,8 +3,8 @@ namespace cruise.umple.compiler;
 // Fragment source file: UmpleInternalParser_CodeClass.ump
 // Line : 5855
  class UmpleInternalParser { 
-   
-   mixset Method { // Interaction between Method and Attribute
+   // Interaction between Method and Attribute
+   mixset Method { 
       void checkDefaultedNameConflict(){
         Map<String, CodeTranslator> allTranslators = model.getAllTranslators();
         HashSet<String> generatedMethods = new HashSet<String>();

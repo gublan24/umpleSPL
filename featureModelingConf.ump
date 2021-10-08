@@ -506,7 +506,7 @@ mixset StateDiagramGenerator {
 // Fragment source file: stateMachineDiagramConfig.ump
 // Line : 7
 use generators/statemachineDiagramGenerator/Generator_CodeGvStateDiagram.ump
-  
+  /*
   class GvStateDiagramGenerator
   {
     isA CodeGeneratorWithSubptions;
@@ -520,6 +520,7 @@ use generators/statemachineDiagramGenerator/Generator_CodeGvStateDiagram.ump
     UmpleModel model = null;
     String output = "";
   }
+  */
 
 }
 
@@ -527,7 +528,7 @@ mixset FeatureDiagramGenerator {
 // Fragment source file: FeatureDiagramConfig.ump
 // Line : 9
 use generators/featureDiagramGenerator/Generator_CodeGvFeatureDiagram.ump;
-
+/*
   class GvFeatureDiagramGenerator
   {
     isA CodeGeneratorWithSubptions;
@@ -536,6 +537,7 @@ use generators/featureDiagramGenerator/Generator_CodeGvFeatureDiagram.ump;
     depend cruise.umple.util.*;
     depend cruise.umple.compiler.exceptions.*;
   }
+  */
 
 }
 
@@ -543,7 +545,7 @@ mixset EntityRelationshipGenerator {
 // Fragment source file: entityRelationshipConfig.ump
 // Line : 7
 use generators/entityRelationshipDiagramGenerator/Generator_CodeGvEntityRelationshipDiagram.ump;
-
+/*
 class GvEntityRelationshipDiagramGenerator
 {
   isA SuperGvGenerator;
@@ -551,10 +553,10 @@ class GvEntityRelationshipDiagramGenerator
   depend java.util.*;
   depend cruise.umple.util.*;
   depend cruise.umple.compiler.exceptions.*;
-}
+}*/
 
 }
-
+/*
 mixset Structure_StateMachine { 
 // Fragment source file: Umple_CodeConstraint.ump
 // Line : 785
@@ -568,7 +570,9 @@ class ConstraintPort
 }
 
 }
+*/
 
+/*
 mixset Template_Strcture { 
 // Fragment source file: UmpleInternalParser_Code.ump
 // Line : 510
@@ -581,4 +585,75 @@ mixset Template_Strcture {
     } } 
 
 }
+*/
+
+
+//
+use StateMachine ;
+use Trace ;
+use Template ;
+use FeatureModel ;
+use Structure : 
+use Template_Strcture ;
+use Structure_StateMachine;
+use Trait ;
+use Mixset;
+use Association ; 
+use Layout ;
+use Template ;
+use FIXML ;
+use Constraint ;
+use Filter;
+
+
+use CodeGenerator ; 
+use UmpleGenerator ;
+use RubyGenerator ; 
+use JavaGenerator ; 
+use RTCppGenerator ; 
+use PhpGenerator ; 
+use Uigu2Generator ; 
+use SqlGenerator ; 
+use UmpleSelfGenerator ;
+use USEGenerator ; 
+use EcoreGenerator ; 
+use TestGenerator ; 
+use PapyrusGenerator; 
+use XmiGenerator; 
+use TextUmlGenerator; 
+use ScxmlGenerator; 
+use GvStateDiagramGenerator ;  
+use StateTableGenerator; 
+use EventSequenceGenerator; 
+use SimpleMetricsGenerator; 
+use CodeGvClassDiagramGenerator; 
+use CodeGvClassTraitDiagramGenerator; 
+use FeatureDiagramCo; 
+use EntityRelationshipCon; 
+use AlloyGenerator;
+use NuSMVGenerators;
+use SimulateGenerator; 
+use YumlGenerator; 
+use XtextGenerator; 
+use JsonGenerator; 
+use JsonMixedGenerator; 
+use StructureDiagramGenerator; 
+use SuperCodeGeneratorGenerator; 
+use SuperGvGeneratorGenerator; 
+use HtmlGenerator; 
+use UmpleModelWalkerGenerator; 
+use CodeAnalysisGenerator; 
+use UmpleAnnotaiveToCompositionGenerator ; 
+
+use AspectInjection; 
+
+use Method ; // Interaction between Method and Attribute
+use Class ;
+use Attribute ;
+use RubyGeneratorIntuse ;
+use FeatureDiagramGenerator;
+use NuSMVGenerator; 
+use NuSMVOptimizerGenerator; 
+uuse StateDiagramGenerator ;
+use EntityRelationshipGenerator;
 

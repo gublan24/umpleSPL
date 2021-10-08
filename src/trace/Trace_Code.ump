@@ -97,8 +97,8 @@ class UmpleVariable
 		return atis;
 	}
 }
-
-mixset StateMachine { // Interaction between StateMachine and Trace
+// Interaction between StateMachine and Trace
+mixset StateMachine { 
 	class State
 	{
 		/*
@@ -365,7 +365,8 @@ class AttributeTraceItem
 				{
 					name = gen.translate("attributeOne",(Attribute)o);
 				}
-				mixset Association { // Interaction between Association and Trace
+				// Interaction between Association and Trace
+				mixset Association { 
 				  else if(o instanceof AssociationVariable)
 				  {
 					name = gen.translate("associationMany",(AssociationVariable)o);
@@ -443,7 +444,8 @@ class AttributeTraceItem
 		return gen.translate("Closed",getTraceDirective().getPostfix().getCondition().getConstraint());
 	}
 } 
-mixset StateMachine { // Interaction between StateMachine and Trace
+// Interaction between StateMachine and Trace
+mixset StateMachine { 
 	class StateMachineTraceItem
 	{
 		depend cruise.umple.util.*;

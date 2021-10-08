@@ -69,8 +69,8 @@ class ConstraintNameNameAnalyzer {
   {
           association = ((UmpleTrait)(uClassifier)).getAssociationVariable(value);
         }  }
-          
-mixset StateMachine { // Interaction between StateMachine and Trait
+  // Interaction between StateMachine and Trait
+mixset StateMachine { 
   class ConstraintNameNameAnalyzer { 
     before Label_Trait_44:generateConstraintName(UmpleClassifier,String,Boolean)
     {

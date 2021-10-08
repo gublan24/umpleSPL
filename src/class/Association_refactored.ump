@@ -222,8 +222,8 @@ class ModelConstraintAssociation {
           return ModelConstraint.SUCCESS;
         }
         }  }
-
-mixset Trace {  //Interaction between Trace and Association 
+//Interaction between Trace and Association 
+mixset Trace {  
 class AssociationTraceItem { 
     before Label_Association_35:trace(CodeTranslator,Object,String,UmpleClass,String...)
   {

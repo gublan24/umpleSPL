@@ -437,8 +437,8 @@ class UmpleInternalParser
     return traceItemType;
   }
 
-
-  mixset StateMachine { // Interaction between StateMachine and Trace
+// Interaction between StateMachine and Trace
+  mixset StateMachine { 
     // checks if traced state was deeply nested
     private int checkNestedStateMachine(String value, State s){
       int traceItemType = -1;

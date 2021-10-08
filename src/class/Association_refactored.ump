@@ -248,12 +248,11 @@ class AssociationTraceItem {
 				String comma = concatinator+"\",\""+concatinator;
 				String tracerName = Character.toUpperCase(getTracerType().charAt(0)) + getTracerType().substring(1);
 				String messageLayout = "{0}"+comma+"{1}"+concatinator+"\",{2},{3},{4},\""+concatinator+"{5}"+concatinator+"\",{6},{7},\"";
-				mixset Association {
-				  if(o instanceof AssociationVariable)
-				  {
+				if(o instanceof AssociationVariable)
+				{
 					name = gen.translate("associationMany",(AssociationVariable)o);
-			  	  }
-				}
+			  }
+				
 
 				//         if(type==null||"".equals(type)||"Boolean".equals(type)||"boolean".equals(type)||"String".equals(type)||"int".equals(type)||"Integer".equals(type)||"float".equals(type)||"Float".equals(type)||"double".equals(type)||"Double".equals(type)||"Time".equals(type)||"Date".equals(type))
 				//         {

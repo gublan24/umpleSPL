@@ -2,7 +2,9 @@ namespace cruise.umple.compiler;
 
 // Fragment source file: UmpleInternalParser_CodeClass.ump
 // Line : 5855
- class UmpleInternalParser { mixset Method {
+ class UmpleInternalParser { 
+   
+   mixset Method {
       void checkDefaultedNameConflict(){
         Map<String, CodeTranslator> allTranslators = model.getAllTranslators();
         HashSet<String> generatedMethods = new HashSet<String>();

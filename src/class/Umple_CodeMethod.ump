@@ -2,6 +2,8 @@ namespace cruise.umple.compiler;
 
 // Fragment source file: Master.ump
 // Line : 5856
+/*
+// this segment is put in Umple_CodeAttribute.ump
  class UmpleInternalParser { void checkDefaultedNameConflict(){
         Map<String, CodeTranslator> allTranslators = model.getAllTranslators();
         HashSet<String> generatedMethods = new HashSet<String>();
@@ -42,6 +44,7 @@ namespace cruise.umple.compiler;
         }
         return true;
       } } 
+      */
 // end 
 /**
 * This is for cloning

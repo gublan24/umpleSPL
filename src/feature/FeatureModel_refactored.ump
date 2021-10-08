@@ -15,8 +15,9 @@ class UmpleInternalParser {
     }  }
 
 class UmpleInternalParser { 
-    before Label_FeatureModel_148:parseMixsetNotUsedToken(Token)
+    before parseMixsetNotUsedToken(Token)
   {
       //parse require statments. 
       analyzeRequireStatement(token, 2);
-    }  }
+    }  
+}

@@ -100,19 +100,7 @@ class UmpleInternalParser
     }
   }
   
-  mixset Association {
-    private void addAssociationValue(Filter f, Token t)
-    {
-      for(Token nt : t.getSubTokens())
-      {
-        if("associationNum".equals(nt.getName()))
-        {
-          int associationNum = Integer.parseInt(nt.getValue("associationNum"));
-          f.setAssociationCount(associationNum);
-        }
-      }
-    }
-  }
+
 
   private void addClassValue(Filter f, Token t)
   {

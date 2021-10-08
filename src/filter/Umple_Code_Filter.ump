@@ -159,31 +159,6 @@
 // Line : 571
  class UmpleModel {
    
-  mixset Association {
-   private void markRelatedClass(int asso)
-    {
-      ArrayList<String> names = new ArrayList<String>();
-      for(int i = 0; i<asso; i++)
-      {
-        for(UmpleClass clazz : umpleClasses)
-        {
-          if(clazz.getFilteredin())
-          {
-            addRelatedClassName(clazz,names);
-          }
-        } 
-        markClassByName(names);
-        names = new ArrayList<String>();
-      }
-    }
-    private void addRelatedClassName(UmpleClass c, ArrayList<String> names)
-    {
-      for(AssociationVariable a : c.getAssociationVariables())
-      {
-        names.add(a.getType());
-      }  
-    }
-  }
 
     private void markClassByName(ArrayList<String> names)
     {

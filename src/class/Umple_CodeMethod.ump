@@ -1,51 +1,4 @@
 namespace cruise.umple.compiler;
-
-// Fragment source file: Master.ump
-// Line : 5856
-/*
-// this segment is put in Umple_CodeAttribute.ump
- class UmpleInternalParser { void checkDefaultedNameConflict(){
-        Map<String, CodeTranslator> allTranslators = model.getAllTranslators();
-        HashSet<String> generatedMethods = new HashSet<String>();
-        for(String langName : allTranslators.keySet()){
-          CodeTranslator t = allTranslators.get(langName);
-
-          for(UmpleClass aClass : model.getUmpleClasses()){
-            generatedMethods.clear();
-
-            for(Attribute aAttr : aClass.getAttributes()){
-              String modifier = aAttr.getModifier();
-
-              // Can add more!
-              if(!"internal".equals(modifier)){
-                addToGeneratedMethodMap(generatedMethods, aClass.getName(), t, "getMethod", aAttr);
-                addToGeneratedMethodMap(generatedMethods, aClass.getName(), t, "setMethod", aAttr);
-              }
-
-              if("defaulted".equals(modifier)){
-                addToGeneratedMethodMap(generatedMethods, aClass.getName(), t, "getDefaultMethod", aAttr);
-              }
-            }
-          }
-        }
-      }
-
-      boolean addToGeneratedMethodMap(HashSet<String> generatedMethods, String className, CodeTranslator t, String translatingLabel, Attribute aAttr){
-        String generatedMethodName = t.translate(translatingLabel, aAttr);
-
-        if(generatedMethodName != null && !"".equals(generatedMethodName) && !generatedMethodName.startsWith("UNKNOWN ID")){
-
-          boolean success = generatedMethods.add(generatedMethodName);
-          if(!success){
-            getParseResult().addErrorMessage(new ErrorMessage(48,aAttr.getPosition(), aAttr.getName(), className, generatedMethodName));
-            return false;
-          }
-
-        }
-        return true;
-      } } 
-      */
-// end 
 /**
 * This is for cloning
 * Note: This code doesn't cover deep cloning. It's a combination of  shallow and deep cloning
@@ -381,7 +334,35 @@ class CodeBlock
 
 /*
  */
-
+mixset AspectInjection {
+  class CodeInjection
+  {
+    public CodeInjection(String a, String b, String c, UmpleClassifier d)
+    {
+      this(a,b,new CodeBlock(c), d);
+    }
+    public void setCode(String str)
+    {
+      snippet.setCode(str);
+    }
+    public String getCode()
+    {
+      return snippet.getCode();
+    }
+    public String getConstraintCode(CodeTranslator gen)
+    {
+      return StringFormatter.format(gen.translate("Closed",constraintTree),getCode());
+    }
+    public void setCode(String lang, String code)
+    {
+      snippet.setCode(lang, code);
+    }
+    public String getCode(String lang)
+    {
+      return snippet.getCode(lang);
+    }
+  }
+}
 
 class ExtraCode
 {

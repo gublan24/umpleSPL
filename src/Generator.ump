@@ -71,17 +71,14 @@ use SuperCodeGeneratorGenerator;
 // All code above belongs to the base generator file (Generator.ump)
 
 //Below mixsets use statments. All mentioned mixsets are activited.
-
 use CodeGenerator, UmpleGenerator, RubyGenerator , JavaGenerator , RTCppGenerator, PhpGenerator; 
 use Uigu2Generator , SqlGenerator , UmpleSelfGenerator , USEGenerator , EcoreGenerator ,TestGenerator ; 
 use PapyrusGenerator, XmiGenerator, TextUmlGenerator, ScxmlGenerator, CodeGvClassTraitDiagramGenerator
 use EventSequenceGenerator,  FeatureDiagramCo,  EntityRelationshipCon,  SimulateGenerator,  YumlGenerator;
 use XtextGenerator,  JsonGenerator,  JsonMixedGenerator,  StructureDiagramGenerator , GvStateDiagramGenerator;
-//use StateTableGenerator;
-use SuperGvGeneratorGenerator, HtmlGenerator, UmpleModelWalkerGenerator,  CodeAnalysisGenerator;
+use StateTableGenerator, SuperGvGeneratorGenerator, HtmlGenerator, UmpleModelWalkerGenerator,  CodeAnalysisGenerator;
 use AlloyGenerator,  NuSMVGenerators, NuSMVGenerator,   NuSMVOptimizerGenerator,  SimpleMetricsGenerator, CodeGvClassDiagramGenerator;
 use UmpleAnnotaiveToCompositionGenerator;
-
 //End 
 
 // Base case generator, allows compilation without generation for testing command line, since Java is default

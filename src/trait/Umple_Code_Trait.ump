@@ -75,8 +75,8 @@ class UmpleTrait {
     }
     return null;
   }
-// Interaction between Association and Trait
-  mixset Association { 
+
+  mixset Association {
    public AssociationVariable getAssociationVariable(String name){
     for (AssociationVariable av : associationVariables)
     {
@@ -110,13 +110,20 @@ class UmpleTrait {
 	private boolean propagateImmutabilityToAllRelationships(boolean isImmutable){
 	    if (isImmutable)
 	    {
-        Label_StateMachine_27:;
-        Label_Association_28:;
+        mixset StateMachine {
+	      if (this.hasStateMachines()) { return false; } 
+        }
+        mixset Association {
+          for (AssociationVariable av : associationVariables)
+          {
+            if (!immutabilityAssociationRulesSatisfied(av, true)) { return false; }
+          }
+        }
 	    }	    
 	    return notifySubclassesAncestorImmutable(isImmutable);
 	}
-// Interaction between Association and Trait
-  mixset Association { 
+
+  mixset Association {
    protected boolean immutabilityAssociationRulesSatisfied(AssociationVariable myAV, boolean myTraitImmutable){
     AssociationVariable relatedAV = myAV.getRelatedAssociation();
     UmpleTrait relatedTrait = (relatedAV == null) ? null : relatedAV.getUmpleTrait();
@@ -283,8 +290,8 @@ class UmpleTrait {
     }
     return null;
   }
-// Interaction between StateMachine and Trait
-mixset StateMachine { 
+
+mixset StateMachine {
   public StateMachine getStateMachine(String name){
     for (StateMachine sm : stateMachines)
     {
@@ -466,10 +473,14 @@ class GeneralTPApplied {
     this.parameterMapping = new HashMap<String, String>(another.parameterMapping);
     this.inheritanceName = another.inheritanceName;
     positions = another.positions; 
-    Label_StateMachine_29:;
+    mixset StateMachine {
+      stateMachineModifiers = new ArrayList<>(another.getStateMachineModifiers());
+    }
     parameters = new ArrayList<>( Arrays.asList(another.getParameters()));
     methodTemplateSignatures = new ArrayList<>(another.getMethodTemplateSignatures());
-    Label_StateMachine_30:;
+    mixset StateMachine {
+      stateMachineTemplateSignatures = new ArrayList<>(another.getStateMachineTemplateSignatures());
+    }
   }
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------
@@ -483,8 +494,7 @@ class GeneralTPApplied {
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------
 //---------------------------------Start--------------------------------------
-// Interaction between StateMachine and Trait
-mixset StateMachine { 
+mixset StateMachine {
 	boolean hasStateMachineTemplateSignature(StateMachineTemplateSignature inSMTSignature) {
    for (StateMachineTemplateSignature smTSignature : getStateMachineTemplateSignatures()) {
       if (smTSignature.getSrcStateMachine().equals(inSMTSignature.getSrcStateMachine()) && smTSignature.numberOfSrcStates()==inSMTSignature.numberOfSrcStates()){
@@ -613,8 +623,7 @@ mixset StateMachine {
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------
 //---------------------------------Start--------------------------------------
-// Interaction between StateMachine and Trait
-mixset StateMachine { 
+mixset StateMachine {
   public String getAssignedStateMachineNewName(String srName){
     for (StateMachineTemplateSignature smTSignature : getStateMachineTemplateSignatures()) {
       if (smTSignature.getSrcStateMachine().equals(srName) && smTSignature.getSrcStates().length==0 && smTSignature.getAlias()!="" ) return smTSignature.getAlias();

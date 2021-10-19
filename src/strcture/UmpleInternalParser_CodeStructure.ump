@@ -1059,9 +1059,18 @@ class CompositeStructureTokenAnalyzer {
 	   {
 		   rawLine.addElementAll(analyzeNumberConstraintExpression(invariantToken,uClassifier));
 	   }
-	   Label_Association_155: ;
-	   Label_StateMachine_156: ;
-
+	   mixset Association {
+		else if (invariantToken.is("associationExpr"))
+		{
+			rawLine.addElementAll(analyzeAssociationConstraintExpression(invariantToken,uClassifier));
+		}
+	   }
+	   mixset StateMachine {
+	     else if (invariantToken.is("statemachineExpr"))
+	     {
+		   rawLine.addElementAll(analyzeStateMachineConstraintExpression(invariantToken,uClassifier));
+	     }
+	   }
 	   else if(invariantToken.is("loneBoolean"))
 	   {
 		   rawLine.addElement(analyzeConstraintName(invariantToken.getSubToken(0),uClassifier,true));
@@ -1247,9 +1256,185 @@ class CompositeStructureTokenAnalyzer {
 	   return rawLine;
    }
 
+   mixset Association {
+	private ConstraintTree analyzeAssociationLiteralConstraintExpression(Token literalToken, UmpleClassifier uClassifier, boolean cardinal, boolean all, boolean firstName, ConstraintTree subject, ConstraintOperator operator)
+	{
+		ConstraintTree rawLine = new ConstraintTree();
+		for(Token sub:literalToken.getSubTokens())
+		{
+			if(sub.is("associationLit"))
+			{
+				rawLine.addElementAll(analyzeAssociationLiteralConstraintExpression(sub, uClassifier, cardinal, all, firstName, subject, operator));
+				firstName = false;
+			}
+			else if(sub.is("constraintName"))
+			{
+				if(!firstName)
+				{
+					if(all&&!cardinal)
+					{
+						rawLine.addElement(new ConstraintOperator("&&"));
+					}
+					else
+					{
+						rawLine.addElement(new ConstraintOperator("||"));
+					}
+				}
+				else
+				{
+					firstName = false;
+				}
+				rawLine.addElementAll(subject);
+				rawLine.addElement(operator);
+				rawLine.addElement(analyzeConstraintName(sub,uClassifier,true));
+			}
+			else if(sub.is("elements"))
+			{
+				if(!cardinal)
+				{
+					operator.setValue("cardinality==");
+				}
+			}
+			else if(sub.is("number"))
+			{
+				if(!firstName)
+				{
+					if(all&&!cardinal)
+					{
+						rawLine.addElement(new ConstraintOperator("&&"));
+					}
+					else
+					{
+						rawLine.addElement(new ConstraintOperator("||"));
+					}
+				}
+				else
+				{
+					firstName = false;
+				}
+				rawLine.addElementAll(subject);
+				rawLine.addElement(operator);
+				rawLine.addElement(analyzeConstraintNumber(sub));
+				firstName = false;
+			}
+		}
+		return rawLine;
+	}
 
+	private ConstraintTree analyzeAssociationConstraintExpression(Token associationExpressionToken , UmpleClassifier uClassifier)
+	{
+		List<Token> associationExpressionSubtokens = associationExpressionToken.getSubTokens();
+		ConstraintTree rawLine = new ConstraintTree();
+		ConstraintTree subject = new ConstraintTree();
+		boolean card = associationExpressionToken.getValue("firstOp").equals("cardinality");
+		boolean all = false;
+		ConstraintOperator operator = new ConstraintOperator(associationExpressionToken.getValue("firstOp"));
+		for(Token sub : associationExpressionSubtokens)
+		{
+			if(sub.is("constraintName"))
+			{
+				subject.addElement(analyzeConstraintName(sub,uClassifier,true));
+			}
+			mixset Association {
+			  else if(sub.is("associationLit"))
+			  {
+				rawLine.addElementAll(analyzeAssociationLiteralConstraintExpression(sub,uClassifier,card,all,true,subject,operator));
+			  }
+			}
+			else if(sub.is("all"))
+			{
+				if(!card)
+				{
+					operator.setValue("hasAll");
+					all = true;
+				}
+				else
+				{
+					//warning that cardinality all is not supported
+				}
+			}
+			else if(sub.is("moreOp"))
+			{
+				if(!card)
+				{
+					card = true;
+				}
+				operator.setValue("cardinality>");
+			}
+			else if(sub.is("smallerOp"))
+			{
+				if(!card)
+				{
+					card = true;
+				}
+				operator.setValue("cardinality<");
+			}
+			else if(sub.is("greaterOp"))
+			{
+				if(!card)
+				{
+					card = true;
+				}
+				operator.setValue("cardinality>=");
+			}
+			else if(sub.is("lessOp"))
+			{
+				if(!card)
+				{
+					card = true;
+				}
+				operator.setValue("cardinality<=");
+			}
+			else if(sub.is("equalsOp"))
+			{
+				if(!card)
+				{
+					card = true;
+				}
+				operator.setValue("cardinality==");
+			}
+			else if(sub.is("notequalsOp"))
+			{
+				if(!card)
+				{
+					card = true;
+				}
+				operator.setValue("cardinality!=");
+			}
+		}
+		return rawLine;
+	}
+   }
 
- 
+   mixset StateMachine {
+     private ConstraintTree analyzeStateMachineConstraintExpression(Token statemachineExpressionToken, UmpleClassifier uClassifier)
+	{
+		ConstraintTree rawLine = new ConstraintTree();
+		List<Token> numberExpressionSubtokens = statemachineExpressionToken.getSubTokens();
+		StateMachine stateMachine = null;
+		for(Token sub : numberExpressionSubtokens)
+		{
+
+			if(sub.is("constraintName"))
+			{
+				ConstraintVariable cv = analyzeConstraintName(sub,uClassifier,true);
+				rawLine.addElement(cv);
+
+			}
+			else if(sub.is("isInOp"))
+			{
+				ConstraintVariable cv = new ConstraintOperator("in==");
+				rawLine.addElement(cv);
+			}
+			else if(sub.is("isNotInOp"))
+			{
+				ConstraintVariable cv = new ConstraintOperator("in!=");
+				rawLine.addElement(cv);
+			}
+		}
+		return rawLine;
+	}
+   }
 
    public ConstraintTree analyzeInvariantConstraint(Token invariantToken){
 	   ConstraintTree rawLine = analyzeConstraint(invariantToken, componentClass);
@@ -1273,8 +1458,18 @@ class CompositeStructureTokenAnalyzer {
 			   {
 				   rawLine.addElementAll(analyzeNumberConstraintExpression(invariantToken,null));
 			   }
-			   Label_Association_152: ;
-			   Label_StateMachine_153: ;
+			   mixset Association {
+			     else if (invariantToken.is("associationExpr"))
+			     {
+				   rawLine.addElementAll(analyzeAssociationConstraintExpression(invariantToken,null));
+			     }
+			   }
+			   mixset StateMachine {
+			     else if (invariantToken.is("statemachineExpr"))
+			     {
+				   rawLine.addElementAll(analyzeStateMachineConstraintExpression(invariantToken,null));
+			     }
+			   }
 			   else if(invariantToken.is("loneBoolean"))
 			   {
 				   rawLine.addElement(analyzeConstraintName(invariantToken.getSubToken(0),null,true));

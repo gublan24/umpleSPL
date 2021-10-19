@@ -41,8 +41,8 @@ class VioletClass
 
 class VioletAssociation
 {
-  startLLabel;
-  endLLabel;
+  startLabel;
+  endLabel;
   * -> 1..2 VioletClass;
 }
 

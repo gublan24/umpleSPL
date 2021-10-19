@@ -29,8 +29,12 @@ class GeneratorHelper
   public static void postpare(UmpleModel model)
   {
     postpareClass(model);
-    Label_StateMachine_1: ;
-    Label_Trace_2: ;
+    mixset StateMachine {
+      postpareStateMachine(model);
+    }
+    mixset Trace {
+      postpareTrace(model);
+    }
     
     for (UmpleClass aClass : model.getUmpleClasses())
     {
@@ -42,8 +46,12 @@ class GeneratorHelper
   private static void postpare(UmpleClass aClass)
   {
     postpareClass(aClass);
-    Label_StateMachine_3: ;
-    Label_Trace_4: ;
+    mixset StateMachine {
+      postpareStateMachine(aClass);
+    }
+    mixset Trace {
+      postpareTrace(aClass);
+    }
   }
 
   public static SuperCodeGenerator generator = null;

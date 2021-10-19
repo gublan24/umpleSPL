@@ -258,7 +258,9 @@ class UmpleModel
   public String generate()
   {
     String lang="Unknown";
-    Label_Filter_22: ;
+    mixset Filter {
+      applyFilter(null);
+    }
     boolean foundGenerator;
     parsingTime = System.currentTimeMillis()/1000.0;
     try

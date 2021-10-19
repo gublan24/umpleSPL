@@ -42,10 +42,60 @@ class UmpleModel {
         addInterfacesRecursively(interfacesToKeep, pi);
       }
     }
-   
+    mixset Association {
+      public Association getAssociation(String name)
+      {
+        for (Association a : associations)
+        {
+          if (a.getName().equals(name))
+          {
+            return a;
+          }
+        }
+        return null;
+      }
+
+      public AssociationClass addAssociationClass(String className)
+      {
+        AssociationClass newClass = (AssociationClass) getUmpleClass(className);
+        if (newClass == null)
+        {
+          newClass = new AssociationClass(className);
+          addUmpleClass(newClass);
+        }
+        return newClass;
+      }
+    }
 
 
-   
+  mixset Association {
+/*
+ */
+  class AssociationClass
+  {
+    public AssociationClass(String name)
+    {
+      this(name, null);
+    }
+
+    public void addMissingKeyIfNeeded()
+    {
+      Key key = getKey();
+      if (!key.isProvided())
+      {
+        key = new Key();
+
+        for(Association associatedTo: getAssociatedTo())
+        {
+          key.addMember(associatedTo.getEnd(1).getRoleName());
+        }
+
+        key.setIsInternal(true);
+        setKey(key);
+      }
+      }
+    }
+  } 
 }
 
 /*
@@ -65,7 +115,16 @@ class UmpleClass
   	}
   	return null;
   }
-
+mixset Trait {
+  public boolean hasMethodInTraits (Method aMethod) {
+	  for (UmpleTrait uTrait : getExtendsTraits()) {
+		  if (uTrait.hasCascadeMethod(aMethod,true) || uTrait.hasCascadeMethod(aMethod,false)) {
+			  return true;
+		  }
+	}
+	  return false;
+  }
+}
 
   after setExtendsClass {
     if(aExtendsClass!=null&&aExtendsClass.getMethods()!=null)
@@ -99,7 +158,19 @@ class UmpleClass
   {
     this(name, null);
   }
+  mixset Trace {
+  public List<TraceDirective> getAllTraceDirectives(){
+    ArrayList<TraceDirective> all = new ArrayList<TraceDirective>();
+    all.addAll(getTraceDirectives());
 
+    for(TraceCase tc : getTraceCases())
+      if( tc.getActivation() ==  true )
+        for(TraceDirective td : tc.getTraceDirectives())
+          all.add(td);
+
+    return all;
+  }
+  }
 
   public ArrayList<String> getMethodNames()
   {
@@ -113,8 +184,19 @@ class UmpleClass
     {
       methodNames.addAll(av.getMethodNames());
     }
-    Label_StateMachine_19:;
+    mixset StateMachine {
+      for(StateMachine sm : this.getStateMachines())
+      {
+        String stateMachineName = sm.getName().substring(0, 1).toUpperCase() + sm.getName().substring(1);
+        methodNames.add("set" + stateMachineName);
+        methodNames.add("get" + stateMachineName);
 
+        for(Event ev : sm.getEvents())
+        {
+          methodNames.add(ev.getName());
+        }
+      }
+    }
     for (Method m: this.getMethods()) {
       if (!isGetterSetter(m) && !m.isIsConstructor()) {
         methodNames.add(m.getName());
@@ -369,7 +451,15 @@ class UmpleClass
     if(aMethod!=null&&!aMethod.isIsAbstract()){
       return true;
     }
-    Label_StateMachine_20:;
+    mixset StateMachine {
+    if (numberOfStateMachines()>0){
+    	for(StateMachine sm : getStateMachines()){
+    		if (sm.getEventByMethod(comparedMethod)!=null){
+    			return true;
+    		}
+    	}
+    }
+    }
     if(getExtendsClass()!=null&&getExtendsClass().hasImplementedMethodIncludingWithinParentClasses(comparedMethod)){
       return true;
     }
@@ -513,7 +603,9 @@ class UmpleClass
     
     if (isImmutable)
     {
-      Label_StateMachine_21:;
+      mixset StateMachine {
+      if (this.hasStateMachines()) { return false; }
+      }
 
       for (AssociationVariable av : associationVariables)
       {

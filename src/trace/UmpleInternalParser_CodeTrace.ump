@@ -161,8 +161,9 @@ class UmpleInternalParser
   private void analyzeTraceStatement(UmpleClass aClass, Token token){
     traceDirective = new TraceDirective(model.getTracer());
     traceAttr = new AttributeTraceItem(traceDirective);
-    Label_Association_130: ;
-
+    mixset Association {
+    tracedAssoc = new AssociationTraceItem(traceDirective);
+    }
     mte = new MethodTraceItem(traceDirective);
     post = new Postfix(traceDirective);
     TraceRecord traceRecord = null;
@@ -220,7 +221,9 @@ class UmpleInternalParser
         if(others.isEmpty())
         {
         	cond.setConstraint(constraint);
-          Label_Association_131: ;
+          mixset Association {
+          tracedAssoc.setConstraint(constraint);
+          }
           mte.setConstraint(constraint);
         }
         else
@@ -256,7 +259,9 @@ class UmpleInternalParser
         UmpleVariable attr = traceDirective.getUmpleClass().getAttribute(token.getValue("LHS"));
         if(attr==null)
         {
-          Label_Association_132: ;
+          mixset Association {
+          attr = traceDirective.getUmpleClass().getAssociationVariable(token.getValue("LHS"));
+          }
         }
         traceAttr.addUmpleVariable(attr);
       }     
@@ -353,8 +358,12 @@ class UmpleInternalParser
     {
       analyzeAttributeTraceItem(traceToken);
     }
-    Label_StateMachine_133: ;
-
+    mixset StateMachine {
+      if( traceItemType == 2 )
+      {
+        analyzeStateMachineTraceItem(traceToken);
+      }
+    }
     if( traceItemType == 3 )
     {
       analyzeAssociationTraceItem(traceToken);
@@ -392,7 +401,19 @@ class UmpleInternalParser
         traceAttr.setTraceSet(true);
       }
     }
-    Label_Association_134: ;
+    mixset Association {
+    //------------- trace all associations [wildcard]
+    if( traceToken.getValue("traceEntity").toLowerCase().equals("allassociations") )
+    {
+      for( AssociationVariable assoc : uClass.getAssociationVariables() )
+      {
+      	tracedAssoc.setPosition(traceToken.getPosition());
+      	tracedAssoc.addAssociationVariable(assoc);
+      	tracedAssoc.setTraceAdd(true);
+      	tracedAssoc.setTraceRemove(true);
+      }
+    }
+    }
     //------------- trace all non-api methods [wildcard]
     if( traceToken.getValue("traceEntity").toLowerCase().equals("allnonapimethods") )
     {
@@ -416,14 +437,62 @@ class UmpleInternalParser
 
     // --- check if attribute
     UmpleVariable attr = aClass.getAttribute(traceToken.getValue("traceEntity"));
-    Label_Association_135: ;
+    mixset Association {  
+    attr = attr==null?aClass.getAssociationVariable(traceToken.getValue("traceEntity")):attr;
+    }
+
     if( attr != null )
     {
       traceItemType = 1;
     }
 
-    Label_StateMachine_136: ;
-    Label_Association_137: ;
+    mixset StateMachine {
+      // --- check if state machine
+      for( StateMachine sVar : aClass.getStateMachines() )
+      {
+        if( traceToken.getValue("traceEntity").equals(sVar.getName()))
+        {
+          traceItemType = 2;
+        }
+        for( State s : sVar.getStates() )
+        {
+          if( traceToken.getValue("traceEntity").equals(s.getName()) || traceToken.getValue("traceEntity").equals(sVar.getName()+"."+s.getName()) )
+          {
+            traceItemType = 2;
+          }
+          for( Transition t : s.getTransitions() )
+            if( traceToken.getValue("traceEntity").equals(t.getEvent().getName()))
+            {
+              traceItemType = 2;
+            }
+          // check if traced state is already found
+          // no need to check nested states
+          if( traceItemType == 2 ) return traceItemType;
+          if(s.hasNestedStateMachines())
+          {
+            traceItemType = checkNestedStateMachine(traceToken.getValue("traceEntity"),s);	
+          }
+        }
+      }
+    }
+    mixset Association {
+    // --- check if association
+    for( AssociationVariable aVar : aClass.getAssociationVariables() )
+    {
+      if( traceToken.getValue("traceEntity").equals(aVar.getName()))
+      {
+        traceItemType = 3;
+      }
+    }
+
+    for( Association a : aClass.getAssociations() )
+    {
+      if( a.getName().contains(traceToken.getValue("traceEntity") ))
+      {
+        traceItemType = 3;
+      }
+    }
+    }
 
     // --- check if method
     for( Method mVar : aClass.getMethods() )
@@ -437,8 +506,7 @@ class UmpleInternalParser
     return traceItemType;
   }
 
-// Interaction between StateMachine and Trace
-  mixset StateMachine { 
+  mixset StateMachine {
     // checks if traced state was deeply nested
     private int checkNestedStateMachine(String value, State s){
       int traceItemType = -1;
@@ -524,7 +592,9 @@ class UmpleInternalParser
 } 
 
 use UmpleInternalParser_CodeTraceAttribute.ump;
-
+mixset StateMachine {
+  use stateMachine/UmpleInternalParser_CodeTraceStateMachine.ump;
+}
 // TODO : mix associ
 use UmpleInternalParser_CodeTraceAssociation.ump;
 use UmpleInternalParser_CodeTraceCase.ump;

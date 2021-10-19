@@ -579,24 +579,48 @@ class UmpleGenerator
     if(parser != null) { // Parser is shared data, we need only generate once.
       return;
     }
+
     parser = new cruise.umple.parser.analysis.RuleBasedParser();
+
     // Populate the parser with Umple's grammar (see GrammarParsing_Code.ump)
     parser.addGrammarFile("/umple_core.grammar");
-    Label_Class_7:;
-    Label_Trait_8:;
-    Label_FIXML_9:;
+    mixset Class {
+      parser.addGrammarFile("/class/umple_classes.grammar");
+    }
+    mixset Trait {
+      parser.addGrammarFile("/trait/umple_traits.grammar");
+    }
+    mixset FIXML {
+      parser.addGrammarFile("/fixml/umple_fixml.grammar");
+    }
     parser.addGrammarFile("/umple_patterns.grammar");
-    Label_StateMachine_10:;
-    Label_Trace_11:;
-    Label_Template_12:;
-    Label_Structure_13:;
+    mixset StateMachine {
+      parser.addGrammarFile("/stateMachine/umple_state_machines.grammar");
+    }
+    mixset Trace {
+      parser.addGrammarFile("/trace/umple_traces.grammar");
+    }
+    mixset Template {
+      parser.addGrammarFile("/template/umple_template.grammar");
+    }
+    mixset Structure {
+      parser.addGrammarFile("/strcture/umple_structure.grammar");
+    }
     parser.addGrammarFile("/constraint/umple_constraints.grammar");  // TODO Under development
-    Label_Layout_14:;
+    mixset Layout {
+       parser.addGrammarFile("/layout/umple_layout.grammar");
+    }
     parser.addGrammarFile("/umple_exceptions.grammar");
     parser.addGrammarFile("/use.grammar");
-    Label_Filter_15:;
-    Label_Mixset_16:;
+    mixset Filter {
+      parser.addGrammarFile("/filter/umple_filter.grammar"); // TODO Under development
+    }
+    mixset Mixset {
+      parser.addGrammarFile("/mixset/umple_mixsets.grammar");
+    }
+
     parser.setupRules(true);    // Compute the Umple grammar rules
+
     rootRuleToken = parser.getRootToken();
     if(rootRuleToken == null) {
       throw new UmpleCompilerException("rootRuleToken retrieved from parser is NULL.", null);

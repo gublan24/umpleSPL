@@ -181,8 +181,9 @@ class UmpleInternalParser
 
   	analyzeCoreToken(t,aTrait,analysisStep);
     analyzeTraitToken(t,aTrait,analysisStep);
-    Label_StateMachine_66: ;
-    Label_StateMachine_105: ;
+    mixset StateMachine {
+      analyzeStateMachineToken(t,aTrait,analysisStep);
+    }
     analyzeDependentTokens(t,aTrait,analysisStep);
   }
 
@@ -210,9 +211,14 @@ class UmpleInternalParser
     {
       shouldConsumeComment = false;
     }
-    Label_Mixset_106: ;
-
-    if (token.is("testCase"))
+    mixset Mixset {
+      else if (token.is("mixsetDefinition"))
+      {
+        analyzeMixsetBodyToken(token);
+    
+      }
+    }
+    else if (token.is("testCase"))
     {
       analyzeTraitTestCaseToken(token, aTrait);
    
@@ -276,8 +282,17 @@ class UmpleInternalParser
       Depend d = new Depend(token.getValue());
       aTrait.addDepend(d);
     }
-    Label_Association_107: ;    
-    if (token.is("exception"))
+    mixset Association {
+      else if (token.is("inlineAssociation"))
+      {
+        analyzeinlineAssociation(token,aTrait);
+      }
+      else if (token.is("symmetricReflexiveAssociation"))
+      {
+        analyzeSymmetricReflexiveAssociation(token,aTrait);
+      }
+    }    
+    else if (token.is("exception"))
     {
       analyzeException(token,aTrait);
     }
@@ -484,7 +499,9 @@ class UmpleInternalParser
    private void analyzeExtraCode(Token token, UmpleTrait aTrait){
     //This is a catch all and will be used less often as the grammar gets updated.
     
-    Label_StateMachine_108: ;
+    mixset StateMachine {
+      if(extraCodeIsMalformedStateMachine(token)) setFailedPosition(token.getPosition(), 1006, "");
+    }
     //Append #line comment to indicate line and position of source
     if (token.getPosition() != null)
     {
@@ -515,7 +532,103 @@ class UmpleInternalParser
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
+mixset Association {
+   private void analyzeinlineAssociation(Token inlineAssociationToken, UmpleTrait aTrait){
+    
+    Association association = analyzeAssociation(inlineAssociationToken,aTrait.getName());
 
+    if (!getParseResult().getWasSuccess())
+    {
+      return;
+    }
+
+    AssociationEnd myEnd = association.getEnd(0);
+    AssociationEnd yourEnd = association.getEnd(1);
+
+    AssociationVariable myAs = new AssociationVariable(myEnd.getRoleName(),myEnd.getClassName(),myEnd.getModifier(),null,myEnd.getMultiplicity(),association.getIsLeftNavigable());
+    myAs.setIsComposition(association.getIsLeftComposition());
+    AssociationVariable yourAs = new AssociationVariable(yourEnd.getRoleName(),yourEnd.getClassName(),yourEnd.getModifier(),null,yourEnd.getMultiplicity(),association.getIsRightNavigable());
+    yourAs.setIsComposition(association.getIsRightComposition());
+
+    myAs.setRelatedAssociation(yourAs);
+    
+    if(!"".equals(myEnd.getPriority())) { myAs.setPriority(myEnd.getPriority()); }
+    if(!"".equals(yourEnd.getPriority())) { yourAs.setPriority(yourEnd.getPriority()); }
+    
+    if (association.isImmutable())
+    {
+      boolean set = myAs.setImmutable();
+      if (set)
+      {
+        yourAs.setImmutable();
+      }
+      else
+      {
+      	//TODO traits' errors
+        setFailedPosition(inlineAssociationToken.getPosition(),17);
+      }
+    }
+
+    // Add comments above the association to the association.
+    for (Comment c : lastComments)
+    {
+      yourAs.addComment(c);
+    }
+    
+    // set last association made to be yourAs. clear lastattr.
+    lastassoc = yourAs;
+    lastassocPosition = inlineAssociationToken.getPosition();
+    lastattr = null;
+    
+
+    boolean added = aTrait.addAssociationVariable(yourAs);
+    if (added)
+    {
+      unlinkedAssociationVariables.add(yourAs);
+      aTrait.addAssociation(association);
+    }
+    else
+    {
+      if (aTrait.isImmutable()) {
+      	//TODO traits' errors
+      	setFailedPosition(inlineAssociationToken.getPosition(),17);
+      } else {
+      	//TODO traits' errors
+      	setFailedPosition(inlineAssociationToken.getPosition(),13);
+      }
+    }
+    
+  }
+
+
+//---------------------------------end----------------------------------------
+//----------------------------------------------------------------------------   
+//---------------------------------Start--------------------------------------
+   private void analyzeSymmetricReflexiveAssociation(Token symmetricReflexiveAssociationToken, UmpleTrait aTrait){
+    /*
+    String myName = symmetricReflexiveAssociationToken.getValue("roleName");
+    String myType = aTrait.getName();
+    String myModifier = "symmetricreflexive";
+    String myBound = symmetricReflexiveAssociationToken.getValue("bound");
+    String myLowerBound = symmetricReflexiveAssociationToken.getValue("lowerBound");
+    String myUpperBound = symmetricReflexiveAssociationToken.getValue("upperBound");
+    Multiplicity myMult = new Multiplicity();
+    myMult.setBound(myBound);
+    myMult.setRange(myLowerBound,myUpperBound);
+
+    AssociationVariable myAs = new AssociationVariable(myName,myType,myModifier,null,myMult,true);
+    AssociationVariable yourAs = new AssociationVariable(myName,myType,myModifier,null,myMult,true);
+
+    myAs.setRelatedAssociation(yourAs);
+    aTrait.addAssociationVariable(yourAs);
+    
+    AssociationEnd leftEnd = new AssociationEnd(null,myType,myModifier,myType,myMult);
+    AssociationEnd rightEnd = new AssociationEnd(myName,myType,myModifier,myType,myMult);
+    Association assoc = new Association(false, true, false, false, leftEnd, rightEnd);
+    aTrait.addAssociation(assoc);
+    */
+  } 
+}
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
@@ -583,8 +696,42 @@ class UmpleInternalParser
 
       setFailedPosition(sub.getPosition(), 1007, sub.getValue("name"));
     }
-    Label_StateMachine_109: ;
-    
+    mixset StateMachine {
+    else if(sub.is("malformedStatemachine1")||sub.is("malformedStatemachine2"))
+    {
+      String extraCode = "";
+      for(Token token:sub.getSubTokens())
+      {
+        if(token.is("stuff"))
+        {
+          if(!"".equals(token.getValue())&&!token.getValue().contains(" ")&&!Token.isValidIdentifier(token.getValue()))
+          {
+            setFailedPosition(token.getPosition(), 150, token.getValue("name"));
+          }
+          extraCode += token.getValue()+ " ";
+        }
+      }
+      extraCode += "\n  {\n    "+sub.getValue("innerstuff")+"\n  }";
+      aTrait.appendExtraCode("// line " + exception.getPosition().getLineNumber() + " " + aTrait.getRelativePath(exception.getPosition().getFilename(),"Java"));
+      aTrait.appendExtraCode("  "+extraCode+"\n");
+      setFailedPosition(sub.getPosition(), 1006, sub.getValue("name"));
+    }
+    else if(sub.is("malformedMethod"))
+    {
+      String extraCode = "";
+      for(Token token:sub.getSubTokens())
+      {
+        if(token.is("stuff"))
+        {
+          extraCode += token.getValue()+ " ";
+        }
+      }
+      extraCode += "\n  {\n    "+sub.getValue("innerstuff")+"\n  }";
+      aTrait.appendExtraCode("// line " + exception.getPosition().getLineNumber() + " " + aTrait.getRelativePath(exception.getPosition().getFilename(),"Java"));
+      aTrait.appendExtraCode("  "+extraCode+"\n");
+      setFailedPosition(sub.getPosition(), 1008, sub.getValue("name"));
+    }
+    }
   }
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
@@ -602,15 +749,22 @@ class UmpleInternalParser
     {
       analyzeInvariant(t,inTrait);
     }
-    Label_AspectInjection_110: ;
+    mixset AspectInjection {
+      else if (t.is("beforeCode") || t.is("afterCode"))
+      {
+      //TODO should applied for traits
+        analyzeInjectionCode(t,inTrait);
+      }
+    }
     else if (t.is("key") || t.is("defaultKey"))
     {
     //TODO should applied for traits
     //  analyzeKey(t,aClass);
     }
     //analyzeTraceToken(t,aClass);
-    Label_Layout_111: ;
-
+    mixset Layout {
+      analyzeLayoutToken(t,inTrait,analysisStep);
+    }
   }
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
@@ -626,10 +780,12 @@ class UmpleInternalParser
         if (uClass.hasExtendsTraits()) {
           if (getParseResult().getWasSuccess()) copyAttributesFromTraitsToClass(uClass);
           if (getParseResult().getWasSuccess()) copyMethodsFromTraitToClass(uClass);
-          Label_Association_112: ;
- 
-          Label_StateMachine_113: ;
-
+          mixset Association {
+            if (getParseResult().getWasSuccess()) copyAssociationsFromTraitToClass(uClass);
+          }
+          mixset StateMachine {
+          if (getParseResult().getWasSuccess()) copyStateMachinesFromTraiToClass(uClass);
+          }
           if (getParseResult().getWasSuccess()) copyTestCasesFromTraitsToClass(uClass);
           if (getParseResult().getWasSuccess()) {
             for (UmpleTrait uTrait : uClass.getExtendsTraits()) {
@@ -842,7 +998,73 @@ private void checkClassSupportTraitsInterfaces(	GeneralTPApplied inGeneralTPAppl
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start-------------------------------------- 
+mixset Association {
+  private void ApplyTypeParametersToAssociation(AssociationVariable inAssociationVariable, GeneralTPApplied inGeneralTPApplied,UmpleClass inClass, UmpleTrait inTrait) {  
+    String rawRName = "";
+    String rName = "";
+    boolean bidirectional = inAssociationVariable.getRelatedAssociation().getIsNavigable();
+    if (inGeneralTPApplied != null || inTrait.getGeneralTemplateParameters().size()>0) {
+      for (GeneralTemplateParameter gtp : inTrait.getGeneralTemplateParameters()){
+        String newName = (inGeneralTPApplied!=null && inGeneralTPApplied.getParameterMapping().containsKey(gtp.getName())) ? inGeneralTPApplied.getParameterMapping().get(gtp.getName()) : gtp.getDefaultValue();
+        if (inAssociationVariable.getType().equals(gtp.getName())){
+              //----------------------------------------------------------------
+             String tempOldName = StringFormatter.toCamelCase(gtp.getName());
+             String oldName = inAssociationVariable.getMultiplicity().isMany() ? model.getGlossary().getPlural(tempOldName) : tempOldName;
+              if (inAssociationVariable.getName().equals(oldName)){
+                rawRName = StringFormatter.toCamelCase(newName);
+                rName = inAssociationVariable.getMultiplicity().isMany() ? model.getGlossary().getPlural(rawRName) : rawRName;  
+                inAssociationVariable.setName(rName);
+              } else{
+                rawRName = StringFormatter.toCamelCase(inAssociationVariable.getName());
+                rName = inAssociationVariable.getMultiplicity().isMany() ? model.getGlossary().getPlural(rawRName) : rawRName;                      
+              }
+              
+              inAssociationVariable.setType(newName);
+              if (getModel().getUmpleClass(newName)==null){
+                  if (getModel().getUmpleInterface(newName)!=null){
+                      if (bidirectional){
+                        setFailedPosition(inTrait.getPosition(0), 213, "trait "+inTrait.getName());
+                        return;
+                      }
+                  } 
+              }
+              return;     
+        }
+      }
+    }
+    if (getModel().getUmpleClass(inAssociationVariable.getType())==null){
+        if (getModel().getUmpleInterface(inAssociationVariable.getType())!=null && bidirectional){
+            setFailedPosition(inTrait.getPosition(0), 213, "trait "+inTrait.getName());
+            return;
+        }
+    }
+  }
+//---------------------------------end----------------------------------------
+//----------------------------------------------------------------------------   
+//---------------------------------Start-------------------------------------- 
+  private void addAssociation(String lName, String rName, AssociationVariable inAssociationVariable, UmpleClass inClass, UmpleClass relatedClass) {	
+        AssociationEnd leftEnd = new AssociationEnd(lName, inClass.getName(), inAssociationVariable.getRelatedAssociation().getModifier(), inClass.getName(), inAssociationVariable.getRelatedAssociation().getMultiplicity());
+		AssociationEnd rightEnd = new AssociationEnd(rName,relatedClass.getName(), inAssociationVariable.getModifier(),relatedClass.getName(),inAssociationVariable.getMultiplicity());		
+		Association aAssociation = new Association(inAssociationVariable.getRelatedAssociation().getIsNavigable(), inAssociationVariable.getIsNavigable(),false,false,leftEnd,rightEnd);
+		aAssociation.setName(rName);
+		getModel().addAssociation(aAssociation);	    
+		AssociationEnd myEnd = aAssociation.getEnd(0);
+	    AssociationEnd yourEnd = aAssociation.getEnd(1);
+	    AssociationVariable myAs = new AssociationVariable(myEnd.getRoleName(),myEnd.getClassName(),myEnd.getModifier(),null,myEnd.getMultiplicity(),aAssociation.getIsLeftNavigable());
+              myAs.setIsComposition(aAssociation.getIsLeftComposition());
+	    AssociationVariable yourAs = new AssociationVariable(yourEnd.getRoleName(),yourEnd.getClassName(),yourEnd.getModifier(),null,yourEnd.getMultiplicity(),aAssociation.getIsRightNavigable());
+	    yourAs.setIsComposition(aAssociation.getIsRightComposition());
 
+	    myAs.setRelatedAssociation(yourAs); 
+	    boolean added = inClass.addAssociationVariable(yourAs);
+	    if (added)
+	    {
+		    relatedClass.addAssociationVariable(myAs);
+		    aAssociation.setSource(Association.Source.fTrait);
+	    	inClass.addAssociation(aAssociation);
+	    }
+}
+}
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------  	
@@ -932,7 +1154,13 @@ private void checkClassSupportTraitsInterfaces(	GeneralTPApplied inGeneralTPAppl
 		for(ConstraintTree aConstraint : inTrait.getConstraintTrees()) {
 			inClass.addConstraintTree(aConstraint);
 		}	
-		Label_AspectInjection_114: ;
+		mixset AspectInjection {
+       // copy injection codes
+       for (CodeInjection cj : inTrait.getCodeInjections()) {
+               cj.setUmpleClassifier(inClass);
+               inClass.addCodeInjection(cj);
+       }
+    }
        // copy Extra code
        inClass.appendExtraCode(inTrait.getExtraCode());
        
@@ -1222,8 +1450,15 @@ private void recursiveCheckRequiredInterfaces(UmpleClass inClass,	UmpleTrait inT
       for(Token subToken : mainToken.getSubTokens()) {
         if (subToken.is("iEFunction") || subToken.is("functionAliasName")) {
           if (subToken.getSubToken("smName")!=null | subToken.getSubToken("smPattern")!=null ){
-              Label_StateMachine_115: ;
-          
+              mixset StateMachine {
+                StateMachineTemplateSignature stTSignature = obtainStateMachineTemplateSignatureForTransitions(subToken);
+                if (! aGeneralTPApplied.hasStateMachineTemplateSignature(stTSignature)){  
+                  aGeneralTPApplied.addStateMachineTemplateSignature(stTSignature);
+                } else {
+                  getParseResult().addErrorMessage(new ErrorMessage(229,subToken.getPosition(),aGeneralTPApplied.getInheritanceName(),stTSignature.getSrcStateMachine()));
+                  return;
+                }
+            }
           }else{
             MethodTemplateSignature mtSignature =obtainMethodTemplateSignature(subToken);
             if (! aGeneralTPApplied.hasMethodTemplateSignature(mtSignature)){ 
@@ -1234,7 +1469,25 @@ private void recursiveCheckRequiredInterfaces(UmpleClass inClass,	UmpleTrait inT
             }
           }
         } 
-        Label_StateMachine_116: ;
+        mixset StateMachine {
+          else if (subToken.is("StateMachineAliasName")){ 
+              StateMachineTemplateSignature stTSignature = obtainStateMachineTemplateSignature(subToken);
+              if (! aGeneralTPApplied.hasStateMachineTemplateSignature(stTSignature)){  
+                aGeneralTPApplied.addStateMachineTemplateSignature(stTSignature);
+              } else {
+                getParseResult().addErrorMessage(new ErrorMessage(229,subToken.getPosition(),aGeneralTPApplied.getInheritanceName(),stTSignature.getSrcStateMachine()));
+                return;
+              } 
+          } else if (subToken.is("iEStateMachine")){ 
+              StateMachineModifier stTSignature = obtainStateMachineModifier(subToken);
+              if (! aGeneralTPApplied.hasStateMachineModifier(stTSignature)){  
+                aGeneralTPApplied.addStateMachineModifier(stTSignature);
+              } else {
+                getParseResult().addErrorMessage(new ErrorMessage(229,subToken.getPosition(),aGeneralTPApplied.getInheritanceName(),stTSignature.getSrcStateMachine()));
+                return;
+              } 
+          } 
+        }
         else if (subToken.is("traitAppliedParameters")){
             parameterName = subToken.getValue("pName");
             if (aGeneralTPApplied.getParameterMapping().containsKey(parameterName)){
@@ -1254,7 +1507,62 @@ private void recursiveCheckRequiredInterfaces(UmpleClass inClass,	UmpleTrait inT
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start-------------------------------------- 
-
+mixset StateMachine {
+  private StateMachineModifier obtainStateMachineModifier(Token inToken) {
+        StateMachineModifier smModifier = null;
+      String modifier=inToken.getValue("modifier");
+      String smName = inToken.getValue("smName");
+      if (inToken.getValue("StateNames")==null){
+       smModifier = new StateMachineModifier(modifier,smName,"");
+      } else {
+        List<String> states = new ArrayList<String>();      
+        String eventName="";
+        Token t = inToken;        
+        while(t!=null && t.getSubToken("StateNames")!=null){      
+          if(t.getSubToken("StateNames").getSubToken("StateNamesPassing")!=null){
+            states.add(t.getSubToken("StateNames").getValue("sName"));
+          }else{
+            if( inToken.getSubToken("iEParameterList")!=null)
+                 eventName = t.getSubToken("StateNames").getValue("sName");
+            else
+             states.add(t.getSubToken("StateNames").getValue("sName"));   
+          }
+          t =  t.getSubToken("StateNames").getSubToken("StateNamesPassing");
+        }  
+        if (eventName.equals("") && states.size() >0 && inToken.getSubToken("guardOption")==null){
+           smModifier = new StateModifier(modifier,smName,"");
+           for(String state:states)  ((StateModifier)smModifier).addSrcState(state);
+        } else {
+            smModifier = new EventModifier(modifier,smName,"");
+            for(String state:states)  ((EventModifier)smModifier).addSrcState(state);
+            Method method = new Method("", eventName, "Boolean", false);
+            extractIEParameters(inToken, method);
+            ((EventModifier)smModifier).setMethod(method);
+            if (inToken.getSubToken("guardOption")!=null){
+                Token guardToken = inToken.getSubToken("guardOption").getSubToken("guard");
+                if (guardToken != null)
+                {
+                  //01 is a dummy name
+                  StateMachine tempSM = new StateMachine("01");
+                  UmpleClass tempClass = new UmpleClass("01");
+                  tempClass.addStateMachine(tempSM);
+                  State s1 = new State("s1", tempSM);
+                  State s2 = new State("s2", tempSM);
+                  Transition t1 = new Transition(s1, s2); 
+                  ((GuardAnalyzer)model.getAnalyzer("guard")).setUClassifier(tempClass);
+                  ((GuardAnalyzer)model.getAnalyzer("guard")).setT(t1);
+                  model.getAnalyzer("guard").analyzeToken(guardToken);
+                  ((EventModifier)smModifier).setGuard(t1.getGuard());
+                  tempSM.delete();
+                  tempClass.delete();
+                }
+            }
+        }
+        
+      } 
+      return smModifier;
+  }
+}
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
@@ -1286,7 +1594,64 @@ private void recursiveCheckRequiredInterfaces(UmpleClass inClass,	UmpleTrait inT
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
+mixset StateMachine {
+	private StateMachineTemplateSignature obtainStateMachineTemplateSignature(Token inToken){
+  	String iEStateMachineModifier="",stateMachineAliasName ="";
+	 	String smName = inToken.getValue("smName");
+	 	String smDesName = "";
+		if (inToken.getValue("iEStateMachineModifier") != null) iEStateMachineModifier = inToken.getValue("iEStateMachineModifier");
+	 	if (inToken.getValue("smDesName") != null) stateMachineAliasName = inToken.getValue("smDesName");
+	 	Token smDesNameToken = inToken.getSubToken("DesStateNames");
+	 	if (smDesNameToken!=null){
+	 		smDesName = stateMachineAliasName;
+	 		stateMachineAliasName="";
+	 	}
+		StateMachineTemplateSignature smTSignature = new StateMachineTemplateSignature(iEStateMachineModifier, smName, smDesName, stateMachineAliasName);	 
+	 	extractStatesFromTemplateSignature(inToken,smTSignature,"src");
+	 	extractStatesFromTemplateSignature(smDesNameToken,smTSignature,"des"); 	
+ 		return smTSignature;
+	}
+//---------------------------------end----------------------------------------
+//----------------------------------------------------------------------------   
+//---------------------------------Start--------------------------------------
+	private void extractStatesFromTemplateSignature(Token inToken,StateMachineTemplateSignature inStateMachineTemplateSignature,String type){
+		while(inToken!=null && inToken.getSubToken("StateNames")!=null){  		
+			if (type=="src")	{
+				inStateMachineTemplateSignature.addSrcState(inToken.getSubToken("StateNames").getValue("sName"));
+			}	else if (type=="des"){
+				inStateMachineTemplateSignature.addDesState(inToken.getSubToken("StateNames").getValue("sName"));
+			}
+		inToken =  inToken.getSubToken("StateNames").getSubToken("StateNamesPassing");
+		}  	
+ 	}
+//---------------------------------end----------------------------------------
+//----------------------------------------------------------------------------   
+//---------------------------------Start--------------------------------------
+	private StateMachineTemplateSignature obtainStateMachineTemplateSignatureForTransitions(Token inToken) {
+     String smPattern="";
+     String stateMachineAliasName =inToken.getValue("aliasName");
+     String smName = "";
+     String modifier = "";
+     String eventName = inToken.getValue("methodName");
+     MethodTemplateSignature mtSignature = null;
+     if (inToken.getValue("smName") != null) smName = inToken.getValue("smName");
+     if (inToken.getValue("smPattern") != null) smPattern = inToken.getValue("smPattern"); 
+     if (inToken.getValue("modifier") != null) modifier = inToken.getValue("modifier");          
+     Method method = new Method("public", eventName, "", false); 
+     if (inToken.getSubToken("iEParameterList") != null){
+      for (Token subToken : inToken.getSubToken("iEParameterList").getSubTokens()) {
+        if (subToken.is("parameter")) {
+            method.addMethodParameter(new MethodParameter("", subToken.getValue(), "", "", false));
+        }
+      }
+     }
+     StateMachineTemplateSignature smTSignature = new StateMachineTemplateSignature(modifier, smName,"", stateMachineAliasName);
+     mtSignature = new MethodTemplateSignature(smPattern,stateMachineAliasName,method);
+     smTSignature.setMethodTemplateSignature(mtSignature);
+     return smTSignature;
+	}
 
+}
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
@@ -1312,7 +1677,49 @@ private void copyAttributesFromTraitsToClass(UmpleClass inClass){
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
-
+mixset Association {
+  private void copyAssociationsFromTraitToClass(UmpleClass inClass) {
+    Map<UmpleTrait, List<AssociationVariable>> traiAssociationVariables = new HashMap<UmpleTrait, List<AssociationVariable>>();
+	Map<UmpleTrait, List<AssociationVariable>> tempTraitAssociationVariables = new HashMap<UmpleTrait, List<AssociationVariable>>();
+	for (UmpleTrait uTrait : inClass.getExtendsTraits()) {
+		tempTraitAssociationVariables = gatherAssociations(uTrait,inClass.getGeneralTPAppliedByName(uTrait.getName()),inClass);
+		if ( ! getParseResult().getWasSuccess() ) return;
+		//checkMethodComeFromTraitsIsAvaiableInClass(tempTraitAssociations,inClass);
+		//if (CheckMethodComeFromTraitsIsAvaialbleInOtherTraits(traitMethods,tempTraitAssociations,inClass)) return;
+		AddAssociationMapToAnother(traiAssociationVariables,tempTraitAssociationVariables);
+	}
+	for (UmpleTrait t1 : traiAssociationVariables.keySet()) {
+		for (AssociationVariable associationVariable : traiAssociationVariables.get(t1)) {
+            AssociationVariable relAsso = associationVariable.getRelatedAssociation();
+            String tempOldName = StringFormatter.toCamelCase(relAsso.getType());
+            String oldName = relAsso.getMultiplicity().isMany() ? model.getGlossary().getPlural(tempOldName) : tempOldName;
+             if (relAsso.getName().equals(oldName)){
+                 String rawRName = StringFormatter.toCamelCase(inClass.getName());
+                 relAsso.setName(relAsso.getMultiplicity().isMany() ? model.getGlossary().getPlural(rawRName) : rawRName);
+             }
+  
+             if (model.getUmpleClass(associationVariable.getType())!=null){
+                 addAssociation(relAsso.getName(), associationVariable.getName(), associationVariable,inClass, model.getUmpleClass(associationVariable.getType()));
+                 if (associationVariable.getIsNavigable())
+                   {                  
+                       inClass.addReferencedPackage(model.getUmpleClass(associationVariable.getType()).getPackageName());
+                   }
+                   if (associationVariable.getRelatedAssociation().getIsNavigable())
+                   {
+                       model.getUmpleClass(associationVariable.getType()).addReferencedPackage(inClass.getPackageName());
+                   }        
+             } else if (model.getUmpleInterface(associationVariable.getType())!=null){
+                 
+                 addAssociation(relAsso.getName(), associationVariable.getName(), associationVariable,inClass, new UmpleClass(associationVariable.getType()));
+                 if (associationVariable.getRelatedAssociation().getIsNavigable())
+                   {
+                       inClass.addReferencedPackage(model.getUmpleInterface(associationVariable.getType()).getPackageName());
+                   }     
+             }  		
+		}
+	}	
+  }
+}
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
@@ -1345,7 +1752,34 @@ private Map<UmpleTrait, List<Attribute>> gatherAttributes(UmpleTrait inTrait, Ge
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
-
+mixset Association {
+private Map<UmpleTrait, List<AssociationVariable>> gatherAssociations(UmpleTrait inTrait, GeneralTPApplied inGTPApplied, UmpleClass inClass) {
+     Map<UmpleTrait, List<AssociationVariable>> traitAssociationVariables = new HashMap<UmpleTrait, List<AssociationVariable>>(); 
+ 	 Map<UmpleTrait, List<AssociationVariable>> tempTraitAssociationVariables = new HashMap<UmpleTrait, List<AssociationVariable>>();
+ 	 //----------------------------------------------------------------------------------------
+ 	 List<AssociationVariable> associationVariables = new ArrayList<AssociationVariable>();	  
+ 	 for (AssociationVariable associationVariable : inTrait.getAssociationVariables()) {
+ 		 	AssociationVariable newAssociationVariable = new AssociationVariable(associationVariable);
+ 		 	AssociationVariable tempAssociationVariable = new AssociationVariable(associationVariable.getRelatedAssociation());
+ 		 	newAssociationVariable.setRelatedAssociation(tempAssociationVariable);
+    	 	ApplyTypeParametersToAssociation(newAssociationVariable,inGTPApplied,inClass, inTrait);
+    	 	associationVariables.add(newAssociationVariable);
+	 }
+ 	traitAssociationVariables.put(inTrait,associationVariables);
+     //----------------------------------------------------------------------------------------
+     for (UmpleTrait uTrait : inTrait.getExtendsTraits()) {
+       GeneralTPApplied newGTParameter = inTrait.getGeneralTPAppliedByName(uTrait.getName())!=null ? new GeneralTPApplied(inTrait.getGeneralTPAppliedByName(uTrait.getName())) : null;     
+       if (newGTParameter!=null){
+         ApplyTypeParametersToTypeParameters(newGTParameter, inGTPApplied,inTrait);       
+    	   tempTraitAssociationVariables = gatherAssociations(uTrait,newGTParameter,inClass);   
+    	 }	 
+    	 if ( ! getParseResult().getWasSuccess() ) return traitAssociationVariables;
+//    	 if (CheckAssociationsComeFromTraitsIsAvaialbleInOtherTraits(traitAssociations,tempTraitAssociations,inTrait)) return traitAssociations;
+    	 AddAssociationMapToAnother(traitAssociationVariables,tempTraitAssociationVariables);
+	 }
+     return traitAssociationVariables;
+}
+}
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
@@ -1515,7 +1949,19 @@ private void AddAttMapToAnother(Map<UmpleTrait, List<Attribute>> inTraitAttribut
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
-
+mixset Association {
+private void AddAssociationMapToAnother(Map<UmpleTrait, List<AssociationVariable>> inTraitAssociations,Map<UmpleTrait, List<AssociationVariable>> inTempTraitAssociations) {
+    for (UmpleTrait uTrait : inTempTraitAssociations.keySet()) {
+		if (inTraitAssociations.containsKey(uTrait)){
+			for (AssociationVariable associationVariable : inTraitAssociations.get(uTrait)) {
+				inTraitAssociations.get(uTrait).add(associationVariable);
+        }
+      } else{
+        inTraitAssociations.put(uTrait, inTempTraitAssociations.get(uTrait));
+      }	
+	  }	
+  }
+}
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
@@ -1607,3 +2053,10 @@ private void ApplyExludeIncludeAliasToMethod(Map<UmpleTrait, List<Method>> intra
 //---------------------------------Start--------------------------------------
 
 }
+mixset FIXML {
+  use fixml/UmpleInternalParser_FIXML.ump;
+}
+mixset StateMachine {
+use stateMachine/UmpleInternalParser_CodeTrait_StateMachine.ump;
+}
+

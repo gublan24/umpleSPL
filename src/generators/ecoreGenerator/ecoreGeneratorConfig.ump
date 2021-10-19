@@ -2,6 +2,8 @@ namespace cruise.umple.compiler;
 
 use EoreGenerator;
 
+mixset EoreGenerator{
+
 class EcoreGenerator
 {
   isA CodeGeneratorWithSubptions;
@@ -17,5 +19,7 @@ class EcoreGenerator
   String output = "";
 }
 
+use generators/ecoreGenerator/Generator_CodeEcore.ump;
 
 
+}

@@ -59,7 +59,12 @@ class PreconditionAnalyzer
     {
       ((UmpleClass)(uClassifier)).addPreCond((Precondition)rawLine);
     }
-    Label_Trait_36:;
+    mixset Trait {
+    else if (uClassifier instanceof UmpleTrait)
+    {
+      ((UmpleTrait)(uClassifier)).addPreCond((Precondition)rawLine);  
+    }  
+    }
 
     rawLine = new ConstraintTree();
   }
@@ -88,7 +93,12 @@ class PostconditionAnalyzer
     {
       ((UmpleClass)(uClassifier)).addPostCond((Postcondition)rawLine);
     } 
-    Label_Trait_37:;
+    mixset Trait {
+      else if (uClassifier instanceof UmpleTrait)
+      {
+        ((UmpleTrait)(uClassifier)).addPostCond((Postcondition)rawLine);  
+      }
+    }
     rawLine = new ConstraintTree();
   }
 }
@@ -127,8 +137,12 @@ class InvariantAnalyzer
     {
       ((UmpleClass)uClassifier).addConstraintTree(rawLine);
     } 
-    Label_Trait_38:;
-
+    mixset Trait {
+      else if (uClassifier instanceof UmpleTrait)
+      {
+        ((UmpleTrait)uClassifier).addConstraintTree(rawLine);  
+      }
+    }
     rawLine = new ConstraintTree();
   }
 }
@@ -792,7 +806,11 @@ class ConstraintNameNameAnalyzer
             uClass = previouslyFoundAttribute.getAttribute().getUmpleClass();
             if(uClass==null)
             {
-              Label_Trait_39:;
+              mixset Trait {
+              uClass = previouslyFoundAttribute.getAttribute().getUmpleTrait();
+              UmpleModel model = ((UmpleTrait)uClass).getSourceModel();
+              uClass = model.getUmpleClass(previouslyFoundAttribute.getAttribute().getType());
+              }
             }
             else
             {
@@ -806,7 +824,11 @@ class ConstraintNameNameAnalyzer
             uClass = previouslyFoundAssociation.getAssociation().getUmpleClass();
             if(uClass==null)
             {
-              Label_Trait_40:;
+              mixset Trait {
+              uClass = previouslyFoundAssociation.getAssociation().getUmpleTrait();
+              UmpleModel model = ((UmpleTrait)uClass).getSourceModel();
+              uClass = model.getUmpleClass(previouslyFoundAssociation.getAssociation().getType());
+              }
             }
             else
             {
@@ -833,7 +855,9 @@ class ConstraintNameNameAnalyzer
     }
     else
     {
-      Label_Trait_41:;
+      mixset Trait {
+        attribute = ((UmpleTrait)(uClassifier)).getAttribute(value);
+      }
     }
     if(attribute!=null)
     {
@@ -850,7 +874,9 @@ class ConstraintNameNameAnalyzer
       }
       else
       {
-        Label_Trait_42:;
+        mixset Trait {
+          association = ((UmpleTrait)(uClassifier)).getAssociationVariable(value);
+        }
       }
       if(association!=null)
       {
@@ -859,10 +885,40 @@ class ConstraintNameNameAnalyzer
       }
       else
       {
-        Label_StateMachine_43:;
-        Label_Trait_44:;
-        Label_StateMachine_45: ;
-        Label_Structure_46:;
+        mixset StateMachine {
+        StateMachine stateMachine = null;
+        if(uClassifier instanceof UmpleClass)
+        {
+          stateMachine = ((UmpleClass)uClassifier).getStateMachine(value);
+        }
+        }
+        mixset Trait {
+          mixset StateMachine {
+            else if(uClassifier instanceof UmpleTrait)
+            {
+              stateMachine = ((UmpleTrait)uClassifier).getStateMachine(value);
+            }
+          }
+        }
+        mixset StateMachine {
+        if(stateMachine!=null)
+        {
+          ConstraintStateMachine name = new ConstraintStateMachine(stateMachine);
+          return name;
+        }
+        } 
+        mixset Structure {
+            Port port = null;
+            if (uClassifier instanceof UmpleClass)
+            {
+              port = ((UmpleClass)(uClassifier)).getPort(value);
+            }
+            if(port!=null)
+            {
+              ConstraintPort name = new ConstraintPort(port);
+              return name;
+            }
+        }
         
       }
     }
@@ -874,7 +930,19 @@ class ConstraintNameNameAnalyzer
         return generateConstraintName(uClass,value,hasParameter);
       }
     }
-    Label_Trait_47:;
+    mixset Trait {
+    else if(uClassifier instanceof UmpleTrait)
+    {
+      for(UmpleTrait uTrait:((UmpleTrait)uClassifier).getExtendsTraits())
+      {
+        ConstraintVariable var = generateConstraintName(uTrait,value,hasParameter);
+        if(!(var instanceof ConstraintUnassignedName))
+        {
+          return var;
+        }
+      }
+    }      
+    }
 
     return new ConstraintUnassignedName(value);
   }

@@ -790,7 +790,9 @@ class TemplateDefinitionWalker {
 	      	return;
 	  	}
     	if (aToken.is("templateAttributeDefinition")) {
-        Label_Mixset_157:;
+        mixset Mixset {
+          processInlineMixset(aToken);
+        }
     		analyzer.analyzeEmission(aToken);
     	} else if (aToken.is("emitMethod")) {
         	analyzer.analyzeEmitMethodDeclarator(aToken);

@@ -1,55 +1,5 @@
 namespace cruise.umple.compiler;
 
-// Fragment source file: UmpleInternalParser_CodeClass.ump
-// Line : 5855
- class UmpleInternalParser { 
-   // Interaction between Method and Attribute
-   mixset Method { 
-      void checkDefaultedNameConflict(){
-        Map<String, CodeTranslator> allTranslators = model.getAllTranslators();
-        HashSet<String> generatedMethods = new HashSet<String>();
-        for(String langName : allTranslators.keySet()){
-          CodeTranslator t = allTranslators.get(langName);
-
-          for(UmpleClass aClass : model.getUmpleClasses()){
-            generatedMethods.clear();
-
-            for(Attribute aAttr : aClass.getAttributes()){
-              String modifier = aAttr.getModifier();
-
-              // Can add more!
-              if(!"internal".equals(modifier)){
-                addToGeneratedMethodMap(generatedMethods, aClass.getName(), t, "getMethod", aAttr);
-                addToGeneratedMethodMap(generatedMethods, aClass.getName(), t, "setMethod", aAttr);
-              }
-
-              if("defaulted".equals(modifier)){
-                addToGeneratedMethodMap(generatedMethods, aClass.getName(), t, "getDefaultMethod", aAttr);
-              }
-            }
-          }
-        }
-      }
-
-      boolean addToGeneratedMethodMap(HashSet<String> generatedMethods, String className, CodeTranslator t, String translatingLabel, Attribute aAttr){
-        String generatedMethodName = t.translate(translatingLabel, aAttr);
-
-        if(generatedMethodName != null && !"".equals(generatedMethodName) && !generatedMethodName.startsWith("UNKNOWN ID")){
-
-          boolean success = generatedMethods.add(generatedMethodName);
-          if(!success){
-            getParseResult().addErrorMessage(new ErrorMessage(48,aAttr.getPosition(), aAttr.getName(), className, generatedMethodName));
-            return false;
-          }
-
-        }
-        return true;
-      }
-
-    } } 
-
-// end 
-
 class Attribute
 {
   public Attribute(Attribute another){

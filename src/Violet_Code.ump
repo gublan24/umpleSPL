@@ -41,9 +41,9 @@ class VioletGenerator
     return vClass;
   }
   
-  public VioletAssociation newAssociation(String startLLabel, String endLLabel, VioletClass startClass, VioletClass endClass)
+  public VioletAssociation newAssociation(String startLabel, String endLabel, VioletClass startClass, VioletClass endClass)
   {
-    VioletAssociation vAss = new VioletAssociation(startLLabel,endLLabel,startClass,endClass);
+    VioletAssociation vAss = new VioletAssociation(startLabel,endLabel,startClass,endClass);
     addVioletAssociation(vAss);
     return vAss;
   }
@@ -77,12 +77,12 @@ class VioletGenerator
 
       VioletClass startClass = classToVioletMap.get(class1);
       VioletClass endClass = classToVioletMap.get(class2);
-      String startLLabel = association.getEnd(0).toGenericString();
-      String endLLabel = association.getEnd(1).toGenericString();
+      String startLabel = association.getEnd(0).toGenericString();
+      String endLabel = association.getEnd(1).toGenericString();
       //String role1 = association.getEnd(0).getRoleName();
       //String role2 = association.getEnd(1).getRoleName();
 
-      newAssociation(startLLabel, endLLabel, startClass, endClass);
+      newAssociation(startLabel, endLabel, startClass, endClass);
     }
   }
 
@@ -143,8 +143,8 @@ class VioletDiagram
       answer.append("<void method=\"connect\">"); 
       answer.append("<object class=\"com.horstmann.violet.ClassRelationshipEdge\">"); 
       answer.append("<void property=\"bentStyle\"><object class=\"com.horstmann.violet.BentStyle\" field=\"HVH\"/></void>"); 
-      answer.append("<void property=\"startLLabel\"><string>"+ vAss.getStartLLabel() +"</string></void>");
-      answer.append("<void property=\"endLLabel\"><string>"+ vAss.getEndLLabel() +"</string></void>");
+      answer.append("<void property=\"startLabel\"><string>"+ vAss.getStartLabel() +"</string></void>");
+      answer.append("<void property=\"endLabel\"><string>"+ vAss.getEndLabel() +"</string></void>");
       answer.append("</object>");
       answer.append("<object idref=\"ClassNode"+ vAss.getVioletClass(0).getName() +"\"/>");
       answer.append("<object idref=\"ClassNode"+ vAss.getVioletClass(1).getName() +"\"/>");

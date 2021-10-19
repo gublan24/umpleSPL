@@ -97,12 +97,20 @@ class UmpleModel
   // The Umple Classes contained within the model.
   1 -> * UmpleClass;
 
+  // The Umple Traits contained within the model.
+  mixset Trait {
+      1 -> * UmpleTrait;
 
+  }
 
   // The Umple Templates contained within the model.
   1 -> * UmpleTemplate;
 
+  // The State Machines contained within the model.
+  mixset StateMachine {
+      1 -> * StateMachine stateMachineDefinitions;
 
+  }
 
   // The Umple interfaces contained within the model.
   1 -> * UmpleInterface;
@@ -154,7 +162,10 @@ class UmpleElement
   // Methods to distinguish the subclass types
   boolean isUmpleClass() {return false;}
   boolean isUmpleInterface() {return false;}
+  mixset Trait {
+      boolean isUmpleTrait() {return false;}
 
+  }
 }
 
 /*
@@ -504,7 +515,10 @@ class ConstraintVariable
 
     class ConstraintState
     {
-
+      mixset StateMachine {
+      State state;
+      key { state }
+      }
     }
 
     /*
@@ -512,7 +526,10 @@ class ConstraintVariable
      */
     class ConstraintStateMachine
     {
-   
+      mixset StateMachine {
+      StateMachine stateMachine;
+      key { stateMachine }
+      }
     }
     
     /*
@@ -736,7 +753,9 @@ class UmpleClass
 
   before setExtendsClass { if (!enforceImmutabilityInheritanceRules(aExtendsClass)) { return false; } }
 
-
+  mixset StateMachine {
+  before addStateMachine { if (isImmutable()) { return false; } }
+  }
 
   boolean isUmpleClass() {return true;}
 }
@@ -818,7 +837,9 @@ class UmpleTrait {
 
   //--- before setExtendsTrait { if (!enforceImmutabilityInheritanceRules(aExtendsClass)) { return false; } }
 
-
+  mixset StateMachine {
+  before addStateMachine { if (isImmutable()) { return false; } }
+  }
 
   boolean isUmpleTrait() {return true;}
 }
@@ -841,7 +862,10 @@ class GeneralTPApplied {
 	String[] parameters;
 	1 -> 0..1 Position positions;
 	1 -> * MethodTemplateSignature;
-
+  mixset StateMachine {
+	1 -> * StateMachineTemplateSignature;
+	1 -> * StateMachineModifier;
+  }
 }
 
 class MethodTemplateSignature{
@@ -850,7 +874,44 @@ class MethodTemplateSignature{
 	alias;
 }
 
+mixset StateMachine {
+class StateMachineTemplateSignature{
+	modifier;
+	srcStateMachine;
+	desStateMachine;
+	String[] srcStates;
+	String[] desStates;
+	0..1 -> 0..1 MethodTemplateSignature;
+	alias;
+}
 
+
+class StateMachineModifier{
+  modifier;
+  srcStateMachine;
+  alias;
+}
+
+//This is used to remove and rename a state.
+class StateModifier{
+  isA StateMachineModifier;
+  String[] srcStates;
+}
+
+//This is used to remove an event or a transition.
+class EventModifier{
+  isA StateModifier;
+  0..1 -> 0..1 Method;
+  0..1 -> 0..1 Guard;
+//  Token guardToken = null;
+}
+
+//This is used to extend a state with a state machine.
+class ExtendStateByStateMachine{
+  isA StateMachineModifier;
+  String[] desStates;
+}
+}
 /*
  * A depend relationship indicates a package on which this class depends
  */
@@ -939,7 +1000,13 @@ class Attribute
   after constructor { codeblock.setCode(normalizeValue(aType,aValue)); }
   before setType { codeblock.setCode(normalizeValue(aType,getValue())); }
   after setType { setValue(getValue()); }
-
+  mixset Trace {
+    before delete { 
+      if (traceRecords == null) {
+        traceRecords = new ArrayList<TraceRecord>();
+      }
+    }
+  }
 
   // Specifies whether or not the method parameter is lazy.
   Boolean isLazy = false;
@@ -1253,3 +1320,9 @@ use UmpleDiagram.ump;
 //use stateMachine/StateMachine.ump;
 use Umple_Code.ump;
 use UmpleEnumeration_Code.ump;
+mixset Mixset{
+  use mixset/Mixset.ump;
+}
+mixset FeatureModel {
+  use feature/FeatureModel.ump;
+}

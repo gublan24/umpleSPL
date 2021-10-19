@@ -49,8 +49,12 @@ class UmpleInternalParser
           {
             addSubValue(f,t);
           }
-          Label_Association_140: ;
- 
+          mixset Association {
+            if(t.is("association"))
+	        {
+	          addAssociationValue(f,t);
+          	}
+          }
           if(t.is("filterValue"))
           {
             addClassValue(f,t);
@@ -100,7 +104,19 @@ class UmpleInternalParser
     }
   }
   
-
+  mixset Association {
+    private void addAssociationValue(Filter f, Token t)
+    {
+      for(Token nt : t.getSubTokens())
+      {
+        if("associationNum".equals(nt.getName()))
+        {
+          int associationNum = Integer.parseInt(nt.getValue("associationNum"));
+          f.setAssociationCount(associationNum);
+        }
+      }
+    }
+  }
 
   private void addClassValue(Filter f, Token t)
   {

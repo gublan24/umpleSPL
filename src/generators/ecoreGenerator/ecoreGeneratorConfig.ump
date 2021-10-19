@@ -17,6 +17,5 @@ class EcoreGenerator
   String output = "";
 }
 
-use generators/ecoreGenerator/Generator_CodeEcore.ump;
 
 

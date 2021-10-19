@@ -126,15 +126,15 @@ class Condition
   Boolean conditionallyWhere = true;
   conditionType = "where";
 }
-
-//class TraceRecord 
-//{
-// Boolean recordOnly = false;
-// * -> * UmpleVariable;
-// * -> * Attribute;
-// 1 -> * Record;
-//}
-
+// check this
+class TraceRecord 
+{
+Boolean recordOnly = false;
+* -> * UmpleVariable;
+* -> * Attribute;
+1 -> * Record;
+}
+//end
 class Record 
 {
   String recordString;

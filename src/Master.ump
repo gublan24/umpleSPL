@@ -45,20 +45,11 @@ use Association;
 use FeatureModel;
 use AspectInjection;
 
-mixset StateMachine {
-  use stateMachine/StateMachine.ump;
-  use Structure_StateMachine;
-}
+
 use Umlet.ump;
 use Umple.ump;
 
-mixset Trace {
-  use trace/Trace.ump;
-}
 
-mixset Template {
-  use template/Template.ump;
-}
 use UmpleDiagram.ump;
 use UmpleExceptions.ump;
 use util/UmpleHelper.ump;
@@ -78,7 +69,3 @@ use util/Ant.ump;
 use Builder_Code.ump;
 use GraphWalking.ump;
 
-
-mixset FeatureModel {
-  require [Mixset];
-}

@@ -1,0 +1,6 @@
+  class UmpleInternalParser { 
+    before Label_Template_55:analyzeToken(Token,int)
+  {
+      analyzeTemplateToken(t,analysisStep);
+    }  } 
+ 

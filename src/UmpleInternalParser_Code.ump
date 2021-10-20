@@ -222,18 +222,9 @@ class UmpleInternalParser
     Label_FIXML_61: ;
     Label_Mixset_62: ;
     Label_FeatureModel_63: ;
-    mixset Class {
-      analyzeClassToken(t,analysisStep);
-    }
-    mixset Trait {
-      analyzeTraitToken(t,analysisStep);
-    }
-    mixset Template {
-      analyzeTemplateToken(t,analysisStep);
-    }
-    mixset StateMachine {
-      analyzeStateMachineToken(t,analysisStep);
-    }
+
+
+
     mixset Structure {
       analyzeComponentToken(t,analysisStep);
     }

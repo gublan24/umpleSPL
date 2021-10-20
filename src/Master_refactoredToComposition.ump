@@ -4127,40 +4127,13 @@ mixset Trait {
 
 
 
-mixset Class { 
-  class UmpleInternalParser { 
-    before Label_Class_53:analyzeToken(Token,int)
-  {
-      analyzeClassToken(t,analysisStep);
-    }  } 
-} 
 
 
-mixset Trait { 
-  class UmpleInternalParser { 
-    before Label_Trait_54:analyzeToken(Token,int)
-  {
-      analyzeTraitToken(t,analysisStep);
-    }  } 
-} 
 
 
-mixset Template { 
-  class UmpleInternalParser { 
-    before Label_Template_55:analyzeToken(Token,int)
-  {
-      analyzeTemplateToken(t,analysisStep);
-    }  } 
-} 
 
 
-mixset StateMachine { 
-  class UmpleInternalParser { 
-    before Label_StateMachine_56:analyzeToken(Token,int)
-  {
-      analyzeStateMachineToken(t,analysisStep);
-    }  } 
-} 
+
 
 
 mixset Structure { 

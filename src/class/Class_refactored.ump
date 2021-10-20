@@ -8,3 +8,12 @@ mixset Attribute {
         }
       }  } 
 } 
+
+
+  class UmpleInternalParser { 
+    before Label_Class_53:analyzeToken(Token,int)
+  {
+      analyzeClassToken(t,analysisStep);
+    }  
+} 
+

@@ -1,4 +1,3 @@
-mixset Trait { 
   class UmpleInternalParser { 
     before Label_Trait_141:postTokenModelEnumerationAnalysis
   {      
@@ -15,4 +14,12 @@ mixset Trait {
         }
       }
       }  } 
-} 
+
+
+  class UmpleInternalParser { 
+    before Label_Trait_54:analyzeToken(Token,int)
+  {
+      analyzeTraitToken(t,analysisStep);
+    }  
+  } 
+

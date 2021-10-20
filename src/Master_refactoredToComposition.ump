@@ -4113,42 +4113,15 @@ mixset Trait {
 } 
 
 
-mixset Constraint { 
-  class UmpleInternalParser { 
-    before Label_Constraint_48:init
-  {
-      parser.addGrammarFile("/constraint/umple_constraints.grammar");  // TODO Under development
-    }  } 
-} 
+ 
 
 
-mixset StateMachine { 
-  class UmpleInternalParser { 
-    before Label_StateMachine_49:analyze(boolean)
-  {
-        secondPostTokenAnalysis();
-      }  } 
-} 
 
 
-mixset Attribute { 
-  class UmpleInternalParser { 
-    before Label_Attribute_50:analyze(boolean)
-  {
-        mixset Method {
-          checkDefaultedNameConflict();
-        }
-      }  } 
-} 
 
 
-mixset FeatureModel { 
-  class UmpleInternalParser { 
-    before Label_FeatureModel_51:analyze(boolean)
-  {
-        analyzeFeatureModel(); // lastly to analyze the feature model after all mixsets are added to umple model. 
-      }  } 
-} 
+
+
 
 
 mixset Mixset { 

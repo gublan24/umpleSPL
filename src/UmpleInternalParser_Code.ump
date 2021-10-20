@@ -78,9 +78,8 @@ class UmpleInternalParser
     
     parser.addGrammarFile("/umple_core.grammar");
     parser.addGrammarFile("/umple_patterns.grammar");
-    mixset Constraint {
-      parser.addGrammarFile("/constraint/umple_constraints.grammar");  // TODO Under development
-    }
+    Label_Constraint_48: ;
+
     parser.addGrammarFile("/umple_exceptions.grammar");
     parser.addGrammarFile("/use.grammar");
   }
@@ -105,19 +104,9 @@ class UmpleInternalParser
       setRootToken(parser.getRootToken());
       analyzeAllTokens(getRootToken());    
       postTokenAnalysis();
-      mixset StateMachine {
-        secondPostTokenAnalysis();
-      }
-      //add analysis here!!! xx.validateStateMachineGuardConstraints(model);
-      mixset Attribute {
-        mixset Method {
-          checkDefaultedNameConflict();
-        }
-      }
-      mixset FeatureModel {
-        analyzeFeatureModel(); // lastly to analyze the feature model after all mixsets are added to umple model. 
-      }
-    
+      Label_StateMachine_49: ;
+      Label_Attribute_50: ;
+      Label_FeatureModel_51: ;    
     }
     catch (Exception ex)
     {

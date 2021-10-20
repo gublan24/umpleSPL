@@ -1,4 +1,3 @@
-mixset StateMachine {
   class UmpleInternalParser {
     before Label_StateMachine_142:postTokenClassEnumerationAnalysis(UmpleClass)
     {
@@ -33,10 +32,9 @@ mixset StateMachine {
       }
     }
   }
-}
 
 
-mixset StateMachine {
+
   class UmpleInternalParser {
     before Label_StateMachine_143:analyzeModelEnumInClass(UmpleClass,UmpleEnumeration)
     {
@@ -77,4 +75,12 @@ mixset StateMachine {
       }
     }
   }
-}
+
+
+  class UmpleInternalParser { 
+    before Label_StateMachine_49:analyze(boolean)
+  {
+        secondPostTokenAnalysis();
+      }  
+  } 
+

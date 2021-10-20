@@ -418,6 +418,7 @@ UmpleAnalysis.ump:896:          mixset StateMachine {
 UmpleAnalysis.ump:903:        mixset StateMachine {
 UmpleAnalysis.ump:910:        mixset Structure {
 UmpleAnalysis.ump:933:    mixset Trait {
+    
 UmpleInternalParser_Code.ump:81:    mixset Constraint {
 UmpleInternalParser_Code.ump:108:      mixset StateMachine {
 UmpleInternalParser_Code.ump:112:      mixset Attribute {
@@ -451,8 +452,12 @@ UmpleInternalParser_Code.ump:367:    mixset Structure {
 UmpleInternalParser_Code.ump:372:    mixset Constraint {
 UmpleInternalParser_Code.ump:509:  mixset Template_Strcture {
 
-UmpleInternalParser_CodeEnumeration.ump:168:      mixset StateMachine {
-UmpleInternalParser_CodeEnumeration.ump:230:    mixset StateMachine {   
 //DONE: 
 Umple_Code.ump:262:    mixset Filter {
-UmpleInternalParser_CodeEnumeration.ump:101:      mixset Trait {      
+
+UmpleInternalParser_CodeEnumeration.ump:101:      mixset Trait {     
+UmpleInternalParser_CodeEnumeration.ump:168:      mixset StateMachine {
+UmpleInternalParser_CodeEnumeration.ump:230:    mixset StateMachine {   
+
+
+ 

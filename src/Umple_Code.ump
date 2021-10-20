@@ -848,22 +848,12 @@ class Comment
   }
 }
 
-mixset Constraint {
-  use constraint/Umple_CodeConstraint.ump;
-}
+
 use class/Umple_CodeAssociation.ump;
 use class/Umple_CodeAttribute.ump;
 use class/Umple_CodeClass.ump;
 use class/Umple_CodeMethod.ump;
 use class/Umple_CodeCoordinate.ump; 
-mixset StateMachine {
-  use stateMachine/Umple_Code_StateMachine.ump;
-}
-mixset Filter{
-  use filter/Umple_Code_Filter.ump;
-}
-mixset Trait {
-  use trait/Umple_Code_Trait.ump;
-}
+
 
 use Test_Code.ump;

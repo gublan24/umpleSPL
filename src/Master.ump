@@ -116,11 +116,75 @@ use Parser.ump;
 // use Association;
 // use FeatureModel;
 // use AspectInjection;
+mixset Mixset{
+  use mixset/Mixset.ump;
+}
+mixset FeatureModel {
+  use feature/FeatureModel.ump;
+}
 
+mixset Constraint {
+  use constraint/Umple_CodeConstraint.ump;
+}
+mixset StateMachine {
+  use stateMachine/Umple_Code_StateMachine.ump;
+}
 mixset StateMachine {
   use stateMachine/StateMachine.ump;
   use Structure_StateMachine;
 }
+mixset Filter{
+  use filter/Umple_Code_Filter.ump;
+}
+mixset Trait {
+  use trait/Umple_Code_Trait.ump;
+}
+// 
+mixset Class {
+  use class/UmpleInternalParser_CodeClass.ump;
+}
+mixset Trait{
+  use trait/UmpleInternalParser_CodeTrait.ump;
+}
+mixset Constraint {
+  use constraint/UmpleInternalParser_CodeConstraints.ump;
+    use /constraint/Constraint_refactored.ump ;
+
+}
+mixset Structure {
+  use strcture/UmpleInternalParser_CodeStructure.ump;
+  use Template_Strcture;
+}
+mixset Template {
+  use template/UmpleInternalParser_CodeTemplate.ump;
+  use Template_Strcture;
+}
+mixset StateMachine {
+  use stateMachine/UmpleInternalParser_CodeStateMachine.ump;
+}
+mixset Trace {
+  use trace/UmpleInternalParser_CodeTrace.ump;
+}
+mixset Layout {
+  use layout/UmpleInternalParser_CodeLayout.ump;
+}
+mixset Filter {
+  use filter/UmpleInternalParser_CodeFilter.ump;
+}
+
+mixset Mixset{
+  use mixset/UmpleInternalParser_CodeMixset.ump;
+}
+mixset FeatureModel {
+  use UmpleInternalParser_CodeRequireStatement.ump;
+}
+
+mixset AspectInjection {
+  use class/UmpleInternalPraser_CodeInjection.ump;
+}
+
+
+
 use Umlet.ump;
 use Umple.ump;
 
@@ -328,16 +392,7 @@ mixset Trace {
   
 }
 
-mixset Constraint {
-  // Fragment source file: Umple_Code.ump
-  // Line : 854
-  use /constraint/Umple_CodeConstraint.ump;
-  // Fragment source file: UmpleInternalParser_Code.ump
-  // Line : 527
-  use /constraint/UmpleInternalParser_CodeConstraints.ump;
-  use /constraint/Constraint_refactored.ump ;
-  
-}
+
 
 
 mixset StateMachine {
@@ -856,16 +911,7 @@ mixset Trace {
   
 }
 
-mixset Constraint {
-  // Fragment source file: Umple_Code.ump
-  // Line : 854
-  use src/constraint/Umple_CodeConstraint.ump;
-  // Fragment source file: UmpleInternalParser_Code.ump
-  // Line : 527
-  use src/constraint/UmpleInternalParser_CodeConstraints.ump;
-  use src/constraint/Constraint_refactored.ump ;
-  
-}
+
 
 
 mixset StateMachine {

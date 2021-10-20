@@ -185,3 +185,26 @@ class StatemachineExprStateNameAnalyzer
   }
 
 }
+
+
+  class ConstraintNameNameAnalyzer { 
+    before Label_StateMachine_43:generateConstraintName(UmpleClassifier,String,Boolean)
+  {
+        StateMachine stateMachine = null;
+        if(uClassifier instanceof UmpleClass)
+        {
+          stateMachine = ((UmpleClass)uClassifier).getStateMachine(value);
+        }
+        }  
+} 
+
+class ConstraintNameNameAnalyzer { 
+    before Label_StateMachine_45:generateConstraintName(UmpleClassifier,String,Boolean)
+  {
+        if(stateMachine!=null)
+        {
+          ConstraintStateMachine name = new ConstraintStateMachine(stateMachine);
+          return name;
+        }
+        }  } 
+} 

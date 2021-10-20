@@ -26,3 +26,20 @@ mixset Template_Strcture {
     } } 
 
 }
+
+
+  class ConstraintNameNameAnalyzer { 
+    before Label_Structure_46:generateConstraintName(UmpleClassifier,String,Boolean)
+  {
+            Port port = null;
+            if (uClassifier instanceof UmpleClass)
+            {
+              port = ((UmpleClass)(uClassifier)).getPort(value);
+            }
+            if(port!=null)
+            {
+              ConstraintPort name = new ConstraintPort(port);
+              return name;
+            }
+        }  
+} 

@@ -4,6 +4,7 @@ Generator.ump:43:mixset StateMachine {
 Generator.ump:52:mixset Trace {
 GraphWalking.ump:60:mixset StateMachine {
 GraphWalking_Code.ump:35:mixset StateMachine {
+    
 Master.ump:47:mixset Mixset{
 Master.ump:50:mixset FeatureModel {
 Master.ump:54:mixset Constraint {
@@ -391,6 +392,8 @@ Master_refactoredToComposition.ump:5504:mixset Association {
 Master_refactoredToComposition.ump:5516:mixset Association { 
 Master_refactoredToComposition.ump:5528:mixset StateMachine { 
 Master_refactoredToComposition.ump:5540:mixset Mixset { 
+
+
 Umple.ump:101:  mixset Trait {
 Umple.ump:110:  mixset StateMachine {
 Umple.ump:165:  mixset Trait {
@@ -401,6 +404,7 @@ Umple.ump:840:  mixset StateMachine {
 Umple.ump:865:  mixset StateMachine {
 Umple.ump:877:mixset StateMachine {
 Umple.ump:1003:  mixset Trace {
+
 UmpleAnalysis.ump:13:mixset StateMachine {
 UmpleAnalysis.ump:62:    mixset Trait {
 UmpleAnalysis.ump:96:    mixset Trait {
@@ -418,7 +422,16 @@ UmpleAnalysis.ump:896:          mixset StateMachine {
 UmpleAnalysis.ump:903:        mixset StateMachine {
 UmpleAnalysis.ump:910:        mixset Structure {
 UmpleAnalysis.ump:933:    mixset Trait {
-    
+
+
+
+//DONE: 
+Umple_Code.ump:262:    mixset Filter {
+
+UmpleInternalParser_CodeEnumeration.ump:101:      mixset Trait {     
+UmpleInternalParser_CodeEnumeration.ump:168:      mixset StateMachine {
+UmpleInternalParser_CodeEnumeration.ump:230:    mixset StateMachine {   
+
 UmpleInternalParser_Code.ump:81:    mixset Constraint {
 UmpleInternalParser_Code.ump:108:      mixset StateMachine {
 UmpleInternalParser_Code.ump:112:      mixset Attribute {
@@ -451,13 +464,4 @@ UmpleInternalParser_Code.ump:362:    mixset Template {
 UmpleInternalParser_Code.ump:367:    mixset Structure {
 UmpleInternalParser_Code.ump:372:    mixset Constraint {
 UmpleInternalParser_Code.ump:509:  mixset Template_Strcture {
-
-//DONE: 
-Umple_Code.ump:262:    mixset Filter {
-
-UmpleInternalParser_CodeEnumeration.ump:101:      mixset Trait {     
-UmpleInternalParser_CodeEnumeration.ump:168:      mixset StateMachine {
-UmpleInternalParser_CodeEnumeration.ump:230:    mixset StateMachine {   
-
-
  

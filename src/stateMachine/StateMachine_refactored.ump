@@ -97,3 +97,91 @@
       analyzeStateMachineToken(t,aClass,analysisStep);
     }  } 
 
+
+// File UmpleAnalysis.ump:
+  class GuardAnalyzer
+  {
+    isA Analyzer;
+    depend cruise.umple.parser.analysis.Analyzer;
+    depend cruise.umple.parser.Token;
+    depend cruise.umple.compiler.*;
+    depend java.util.*;
+    ConstraintTree rawLine = new ConstraintTree();
+    lazy UmpleClassifier uClassifier;
+    lazy Transition t;
+    
+    void analyze(Token token)
+    {
+      Guard constraint = new Guard();
+      constraint.addElementAll(rawLine.getRoot());
+      constraint.setPosition(token.getPosition());
+      constraint.setEndPosition(token.getEndPosition());
+
+      t.setGuard(constraint);
+      rawLine = new ConstraintTree();
+    }
+  }
+
+// File UmpleAnalysis.ump:
+
+class StatemachineExprAnalyzer
+{
+  isA Analyzer;
+  depend cruise.umple.parser.analysis.Analyzer;
+  depend cruise.umple.parser.Token;
+  depend cruise.umple.compiler.*;
+  depend java.util.*;
+  lazy ConstraintTree rawLine;
+  lazy UmpleClassifier uClassifier;
+  ConstraintTree cv = null;
+  boolean isStateMachine = true;
+  public void prepare(Token token)
+  {
+    cv = rawLine.createNew();
+  }
+}
+
+class StatemachineExprStateNameAnalyzer
+{
+  isA Analyzer;
+  depend cruise.umple.parser.analysis.Analyzer;
+  depend cruise.umple.parser.Token;
+  depend cruise.umple.compiler.*;
+  depend java.util.*;
+  lazy UmpleClassifier uClassifier;  
+  lazy ConstraintTree cv;
+  ConstraintTree rawLine = null;
+
+  public void prepare(Token token)
+  {
+    rawLine = cv.createNew();
+  }
+  public void analyze(Token token)
+  {
+    StateMachine stateMachine = null;
+    while(!(cv.getRoot() instanceof ConstraintStateMachine))
+    {
+      if(cv.getRoot()!=null&&(cv.getRoot() instanceof ConstraintOperator))
+      {
+        ConstraintOperator operator = (ConstraintOperator)cv.getRoot();
+        if(operator.getLeft()!=null&&(operator.getLeft() instanceof ConstraintTree))
+        {
+          cv = (ConstraintTree)operator.getLeft();
+        }
+        else break;
+      }
+      else break;
+    }
+    if(cv.getRoot() instanceof ConstraintStateMachine)
+    {
+      State state = ((ConstraintStateMachine)cv.getRoot()).getStateMachine().findState(token.getValue());
+      ConstraintState var = new ConstraintState(state);
+      rawLine.addElement(var);
+    }
+    else
+    {
+      //TODO: add error
+    }
+  }
+
+}

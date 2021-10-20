@@ -23,7 +23,7 @@
     }  
   } 
 
-\  class UmpleInternalParser { 
+ class UmpleInternalParser { 
     before Label_Trait_73:postTokenAnalysis
   {
       if (getParseResult().getWasSuccess())

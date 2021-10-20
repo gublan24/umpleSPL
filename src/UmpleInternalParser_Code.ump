@@ -517,45 +517,7 @@ class UmpleInternalParser
   }
 }
 use UmpleInternalParser_CodeCore.ump;
-mixset Class {
-  use class/UmpleInternalParser_CodeClass.ump;
-}
-mixset Trait{
-  use trait/UmpleInternalParser_CodeTrait.ump;
-}
-mixset Constraint {
-  use constraint/UmpleInternalParser_CodeConstraints.ump;
-}
-mixset Structure {
-  use strcture/UmpleInternalParser_CodeStructure.ump;
-  use Template_Strcture;
-}
-mixset Template {
-  use template/UmpleInternalParser_CodeTemplate.ump;
-  use Template_Strcture;
-}
-mixset StateMachine {
-  use stateMachine/UmpleInternalParser_CodeStateMachine.ump;
-}
-mixset Trace {
-  use trace/UmpleInternalParser_CodeTrace.ump;
-}
-mixset Layout {
-  use layout/UmpleInternalParser_CodeLayout.ump;
-}
 use UmpleInternalParser_CodeUSE.ump;
-mixset Filter {
-  use filter/UmpleInternalParser_CodeFilter.ump;
-}
 use UmpleInternalParser_CodeParserHandlers.ump;
 use UmpleInternalParser_CodeEnumeration.ump;
-mixset Mixset{
-  use mixset/UmpleInternalParser_CodeMixset.ump;
-}
-mixset FeatureModel {
-  use UmpleInternalParser_CodeRequireStatement.ump;
-}
 use UmpleInternalParser_CodeTest.ump;
-mixset AspectInjection {
-  use class/UmpleInternalPraser_CodeInjection.ump;
-}

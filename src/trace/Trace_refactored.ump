@@ -1,0 +1,7 @@
+  class UmpleInternalParser { 
+    before Label_Trace_58:analyzeToken(Token,int)
+  {
+      analyzeTraceToken(t,analysisStep);
+    }  
+} 
+ 

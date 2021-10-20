@@ -119,6 +119,14 @@ mixset AspectInjection {
   use class/UmpleInternalPraser_CodeInjection.ump;
 }
 
+mixset FIXML {
+  // Fragment source file: UmpleInternalParser_CodeTrait.ump
+  // Line : 2057
+  use fixml/UmpleInternalParser_FIXML.ump;
+  use fixml/Fixml_refactored.ump;
+  
+  
+}
 
 use Umlet.ump;
 use Umple.ump;

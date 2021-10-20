@@ -2053,9 +2053,7 @@ private void ApplyExludeIncludeAliasToMethod(Map<UmpleTrait, List<Method>> intra
 //---------------------------------Start--------------------------------------
 
 }
-mixset FIXML {
-  use fixml/UmpleInternalParser_FIXML.ump;
-}
+
 mixset StateMachine {
 use stateMachine/UmpleInternalParser_CodeTrait_StateMachine.ump;
 }

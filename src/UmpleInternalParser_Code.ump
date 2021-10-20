@@ -225,18 +225,9 @@ class UmpleInternalParser
 
 
 
-    mixset Structure {
-      analyzeComponentToken(t,analysisStep);
-    }
-    mixset Trace {
-      analyzeTraceToken(t,analysisStep);
-    }
-    mixset Filter {
-      analyzeFilterToken(t,analysisStep);
-    }
-    mixset Layout {
-      analyzeLayoutToken(t,analysisStep);
-    }
+  
+
+
     mixset FIXML {
       analyzeFIXML(t, analysisStep);
     }

@@ -4136,31 +4136,12 @@ mixset Trait {
 
 
 
-mixset Structure { 
-  class UmpleInternalParser { 
-    before Label_Structure_57:analyzeToken(Token,int)
-  {
-      analyzeComponentToken(t,analysisStep);
-    }  } 
-} 
+ 
 
 
-mixset Trace { 
-  class UmpleInternalParser { 
-    before Label_Trace_58:analyzeToken(Token,int)
-  {
-      analyzeTraceToken(t,analysisStep);
-    }  } 
-} 
 
 
-mixset Filter { 
-  class UmpleInternalParser { 
-    before Label_Filter_59:analyzeToken(Token,int)
-  {
-      analyzeFilterToken(t,analysisStep);
-    }  } 
-} 
+
 
 
 mixset Layout { 

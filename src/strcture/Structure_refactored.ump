@@ -1,0 +1,5 @@
+  class UmpleInternalParser { 
+    before Label_Structure_57:analyzeToken(Token,int)
+  {
+      analyzeComponentToken(t,analysisStep);
+    }  } 

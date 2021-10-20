@@ -5261,24 +5261,7 @@ mixset Association {
 } 
 
 
-mixset Trait { 
-  class UmpleInternalParser { 
-    before Lable_Trait_141:postTokenModelEnumerationAnalysis
-  {      
-      // Check that the enumeration doesn't conflict with any traits
-      for (UmpleTrait uT : model.getUmpleTraits()) {
-        if (uEnum.hasSameName(uT.getName())) {
-          // Enumeration Naming Conflict
-          getParseResult().addErrorMessage(new ErrorMessage(96,
-                                                            uEnum.getPosition(), 
-                                                            uEnum.getName(), 
-                                                            "" + uEnum.getPosition().getLineNumber(),
-                                                            "" + uT.getPosition(0).getLineNumber()));
-          return;
-        }
-      }
-      }  } 
-} 
+
 
 
 mixset StateMachine { 

@@ -450,7 +450,9 @@ UmpleInternalParser_Code.ump:362:    mixset Template {
 UmpleInternalParser_Code.ump:367:    mixset Structure {
 UmpleInternalParser_Code.ump:372:    mixset Constraint {
 UmpleInternalParser_Code.ump:509:  mixset Template_Strcture {
-UmpleInternalParser_CodeEnumeration.ump:101:      mixset Trait {      
+
 UmpleInternalParser_CodeEnumeration.ump:168:      mixset StateMachine {
 UmpleInternalParser_CodeEnumeration.ump:230:    mixset StateMachine {   
+//DONE: 
 Umple_Code.ump:262:    mixset Filter {
+UmpleInternalParser_CodeEnumeration.ump:101:      mixset Trait {      

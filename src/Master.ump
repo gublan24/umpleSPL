@@ -74,6 +74,7 @@ mixset Class {
 }
 mixset Trait{
   use trait/UmpleInternalParser_CodeTrait.ump;
+  use trait/Trait_refactored.ump;
 }
 mixset Constraint {
   use constraint/UmpleInternalParser_CodeConstraints.ump;

@@ -1431,13 +1431,7 @@ mixset Trait {
 // Line : 37
  class StateMachine { before setUmpleTrait { if (aUmpleTrait != null && aUmpleTrait.isImmutable()) { return false; } } } 
 
-// Fragment source file: Umple.ump
-// Line : 102
- class UmpleModel { 1 -> * UmpleTrait; } 
 
-// Fragment source file: Umple.ump
-// Line : 166
- class UmpleElement { boolean isUmpleTrait() {return false;} } 
 
 // Fragment source file: Umple_CodeClass.ump
 // Line : 119

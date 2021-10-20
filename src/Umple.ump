@@ -97,11 +97,7 @@ class UmpleModel
   // The Umple Classes contained within the model.
   1 -> * UmpleClass;
 
-  // The Umple Traits contained within the model.
-  mixset Trait {
-      1 -> * UmpleTrait;
 
-  }
 
   // The Umple Templates contained within the model.
   1 -> * UmpleTemplate;
@@ -158,10 +154,7 @@ class UmpleElement
   // Methods to distinguish the subclass types
   boolean isUmpleClass() {return false;}
   boolean isUmpleInterface() {return false;}
-  mixset Trait {
-      boolean isUmpleTrait() {return false;}
 
-  }
 }
 
 /*

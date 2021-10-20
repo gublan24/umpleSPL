@@ -144,6 +144,7 @@
 
 // Fragment source file: Umple.ump
 // Line : 102
+  // The Umple Traits contained within the model.
  class UmpleModel { 1 -> * UmpleTrait; } 
 
 // Fragment source file: Umple.ump

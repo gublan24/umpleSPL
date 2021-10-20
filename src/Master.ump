@@ -71,6 +71,7 @@ mixset Trait {
 // 
 mixset Class {
   use class/UmpleInternalParser_CodeClass.ump;
+  use class/Class_refactored.ump;
 }
 mixset Trait{
   use trait/UmpleInternalParser_CodeTrait.ump;
@@ -83,6 +84,7 @@ mixset Constraint {
 mixset Structure {
   use strcture/UmpleInternalParser_CodeStructure.ump;
   use Template_Strcture;
+  use strcture/Structure_refactored.ump;
 }
 mixset Template {
   use template/UmpleInternalParser_CodeTemplate.ump;
@@ -94,9 +96,11 @@ mixset StateMachine {
 }
 mixset Trace {
   use trace/UmpleInternalParser_CodeTrace.ump;
+  use trace/Trace_refactored.ump;
 }
 mixset Layout {
   use layout/UmpleInternalParser_CodeLayout.ump;
+  use layout/Layout_refactored.ump;
 }
 mixset Filter {
   use filter/UmpleInternalParser_CodeFilter.ump;
@@ -104,9 +108,11 @@ mixset Filter {
 
 mixset Mixset{
   use mixset/UmpleInternalParser_CodeMixset.ump;
+  use mixset/Mixset_refactored.ump;
 }
 mixset FeatureModel {
   use UmpleInternalParser_CodeRequireStatement.ump;
+  use feature/Feature_refactored.ump;
 }
 
 mixset AspectInjection {

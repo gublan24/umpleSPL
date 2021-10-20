@@ -4124,13 +4124,7 @@ mixset Trait {
 
 
 
-mixset Mixset { 
-  class UmpleInternalParser { 
-    before Label_Mixset_52:analyzeToken(Token,int)
-  {
-      analyzeMixsetUseStatement(t, analysisStep);
-    }  } 
-} 
+
 
 
 mixset Class { 

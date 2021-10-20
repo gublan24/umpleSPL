@@ -206,12 +206,22 @@ class UmpleInternalParser
   {
     // See #460 - types are now nested
     t.flattenNameRecursive("type");
-    mixset Mixset {
-      analyzeMixsetUseStatement(t, analysisStep);
-    }
+    Label_Mixset_52: ;
     analyzeUSE(t, analysisStep);
     analyzeCoreToken(t,analysisStep);
     analyzeEnumerationToken(t, analysisStep);
+
+    Label_Class_53: ; 
+    Label_Trait_54: ;
+    Label_Template_55: ;
+    Label_StateMachine_56: ;
+    Label_Structure_57: ;
+    Label_Trace_58: ;
+    Label_Filter_59:;
+    Label_Layout_60: ;
+    Label_FIXML_61: ;
+    Label_Mixset_62: ;
+    Label_FeatureModel_63: ;
     mixset Class {
       analyzeClassToken(t,analysisStep);
     }

@@ -9,6 +9,17 @@
     before Label_Trace_69:analyzeDependentTokens(Token,UmpleClass,int)
   {
       analyzeTraceToken(t,aClass);
-    }  } 
+    }  
+} 
+  class UmpleInternalParser { 
+    before Label_Trace_72:postTokenAnalysis
+  { 
+      if (getParseResult().getWasSuccess())
+      {
+        postTokenTraceAnalysis();
+      }
+    } 
+ } 
+
 
  

@@ -26,13 +26,12 @@ mixset AspectInjection {
     }  } 
 } 
 
-mixset Class { 
   class UmpleInternalParser { 
     before Label_Class_65:analyzeToken(Token,UmpleClass,int)
   {
       analyzeClassToken(t,aClass,analysisStep);
     }  } 
-} 
+
 
 
 mixset AspectInjection { 
@@ -44,4 +43,14 @@ mixset AspectInjection {
         analyzeInjectionCode(t,aClass);
       }
     }  } 
-} 
+}
+
+
+  class UmpleInternalParser { 
+    before Label_Class_71:postTokenAnalysis
+  {
+      if (getParseResult().getWasSuccess())
+      {
+        postTokenClassAnalysis();
+      }
+    }  } 

@@ -23,3 +23,19 @@
     }  
   } 
 
+\  class UmpleInternalParser { 
+    before Label_Trait_73:postTokenAnalysis
+  {
+      if (getParseResult().getWasSuccess())
+      {
+        postTokenTraitAnalysis();
+      }  
+      if (getParseResult().getWasSuccess())
+      {
+        applyTraits();
+        //Issue 686
+        checkCodeInjections();
+      } 
+     }  
+     
+} 

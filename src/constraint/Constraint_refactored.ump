@@ -15,3 +15,11 @@
     }  
 } 
 
+  class UmpleInternalParser { 
+    before Label_Constraint_77:postTokenAnalysis
+  {
+      if (getParseResult().getWasSuccess())
+      {
+        postTokenModelConstraintAnalysis();
+      }
+    }  } 

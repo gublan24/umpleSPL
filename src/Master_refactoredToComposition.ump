@@ -3325,18 +3325,7 @@ class ConstraintPort
 
 }
 
-mixset Template_Strcture { 
-// Fragment source file: UmpleInternalParser_Code.ump
-// Line : 510
- class UmpleInternalParser { // This MIXSET contains common code used by Template & Strcture.
-    public boolean reAnalyze() {
-      return shouldProcessAgain;
-    }
-    public void reAnalyze(boolean re) {
-  	shouldProcessAgain = re;
-    } } 
 
-}
 //*** 
 //Fine-grained variability : 
 mixset StateMachine { 
@@ -4169,122 +4158,33 @@ mixset FIXML {
 
 
 
-mixset AspectInjection { 
-  class UmpleInternalParser { 
-    before Label_AspectInjection_68:analyzeDependentTokens(Token,UmpleClass,int)
-  {
-      else if (t.is("beforeCode") || t.is("afterCode"))
-      {
-        analyzeInjectionCode(t,aClass);
-      }
-    }  } 
-} 
 
 
-mixset Trace { 
-  class UmpleInternalParser { 
-    before Label_Trace_69:analyzeDependentTokens(Token,UmpleClass,int)
-  {
-      analyzeTraceToken(t,aClass);
-    }  } 
-} 
 
 
-mixset Layout { 
-  class UmpleInternalParser { 
-    before Label_Layout_70:analyzeDependentTokens(Token,UmpleClass,int)
-  {
-      analyzeLayoutToken(t,aClass,analysisStep);
-    }  } 
-} 
 
 
-mixset Class { 
-  class UmpleInternalParser { 
-    before Label_Class_71:postTokenAnalysis
-  {
-      if (getParseResult().getWasSuccess())
-      {
-        postTokenClassAnalysis();
-      }
-    }  } 
-} 
 
 
-mixset Trace { 
-  class UmpleInternalParser { 
-    before Label_Trace_72:postTokenAnalysis
-  { 
-      if (getParseResult().getWasSuccess())
-      {
-        postTokenTraceAnalysis();
-      }
-    }  } 
-} 
 
 
-mixset Trait { 
-  class UmpleInternalParser { 
-    before Label_Trait_73:postTokenAnalysis
-  {
-      if (getParseResult().getWasSuccess())
-      {
-        postTokenTraitAnalysis();
-      }  
-      if (getParseResult().getWasSuccess())
-      {
-        applyTraits();
-        //Issue 686
-        checkCodeInjections();
-      } 
-     }  } 
-} 
 
 
-mixset Layout { 
-  class UmpleInternalParser { 
-    before Label_Layout_74:postTokenAnalysis
-  {
-      if (getParseResult().getWasSuccess())
-      {
-        postTokenLayoutAnalysis();
-      }
-    }  } 
-} 
 
 
-mixset Template { 
-  class UmpleInternalParser { 
-    before Label_Template_75:postTokenAnalysis
-  {
-      if (getParseResult().getWasSuccess()) {
-        postTokenTemplateAnalysis();
-      }
-    }  } 
-} 
 
 
-mixset Structure { 
-  class UmpleInternalParser { 
-    before Label_Structure_76:postTokenAnalysis
-  {
-      if (getParseResult().getWasSuccess()) {
-        postTokenComponentAnalysis();
-      }
-    }  } 
-} 
 
 
-mixset Constraint { 
-  class UmpleInternalParser { 
-    before Label_Constraint_77:postTokenAnalysis
-  {
-      if (getParseResult().getWasSuccess())
-      {
-        postTokenModelConstraintAnalysis();
-      }
-    }  } 
-} 
+
+
+
+
+
+
+
+
+
 
 
 mixset Mixset { 

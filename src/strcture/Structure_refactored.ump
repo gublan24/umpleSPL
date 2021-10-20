@@ -3,3 +3,26 @@
   {
       analyzeComponentToken(t,analysisStep);
     }  } 
+
+
+  class UmpleInternalParser { 
+    before Label_Structure_76:postTokenAnalysis
+  {
+      if (getParseResult().getWasSuccess()) {
+        postTokenComponentAnalysis();
+      }
+    }  
+} 
+
+mixset Template_Strcture { 
+// Fragment source file: UmpleInternalParser_Code.ump
+// Line : 510
+ class UmpleInternalParser { // This MIXSET contains common code used by Template & Strcture.
+    public boolean reAnalyze() {
+      return shouldProcessAgain;
+    }
+    public void reAnalyze(boolean re) {
+  	shouldProcessAgain = re;
+    } } 
+
+}

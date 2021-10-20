@@ -12,3 +12,15 @@
       analyzeLayoutToken(t,aClass,analysisStep);
     }  
 } 
+
+
+  class UmpleInternalParser { 
+    before Label_Layout_74:postTokenAnalysis
+  {
+      if (getParseResult().getWasSuccess())
+      {
+        postTokenLayoutAnalysis();
+      }
+    }  
+} 
+

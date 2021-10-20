@@ -280,52 +280,14 @@ class UmpleInternalParser
     {
       postTokenInterfaceAnalysis();
     }
-    mixset Class {
-      if (getParseResult().getWasSuccess())
-      {
-        postTokenClassAnalysis();
-      }
-    }
-    mixset Trace { 
-      if (getParseResult().getWasSuccess())
-      {
-        postTokenTraceAnalysis();
-      }
-    }
-    mixset Trait {
-      if (getParseResult().getWasSuccess())
-      {
-        postTokenTraitAnalysis();
-      }  
-      if (getParseResult().getWasSuccess())
-      {
-        applyTraits();
-        //Issue 686
-        checkCodeInjections();
-      } 
-     }
-    mixset Layout {
-      if (getParseResult().getWasSuccess())
-      {
-        postTokenLayoutAnalysis();
-      }
-    }
-    mixset Template {
-      if (getParseResult().getWasSuccess()) {
-        postTokenTemplateAnalysis();
-      }
-    }
-    mixset Structure {
-      if (getParseResult().getWasSuccess()) {
-        postTokenComponentAnalysis();
-      }
-    }
-    mixset Constraint {
-      if (getParseResult().getWasSuccess())
-      {
-        postTokenModelConstraintAnalysis();
-      }
-    }
+    Label_Class_71:;
+    Label_Trace_72: ;
+    Label_Trait_73:;
+    Label_Layout_74: ;
+    Label_Template_75:;
+    Label_Structure_76: ;
+    Label_Constraint_77: ;
+
     if (getParseResult().getWasSuccess())
     {
       postTokenEnumerationAnalysis();
@@ -457,15 +419,7 @@ class UmpleInternalParser
     }
   }
   
-  mixset Template_Strcture {
-    // This MIXSET contains common code used by Template & Strcture.
-    public boolean reAnalyze() {
-      return shouldProcessAgain;
-    }
-    public void reAnalyze(boolean re) {
-  	shouldProcessAgain = re;
-    }
-  }
+
 }
 use UmpleInternalParser_CodeCore.ump;
 use UmpleInternalParser_CodeUSE.ump;

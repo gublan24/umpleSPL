@@ -4,3 +4,11 @@
       analyzeTemplateToken(t,analysisStep);
     }  } 
  
+  class UmpleInternalParser { 
+    before Label_Template_75:postTokenAnalysis
+  {
+      if (getParseResult().getWasSuccess()) {
+        postTokenTemplateAnalysis();
+      }
+    }  
+} 

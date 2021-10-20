@@ -57,17 +57,7 @@ class Graph
   //public abstract Node next();
   //public abstract void clearNodes();
 }
-mixset StateMachine {
 
-  class StateMachineGraph 
-  {
-    depend cruise.umple.util.*;
-    depend java.util.*;
-    isA Graph;
-    smName;
-    boolean isNested;
-  }
-}
 
 use Umple.ump;
 use GraphWalking_Code.ump;

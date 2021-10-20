@@ -1,10 +1,3 @@
-DiagramMaster.ump:22:mixset CoreClassesOnly {
-DiagramMaster.ump:33:mixset StateClassesOnly {
-Generator.ump:43:mixset StateMachine {
-Generator.ump:52:mixset Trace {
-GraphWalking.ump:60:mixset StateMachine {
-GraphWalking_Code.ump:35:mixset StateMachine {
-
 Master.ump:47:mixset Mixset{
 Master.ump:50:mixset FeatureModel {
 Master.ump:54:mixset Constraint {
@@ -394,16 +387,9 @@ Master_refactoredToComposition.ump:5528:mixset StateMachine {
 Master_refactoredToComposition.ump:5540:mixset Mixset { 
 
 
-Umple.ump:101:  mixset Trait {
-Umple.ump:110:  mixset StateMachine {
-Umple.ump:165:  mixset Trait {
-Umple.ump:518:      mixset StateMachine {
-Umple.ump:529:      mixset StateMachine {
-Umple.ump:756:  mixset StateMachine {
-Umple.ump:840:  mixset StateMachine {
-Umple.ump:865:  mixset StateMachine {
-Umple.ump:877:mixset StateMachine {
-Umple.ump:1003:  mixset Trace {
+DiagramMaster.ump:22:mixset CoreClassesOnly {
+DiagramMaster.ump:33:mixset StateClassesOnly {
+
 
 
 //DONE: 
@@ -466,4 +452,17 @@ UmpleAnalysis.ump:903:        mixset StateMachine {
 UmpleAnalysis.ump:910:        mixset Structure {
 UmpleAnalysis.ump:933:    mixset Trait {
 
-
+Umple.ump:101:  mixset Trait {
+Umple.ump:110:  mixset StateMachine {
+Umple.ump:165:  mixset Trait {
+Umple.ump:518:      mixset StateMachine {
+Umple.ump:529:      mixset StateMachine {
+Umple.ump:756:  mixset StateMachine {
+Umple.ump:840:  mixset StateMachine {
+Umple.ump:865:  mixset StateMachine {
+Umple.ump:877:mixset StateMachine {
+Umple.ump:1003:  mixset Trace {
+Generator.ump:43:mixset StateMachine {
+Generator.ump:52:mixset Trace {
+GraphWalking.ump:60:mixset StateMachine {
+GraphWalking_Code.ump:35:mixset StateMachine {

@@ -44,13 +44,6 @@ use generators/GeneratorHelper_CodeTrace.ump;
       }
     } } 
 
-// Fragment source file: Umple.ump
-// Line : 1004
- class Attribute { before delete { 
-      if (traceRecords == null) {
-        traceRecords = new ArrayList<TraceRecord>();
-      }
-    } } 
 
 // Fragment source file: Umple_CodeClass.ump
 // Line : 162
@@ -303,44 +296,6 @@ use generators/GeneratorHelper_CodeStateMachine.ump;
 use stateMachine/StateMachine.ump;
   use Structure_StateMachine;
 
-// Fragment source file: Umple.ump
-// Line : 111
- class UmpleModel { 1 -> * StateMachine stateMachineDefinitions; } 
-
-// Fragment source file: Umple.ump
-// Line : 519
- class ConstraintState { State state;
-      key { state } } 
-
-// Fragment source file: Umple.ump
-// Line : 530
- class ConstraintStateMachine { StateMachine stateMachine;
-      key { stateMachine } } 
-
-// Fragment source file: Umple.ump
-// Line : 757
- class UmpleClass { before addStateMachine { if (isImmutable()) { return false; } } } 
-
-// Fragment source file: Umple.ump
-// Line : 841
- class UmpleTrait { before addStateMachine { if (isImmutable()) { return false; } } } 
-
-// Fragment source file: Umple.ump
-// Line : 866
- class GeneralTPApplied { 1 -> * StateMachineTemplateSignature;
-	1 -> * StateMachineModifier; } 
-
-// Fragment source file: Umple.ump
-// Line : 878
-class StateMachineTemplateSignature{
-	modifier;
-	srcStateMachine;
-	desStateMachine;
-	String[] srcStates;
-	String[] desStates;
-	0..1 -> 0..1 MethodTemplateSignature;
-	alias;
-}
 
 
 class StateMachineModifier{

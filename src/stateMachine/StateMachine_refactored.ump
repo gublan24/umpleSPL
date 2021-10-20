@@ -208,3 +208,44 @@ class ConstraintNameNameAnalyzer {
         }
         }  } 
 } 
+
+
+
+// Fragment source file: Umple.ump
+// Line : 111
+ class UmpleModel { 1 -> * StateMachine stateMachineDefinitions; } 
+
+// Fragment source file: Umple.ump
+// Line : 519
+ class ConstraintState { State state;
+      key { state } } 
+
+// Fragment source file: Umple.ump
+// Line : 530
+ class ConstraintStateMachine { StateMachine stateMachine;
+      key { stateMachine } } 
+
+// Fragment source file: Umple.ump
+// Line : 757
+ class UmpleClass { before addStateMachine { if (isImmutable()) { return false; } } } 
+
+// Fragment source file: Umple.ump
+// Line : 841
+ class UmpleTrait { before addStateMachine { if (isImmutable()) { return false; } } } 
+
+// Fragment source file: Umple.ump
+// Line : 866
+ class GeneralTPApplied { 1 -> * StateMachineTemplateSignature;
+	1 -> * StateMachineModifier; } 
+
+// Fragment source file: Umple.ump
+// Line : 878
+class StateMachineTemplateSignature{
+	modifier;
+	srcStateMachine;
+	desStateMachine;
+	String[] srcStates;
+	String[] desStates;
+	0..1 -> 0..1 MethodTemplateSignature;
+	alias;
+}

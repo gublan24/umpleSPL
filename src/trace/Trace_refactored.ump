@@ -22,4 +22,14 @@
  } 
 
 
+// Fragment source file: Umple.ump
+// Line : 1004
+ class Attribute { before delete { 
+      if (traceRecords == null) {
+        traceRecords = new ArrayList<TraceRecord>();
+      }
+    } 
+} 
+
+
  

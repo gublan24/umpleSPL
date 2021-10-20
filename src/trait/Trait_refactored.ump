@@ -142,6 +142,10 @@
 
 
 
+// Fragment source file: Umple.ump
+// Line : 102
+ class UmpleModel { 1 -> * UmpleTrait; } 
 
-
-
+// Fragment source file: Umple.ump
+// Line : 166
+ class UmpleElement { boolean isUmpleTrait() {return false;} } 

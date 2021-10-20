@@ -4,7 +4,7 @@ Generator.ump:43:mixset StateMachine {
 Generator.ump:52:mixset Trace {
 GraphWalking.ump:60:mixset StateMachine {
 GraphWalking_Code.ump:35:mixset StateMachine {
-    
+
 Master.ump:47:mixset Mixset{
 Master.ump:50:mixset FeatureModel {
 Master.ump:54:mixset Constraint {
@@ -405,25 +405,6 @@ Umple.ump:865:  mixset StateMachine {
 Umple.ump:877:mixset StateMachine {
 Umple.ump:1003:  mixset Trace {
 
-UmpleAnalysis.ump:13:mixset StateMachine {
-UmpleAnalysis.ump:62:    mixset Trait {
-UmpleAnalysis.ump:96:    mixset Trait {
-UmpleAnalysis.ump:140:    mixset Trait {
-UmpleAnalysis.ump:390:mixset StateMachine {
-UmpleAnalysis.ump:723:mixset StateMachine {
-UmpleAnalysis.ump:739:  mixset StateMachine {
-UmpleAnalysis.ump:809:              mixset Trait {
-UmpleAnalysis.ump:827:              mixset Trait {
-UmpleAnalysis.ump:858:      mixset Trait {
-UmpleAnalysis.ump:877:        mixset Trait {
-UmpleAnalysis.ump:888:        mixset StateMachine {
-UmpleAnalysis.ump:895:        mixset Trait {
-UmpleAnalysis.ump:896:          mixset StateMachine {
-UmpleAnalysis.ump:903:        mixset StateMachine {
-UmpleAnalysis.ump:910:        mixset Structure {
-UmpleAnalysis.ump:933:    mixset Trait {
-
-
 
 //DONE: 
 Umple_Code.ump:262:    mixset Filter {
@@ -465,3 +446,24 @@ UmpleInternalParser_Code.ump:367:    mixset Structure {
 UmpleInternalParser_Code.ump:372:    mixset Constraint {
 UmpleInternalParser_Code.ump:509:  mixset Template_Strcture {
  
+
+
+UmpleAnalysis.ump:13:mixset StateMachine {
+UmpleAnalysis.ump:62:    mixset Trait {
+UmpleAnalysis.ump:96:    mixset Trait {
+UmpleAnalysis.ump:140:    mixset Trait {
+UmpleAnalysis.ump:390:mixset StateMachine {
+UmpleAnalysis.ump:723:mixset StateMachine {
+UmpleAnalysis.ump:739:  mixset StateMachine {
+UmpleAnalysis.ump:809:              mixset Trait {
+UmpleAnalysis.ump:827:              mixset Trait {
+UmpleAnalysis.ump:858:      mixset Trait {
+UmpleAnalysis.ump:877:        mixset Trait {
+UmpleAnalysis.ump:888:        mixset StateMachine {
+UmpleAnalysis.ump:895:        mixset Trait {
+UmpleAnalysis.ump:896:          mixset StateMachine {
+UmpleAnalysis.ump:903:        mixset StateMachine {
+UmpleAnalysis.ump:910:        mixset Structure {
+UmpleAnalysis.ump:933:    mixset Trait {
+
+

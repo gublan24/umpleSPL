@@ -294,13 +294,13 @@ class ConditionRhs
 
 class TraceRecord
 {
-  boolean recordOnly = false;
-  * -- * Attribute;
+  //boolean recordOnly = false;
+  //* -- * Attribute;
   // Interaction between StateMachine and Trace
   mixset StateMachine { 
     * -- * StateMachine;
   }
-  String[] record;
+  //String[] record;
 }
 
 use Trace_Code.ump;

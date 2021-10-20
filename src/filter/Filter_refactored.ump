@@ -1,0 +1,8 @@
+mixset Filter { 
+  class UmpleModel { 
+    before Label_Filter_22:generate
+    {
+      applyFilter(null);
+    }  
+  } 
+} 

@@ -12,10 +12,10 @@ Methods for the metamodel found in Umple.ump. Most of these are mixins.
 
 namespace cruise.umple.compiler;
 
-use Method;
-use Class;
-use Association;
-use Constraint;
+// use Method;
+// use Class;
+// use Association;
+// use Constraint;
 /**
  * In Umple_Code.ump: Methods for manipulating the Model
  */
@@ -259,9 +259,7 @@ class UmpleModel
   {
     String lang="Unknown";
     // @refactor
-    mixset Filter {
-      applyFilter(null);
-    }
+    Label_Filter_22: ;
     boolean foundGenerator;
     parsingTime = System.currentTimeMillis()/1000.0;
     try

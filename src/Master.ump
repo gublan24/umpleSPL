@@ -63,6 +63,7 @@ mixset StateMachine {
 }
 mixset Filter{
   use filter/Umple_Code_Filter.ump;
+  use filter/Filter_refactored.ump;
 }
 mixset Trait {
   use trait/Umple_Code_Trait.ump;

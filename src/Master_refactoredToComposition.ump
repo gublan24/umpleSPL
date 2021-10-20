@@ -3555,13 +3555,7 @@ mixset StateMachine {
 } 
 
 
-mixset Filter { 
-  class UmpleModel { 
-    before Lable_Filter_22:generate
-  {
-      applyFilter(null);
-    }  } 
-} 
+
 
 
 mixset Trait { 

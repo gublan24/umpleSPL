@@ -1320,9 +1320,3 @@ use UmpleDiagram.ump;
 //use stateMachine/StateMachine.ump;
 use Umple_Code.ump;
 use UmpleEnumeration_Code.ump;
-mixset Mixset{
-  use mixset/Mixset.ump;
-}
-mixset FeatureModel {
-  use feature/FeatureModel.ump;
-}

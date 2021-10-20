@@ -44,6 +44,12 @@ use Parser.ump;
 // use Association;
 // use FeatureModel;
 // use AspectInjection;
+mixset Mixset{
+  use mixset/Mixset.ump;
+}
+mixset FeatureModel {
+  use feature/FeatureModel.ump;
+}
 
 mixset Constraint {
   use constraint/Umple_CodeConstraint.ump;

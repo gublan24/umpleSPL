@@ -1,0 +1,80 @@
+mixset StateMachine {
+  class UmpleInternalParser {
+    before Label_StateMachine_142:postTokenClassEnumerationAnalysis(UmpleClass)
+    {
+      // Check if the enumeration conflicts with any state machines, and if the enumeration is used as
+      // event parameters
+      for (StateMachine sm : uClass.getStateMachines()) {
+        if (uEnum.hasSameName(sm.getName())) {
+          // Enumeration Conflicts with State Machine Error
+          getParseResult().addErrorMessage(new ErrorMessage(97,
+                                                            uEnum.getPosition(),
+                                                            uEnum.getName(),
+                                                            "" + uEnum.getPosition().getLineNumber(),
+                                                            sm.getName(),
+                                                            uClass.getName()));
+          return;
+        }
+        for (Event e : sm.getAllEvents()) {
+          for (MethodParameter p : e.getParams()) {
+            if (uEnum.hasSameName(p.getType()) && otherClass != null) {
+              // Event Parameter Ambiguity Warning
+              getParseResult().addErrorMessage(new ErrorMessage(103,
+                                                                uEnum.getPosition(),
+                                                                uEnum.getName(),
+                                                                "" + uEnum.getPosition().getLineNumber(),
+                                                                p.getName(),
+                                                                e.getName(),
+                                                                sm.getName(),
+                                                                otherClass.getName()));
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+mixset StateMachine {
+  class UmpleInternalParser {
+    before Label_StateMachine_143:analyzeModelEnumInClass(UmpleClass,UmpleEnumeration)
+    {
+      // Check if the class's state machines conflict with the enumeration, and if any of its state
+      // machine's events use the enumeration in their parameters
+      for (StateMachine sm : uClass.getStateMachines()) {
+        if (classUsesEnum) {
+          if (uEnum.hasSameName(sm.getName())) {
+            // Enumeration Conflicts with State Machine Error
+            getParseResult().addErrorMessage(new ErrorMessage(97,
+                                                              uEnum.getPosition(),
+                                                              uEnum.getName(),
+                                                              "" + uEnum.getPosition().getLineNumber(),
+                                                              sm.getName(),
+                                                              uClass.getName()));
+            return;
+          }
+        }
+        for (Event e : sm.getAllEvents()) {
+          for (MethodParameter p : e.getParams()) {
+            if (uEnum.hasSameName(p.getType())) {
+              if (!classUsesEnum && uEnum.hasSameName(sm.getName())) {
+                // Enumeration Conflicts with State Machine Error
+                getParseResult().addErrorMessage(new ErrorMessage(97,
+                                                                 uEnum.getPosition(),
+                                                                 uEnum.getName(),
+                                                                 "" + uEnum.getPosition().getLineNumber(),
+                                                                 sm.getName(),
+                                                                 uClass.getName()));
+                return;
+              }
+              else {
+                classUsesEnum = true;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

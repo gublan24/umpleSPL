@@ -3341,7 +3341,7 @@ mixset Template_Strcture {
 //Fine-grained variability : 
 mixset StateMachine { 
   class GeneratorHelper { 
-    before Lable_StateMachine_1:postpare(UmpleModel)
+    before Label_StateMachine_1:postpare(UmpleModel)
   {
       postpareStateMachine(model);
     }  } 
@@ -3350,7 +3350,7 @@ mixset StateMachine {
 
 mixset Trace { 
   class GeneratorHelper { 
-    before Lable_Trace_2:postpare(UmpleModel)
+    before Label_Trace_2:postpare(UmpleModel)
   {
       postpareTrace(model);
     }  } 
@@ -3359,7 +3359,7 @@ mixset Trace {
 
 mixset StateMachine { 
   class GeneratorHelper { 
-    before Lable_StateMachine_3:postpare(UmpleClass)
+    before Label_StateMachine_3:postpare(UmpleClass)
   {
       postpareStateMachine(aClass);
     }  } 
@@ -3368,7 +3368,7 @@ mixset StateMachine {
 
 mixset Trace { 
   class GeneratorHelper { 
-    before Lable_Trace_4:postpare(UmpleClass)
+    before Label_Trace_4:postpare(UmpleClass)
   {
       postpareTrace(aClass);
     }  } 
@@ -3377,7 +3377,7 @@ mixset Trace {
 
 mixset Mixset { 
   class GeneratorHelper { 
-    before Lable_Mixset_5:toCode(List<CodeInjection>)
+    before Label_Mixset_5:toCode(List<CodeInjection>)
   {
 	      if(inject.hasCodeLabel())
           continue;// handle the case when labels are used. // Do nothing  
@@ -3387,7 +3387,7 @@ mixset Mixset {
 
 mixset RubyGeneratorIntMixset { 
   class GeneratorHelper { 
-    before Lable_RubyGeneratorIntMixset_6:toCode(List<CodeInjection>)
+    before Label_RubyGeneratorIntMixset_6:toCode(List<CodeInjection>)
   {
           comment = RubyGenerator.class.isInstance(generator)?"#":"//";
         }  } 
@@ -3396,7 +3396,7 @@ mixset RubyGeneratorIntMixset {
 
 mixset Class { 
   class UmpleGenerator { 
-    before Lable_Class_7:initializeParser
+    before Label_Class_7:initializeParser
   {
       parser.addGrammarFile("/class/umple_classes.grammar");
     }  } 
@@ -3405,7 +3405,7 @@ mixset Class {
 
 mixset Trait { 
   class UmpleGenerator { 
-    before Lable_Trait_8:initializeParser
+    before Label_Trait_8:initializeParser
   {
       parser.addGrammarFile("/trait/umple_traits.grammar");
     }  } 
@@ -3414,7 +3414,7 @@ mixset Trait {
 
 mixset FIXML { 
   class UmpleGenerator { 
-    before Lable_FIXML_9:initializeParser
+    before Label_FIXML_9:initializeParser
   {
       parser.addGrammarFile("/fixml/umple_fixml.grammar");
     }  } 
@@ -3423,7 +3423,7 @@ mixset FIXML {
 
 mixset StateMachine { 
   class UmpleGenerator { 
-    before Lable_StateMachine_10:initializeParser
+    before Label_StateMachine_10:initializeParser
   {
       parser.addGrammarFile("/stateMachine/umple_state_machines.grammar");
     }  } 
@@ -3432,7 +3432,7 @@ mixset StateMachine {
 
 mixset Trace { 
   class UmpleGenerator { 
-    before Lable_Trace_11:initializeParser
+    before Label_Trace_11:initializeParser
   {
       parser.addGrammarFile("/trace/umple_traces.grammar");
     }  } 
@@ -3441,7 +3441,7 @@ mixset Trace {
 
 mixset Template { 
   class UmpleGenerator { 
-    before Lable_Template_12:initializeParser
+    before Label_Template_12:initializeParser
   {
       parser.addGrammarFile("/template/umple_template.grammar");
     }  } 
@@ -3450,7 +3450,7 @@ mixset Template {
 
 mixset Structure { 
   class UmpleGenerator { 
-    before Lable_Structure_13:initializeParser
+    before Label_Structure_13:initializeParser
   {
       parser.addGrammarFile("/strcture/umple_structure.grammar");
     }  } 
@@ -3459,7 +3459,7 @@ mixset Structure {
 
 mixset Layout { 
   class UmpleGenerator { 
-    before Lable_Layout_14:initializeParser
+    before Label_Layout_14:initializeParser
   {
        parser.addGrammarFile("/layout/umple_layout.grammar");
     }  } 
@@ -3468,7 +3468,7 @@ mixset Layout {
 
 mixset Filter { 
   class UmpleGenerator { 
-    before Lable_Filter_15:initializeParser
+    before Label_Filter_15:initializeParser
   {
       parser.addGrammarFile("/filter/umple_filter.grammar"); // TODO Under development
     }  } 
@@ -3477,7 +3477,7 @@ mixset Filter {
 
 mixset Mixset { 
   class UmpleGenerator { 
-    before Lable_Mixset_16:initializeParser
+    before Label_Mixset_16:initializeParser
   {
       parser.addGrammarFile("/mixset/umple_mixsets.grammar");
     }  } 
@@ -3486,7 +3486,7 @@ mixset Mixset {
 
 mixset StateMachine { 
   class SuperCodeGenerator { 
-    before Lable_StateMachine_17:testForPrimitiveInConstraint(ConstraintVariable)
+    before Label_StateMachine_17:testForPrimitiveInConstraint(ConstraintVariable)
   {
       if(variable instanceof ConstraintStateMachine)
       {
@@ -3498,7 +3498,7 @@ mixset StateMachine {
 
 mixset StateMachine { 
   class SuperCodeGenerator { 
-    before Lable_StateMachine_18:translate(String,ConstraintVariable,boolean)
+    before Label_StateMachine_18:translate(String,ConstraintVariable,boolean)
   {
       else if("state".equals(id))
       {
@@ -3514,7 +3514,7 @@ mixset StateMachine {
 
 mixset StateMachine { 
   class UmpleClass { 
-    before Lable_StateMachine_19:getMethodNames
+    before Label_StateMachine_19:getMethodNames
   {
       for(StateMachine sm : this.getStateMachines())
       {
@@ -3533,7 +3533,7 @@ mixset StateMachine {
 
 mixset StateMachine { 
   class UmpleClass { 
-    before Lable_StateMachine_20:hasImplementedMethodIncludingWithinParentClasses(Method)
+    before Label_StateMachine_20:hasImplementedMethodIncludingWithinParentClasses(Method)
   {
     if (numberOfStateMachines()>0){
     	for(StateMachine sm : getStateMachines()){
@@ -3548,7 +3548,7 @@ mixset StateMachine {
 
 mixset StateMachine { 
   class UmpleClass { 
-    before Lable_StateMachine_21:propagateImmutabilityToAllRelationships(boolean)
+    before Label_StateMachine_21:propagateImmutabilityToAllRelationships(boolean)
   {
       if (this.hasStateMachines()) { return false; }
       }  } 
@@ -3560,7 +3560,7 @@ mixset StateMachine {
 
 mixset Trait { 
   class UmpleModel { 
-    before Lable_Trait_23:getDefaultAssociationPosition(Association)
+    before Label_Trait_23:getDefaultAssociationPosition(Association)
   {
         if(getUmpleTraitTypeParameter(classOne) || getUmpleTrait(classOne)!=null) return null;
         if(getUmpleTraitTypeParameter(classTwo) || getUmpleTrait(classTwo)!=null) return null;
@@ -3570,7 +3570,7 @@ mixset Trait {
 
 mixset Association { 
   class UmpleModel { 
-    before Lable_Association_24:markIncludedClasses(Filter)
+    before Label_Association_24:markIncludedClasses(Filter)
   {
           if(f.hasAssociation())
           {
@@ -3582,7 +3582,7 @@ mixset Association {
 
 mixset Association { 
   class UmpleModel { 
-    before Lable_Association_25:filterOutClasses
+    before Label_Association_25:filterOutClasses
   {
             // Chop out it and its associations
             for(Association a : clazz.getAssociations())
@@ -3624,7 +3624,7 @@ mixset Association {
 
 mixset Association { 
   class ConstraintOperator { 
-    before Lable_Association_26:correctForCardinality(ConstraintVariable)
+    before Label_Association_26:correctForCardinality(ConstraintVariable)
   {
       else if((variable instanceof ConstraintAssociation)&&value.contains("cardinality"))
       {
@@ -3636,7 +3636,7 @@ mixset Association {
 
 mixset StateMachine { 
   class UmpleTrait { 
-    before Lable_StateMachine_27:propagateImmutabilityToAllRelationships(boolean)
+    before Label_StateMachine_27:propagateImmutabilityToAllRelationships(boolean)
   {
 	      if (this.hasStateMachines()) { return false; } 
         }  } 
@@ -3645,7 +3645,7 @@ mixset StateMachine {
 
 mixset Association { 
   class UmpleTrait { 
-    before Lable_Association_28:propagateImmutabilityToAllRelationships(boolean)
+    before Label_Association_28:propagateImmutabilityToAllRelationships(boolean)
   {
           for (AssociationVariable av : associationVariables)
           {
@@ -3657,7 +3657,7 @@ mixset Association {
 
 mixset StateMachine { 
   class GeneralTPApplied { 
-    before Lable_StateMachine_29:GeneralTPApplied(GeneralTPApplied)
+    before Label_StateMachine_29:GeneralTPApplied(GeneralTPApplied)
   {
       stateMachineModifiers = new ArrayList<>(another.getStateMachineModifiers());
     }  } 
@@ -3666,7 +3666,7 @@ mixset StateMachine {
 
 mixset StateMachine { 
   class GeneralTPApplied { 
-    before Lable_StateMachine_30:GeneralTPApplied(GeneralTPApplied)
+    before Label_StateMachine_30:GeneralTPApplied(GeneralTPApplied)
   {
       stateMachineTemplateSignatures = new ArrayList<>(another.getStateMachineTemplateSignatures());
     }  } 
@@ -3675,7 +3675,7 @@ mixset StateMachine {
 
 mixset Association { 
   class AssociationVariable { 
-    before Lable_Association_31:getTraced(String,UmpleClass)
+    before Label_Association_31:getTraced(String,UmpleClass)
   {
 				for(AssociationTraceItem ast: td.getAssociationTraceItems())
 				{
@@ -3711,7 +3711,7 @@ mixset Association {
 
 mixset Association { 
   class ModelConstraintAssociation { 
-    before Lable_Association_32:evaluate(UmpleClassifier)
+    before Label_Association_32:evaluate(UmpleClassifier)
   {
         for(Association association:uClass.getAssociations())
         {
@@ -3836,7 +3836,7 @@ mixset Association {
 
 mixset Association { 
   class AttributeTraceItem { 
-    before Lable_Association_33:trace(CodeTranslator,Object,String,UmpleClass,String...)
+    before Label_Association_33:trace(CodeTranslator,Object,String,UmpleClass,String...)
   {
 				  else if(o instanceof AssociationVariable)
 				  {
@@ -3848,7 +3848,7 @@ mixset Association {
 
 mixset StateMachine { 
   class StateMachineTraceItem { 
-    before Lable_StateMachine_34:trace(CodeTranslator,Object,String,UmpleClass,String...)
+    before Label_StateMachine_34:trace(CodeTranslator,Object,String,UmpleClass,String...)
   {
 				else if(o instanceof State)
 				{
@@ -3880,7 +3880,7 @@ mixset StateMachine {
 
 mixset Association { 
   class AssociationTraceItem { 
-    before Lable_Association_35:trace(CodeTranslator,Object,String,UmpleClass,String...)
+    before Label_Association_35:trace(CodeTranslator,Object,String,UmpleClass,String...)
   {
 		for(AssociationVariable ass: uClass.getAssociationVariables())
 		{
@@ -3962,7 +3962,7 @@ mixset Association {
 
 mixset Trait { 
   class PreconditionAnalyzer { 
-    before Lable_Trait_36:analyze(Token)
+    before Label_Trait_36:analyze(Token)
   {
     else if (uClassifier instanceof UmpleTrait)
     {
@@ -3974,7 +3974,7 @@ mixset Trait {
 
 mixset Trait { 
   class PostconditionAnalyzer { 
-    before Lable_Trait_37:analyze(Token)
+    before Label_Trait_37:analyze(Token)
   {
       else if (uClassifier instanceof UmpleTrait)
       {
@@ -3986,7 +3986,7 @@ mixset Trait {
 
 mixset Trait { 
   class InvariantAnalyzer { 
-    before Lable_Trait_38:analyze(Token)
+    before Label_Trait_38:analyze(Token)
   {
       else if (uClassifier instanceof UmpleTrait)
       {
@@ -3998,7 +3998,7 @@ mixset Trait {
 
 mixset Trait { 
   class ConstraintNameNameAnalyzer { 
-    before Lable_Trait_39:retrieveClass(ConstraintTree,UmpleClassifier)
+    before Label_Trait_39:retrieveClass(ConstraintTree,UmpleClassifier)
   {
               uClass = previouslyFoundAttribute.getAttribute().getUmpleTrait();
               UmpleModel model = ((UmpleTrait)uClass).getSourceModel();
@@ -4009,7 +4009,7 @@ mixset Trait {
 
 mixset Trait { 
   class ConstraintNameNameAnalyzer { 
-    before Lable_Trait_40:retrieveClass(ConstraintTree,UmpleClassifier)
+    before Label_Trait_40:retrieveClass(ConstraintTree,UmpleClassifier)
   {
               uClass = previouslyFoundAssociation.getAssociation().getUmpleTrait();
               UmpleModel model = ((UmpleTrait)uClass).getSourceModel();
@@ -4020,7 +4020,7 @@ mixset Trait {
 
 mixset Trait { 
   class ConstraintNameNameAnalyzer { 
-    before Lable_Trait_41:generateConstraintName(UmpleClassifier,String,Boolean)
+    before Label_Trait_41:generateConstraintName(UmpleClassifier,String,Boolean)
   {
         attribute = ((UmpleTrait)(uClassifier)).getAttribute(value);
       }  } 
@@ -4029,7 +4029,7 @@ mixset Trait {
 
 mixset Trait { 
   class ConstraintNameNameAnalyzer { 
-    before Lable_Trait_42:generateConstraintName(UmpleClassifier,String,Boolean)
+    before Label_Trait_42:generateConstraintName(UmpleClassifier,String,Boolean)
   {
           association = ((UmpleTrait)(uClassifier)).getAssociationVariable(value);
         }  } 
@@ -4038,7 +4038,7 @@ mixset Trait {
 
 mixset StateMachine { 
   class ConstraintNameNameAnalyzer { 
-    before Lable_StateMachine_43:generateConstraintName(UmpleClassifier,String,Boolean)
+    before Label_StateMachine_43:generateConstraintName(UmpleClassifier,String,Boolean)
   {
         StateMachine stateMachine = null;
         if(uClassifier instanceof UmpleClass)
@@ -4051,7 +4051,7 @@ mixset StateMachine {
 
 mixset Trait { 
   class ConstraintNameNameAnalyzer { 
-    before Lable_Trait_44:generateConstraintName(UmpleClassifier,String,Boolean)
+    before Label_Trait_44:generateConstraintName(UmpleClassifier,String,Boolean)
   {
           mixset StateMachine {
             else if(uClassifier instanceof UmpleTrait)
@@ -4065,7 +4065,7 @@ mixset Trait {
 
 mixset StateMachine { 
   class ConstraintNameNameAnalyzer { 
-    before Lable_StateMachine_45:generateConstraintName(UmpleClassifier,String,Boolean)
+    before Label_StateMachine_45:generateConstraintName(UmpleClassifier,String,Boolean)
   {
         if(stateMachine!=null)
         {
@@ -4078,7 +4078,7 @@ mixset StateMachine {
 
 mixset Structure { 
   class ConstraintNameNameAnalyzer { 
-    before Lable_Structure_46:generateConstraintName(UmpleClassifier,String,Boolean)
+    before Label_Structure_46:generateConstraintName(UmpleClassifier,String,Boolean)
   {
             Port port = null;
             if (uClassifier instanceof UmpleClass)
@@ -4096,7 +4096,7 @@ mixset Structure {
 
 mixset Trait { 
   class ConstraintNameNameAnalyzer { 
-    before Lable_Trait_47:generateConstraintName(UmpleClassifier,String,Boolean)
+    before Label_Trait_47:generateConstraintName(UmpleClassifier,String,Boolean)
   {
     else if(uClassifier instanceof UmpleTrait)
     {
@@ -4115,7 +4115,7 @@ mixset Trait {
 
 mixset Constraint { 
   class UmpleInternalParser { 
-    before Lable_Constraint_48:init
+    before Label_Constraint_48:init
   {
       parser.addGrammarFile("/constraint/umple_constraints.grammar");  // TODO Under development
     }  } 
@@ -4124,7 +4124,7 @@ mixset Constraint {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_49:analyze(boolean)
+    before Label_StateMachine_49:analyze(boolean)
   {
         secondPostTokenAnalysis();
       }  } 
@@ -4133,7 +4133,7 @@ mixset StateMachine {
 
 mixset Attribute { 
   class UmpleInternalParser { 
-    before Lable_Attribute_50:analyze(boolean)
+    before Label_Attribute_50:analyze(boolean)
   {
         mixset Method {
           checkDefaultedNameConflict();
@@ -4144,7 +4144,7 @@ mixset Attribute {
 
 mixset FeatureModel { 
   class UmpleInternalParser { 
-    before Lable_FeatureModel_51:analyze(boolean)
+    before Label_FeatureModel_51:analyze(boolean)
   {
         analyzeFeatureModel(); // lastly to analyze the feature model after all mixsets are added to umple model. 
       }  } 
@@ -4153,7 +4153,7 @@ mixset FeatureModel {
 
 mixset Mixset { 
   class UmpleInternalParser { 
-    before Lable_Mixset_52:analyzeToken(Token,int)
+    before Label_Mixset_52:analyzeToken(Token,int)
   {
       analyzeMixsetUseStatement(t, analysisStep);
     }  } 
@@ -4162,7 +4162,7 @@ mixset Mixset {
 
 mixset Class { 
   class UmpleInternalParser { 
-    before Lable_Class_53:analyzeToken(Token,int)
+    before Label_Class_53:analyzeToken(Token,int)
   {
       analyzeClassToken(t,analysisStep);
     }  } 
@@ -4171,7 +4171,7 @@ mixset Class {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_54:analyzeToken(Token,int)
+    before Label_Trait_54:analyzeToken(Token,int)
   {
       analyzeTraitToken(t,analysisStep);
     }  } 
@@ -4180,7 +4180,7 @@ mixset Trait {
 
 mixset Template { 
   class UmpleInternalParser { 
-    before Lable_Template_55:analyzeToken(Token,int)
+    before Label_Template_55:analyzeToken(Token,int)
   {
       analyzeTemplateToken(t,analysisStep);
     }  } 
@@ -4189,7 +4189,7 @@ mixset Template {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_56:analyzeToken(Token,int)
+    before Label_StateMachine_56:analyzeToken(Token,int)
   {
       analyzeStateMachineToken(t,analysisStep);
     }  } 
@@ -4198,7 +4198,7 @@ mixset StateMachine {
 
 mixset Structure { 
   class UmpleInternalParser { 
-    before Lable_Structure_57:analyzeToken(Token,int)
+    before Label_Structure_57:analyzeToken(Token,int)
   {
       analyzeComponentToken(t,analysisStep);
     }  } 
@@ -4207,7 +4207,7 @@ mixset Structure {
 
 mixset Trace { 
   class UmpleInternalParser { 
-    before Lable_Trace_58:analyzeToken(Token,int)
+    before Label_Trace_58:analyzeToken(Token,int)
   {
       analyzeTraceToken(t,analysisStep);
     }  } 
@@ -4216,7 +4216,7 @@ mixset Trace {
 
 mixset Filter { 
   class UmpleInternalParser { 
-    before Lable_Filter_59:analyzeToken(Token,int)
+    before Label_Filter_59:analyzeToken(Token,int)
   {
       analyzeFilterToken(t,analysisStep);
     }  } 
@@ -4225,7 +4225,7 @@ mixset Filter {
 
 mixset Layout { 
   class UmpleInternalParser { 
-    before Lable_Layout_60:analyzeToken(Token,int)
+    before Label_Layout_60:analyzeToken(Token,int)
   {
       analyzeLayoutToken(t,analysisStep);
     }  } 
@@ -4234,7 +4234,7 @@ mixset Layout {
 
 mixset FIXML { 
   class UmpleInternalParser { 
-    before Lable_FIXML_61:analyzeToken(Token,int)
+    before Label_FIXML_61:analyzeToken(Token,int)
   {
       analyzeFIXML(t, analysisStep);
     }  } 
@@ -4243,7 +4243,7 @@ mixset FIXML {
 
 mixset Mixset { 
   class UmpleInternalParser { 
-    before Lable_Mixset_62:analyzeToken(Token,int)
+    before Label_Mixset_62:analyzeToken(Token,int)
   {
       analyzeMixsetToken(t, analysisStep);
     }  } 
@@ -4252,7 +4252,7 @@ mixset Mixset {
 
 mixset FeatureModel { 
   class UmpleInternalParser { 
-    before Lable_FeatureModel_63:analyzeToken(Token,int)
+    before Label_FeatureModel_63:analyzeToken(Token,int)
   {
       analyzeRequireStatement(t, analysisStep);
     }  } 
@@ -4261,7 +4261,7 @@ mixset FeatureModel {
 
 mixset AspectInjection { 
   class UmpleInternalParser { 
-    before Lable_AspectInjection_64:analyzeToken(Token,int)
+    before Label_AspectInjection_64:analyzeToken(Token,int)
   {
       analyzeInjectionToken(t, analysisStep);
     }  } 
@@ -4270,7 +4270,7 @@ mixset AspectInjection {
 
 mixset Class { 
   class UmpleInternalParser { 
-    before Lable_Class_65:analyzeToken(Token,UmpleClass,int)
+    before Label_Class_65:analyzeToken(Token,UmpleClass,int)
   {
       analyzeClassToken(t,aClass,analysisStep);
     }  } 
@@ -4279,7 +4279,7 @@ mixset Class {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_66:analyzeToken(Token,UmpleClass,int)
+    before Label_StateMachine_66:analyzeToken(Token,UmpleClass,int)
   {
       analyzeStateMachineToken(t,aClass,analysisStep);
     }  } 
@@ -4288,7 +4288,7 @@ mixset StateMachine {
 
 mixset Constraint { 
   class UmpleInternalParser { 
-    before Lable_Constraint_67:analyzeDependentTokens(Token,UmpleClass,int)
+    before Label_Constraint_67:analyzeDependentTokens(Token,UmpleClass,int)
   {
       if (t.is("modelConstraintBody"))
       {
@@ -4300,7 +4300,7 @@ mixset Constraint {
 
 mixset AspectInjection { 
   class UmpleInternalParser { 
-    before Lable_AspectInjection_68:analyzeDependentTokens(Token,UmpleClass,int)
+    before Label_AspectInjection_68:analyzeDependentTokens(Token,UmpleClass,int)
   {
       else if (t.is("beforeCode") || t.is("afterCode"))
       {
@@ -4312,7 +4312,7 @@ mixset AspectInjection {
 
 mixset Trace { 
   class UmpleInternalParser { 
-    before Lable_Trace_69:analyzeDependentTokens(Token,UmpleClass,int)
+    before Label_Trace_69:analyzeDependentTokens(Token,UmpleClass,int)
   {
       analyzeTraceToken(t,aClass);
     }  } 
@@ -4321,7 +4321,7 @@ mixset Trace {
 
 mixset Layout { 
   class UmpleInternalParser { 
-    before Lable_Layout_70:analyzeDependentTokens(Token,UmpleClass,int)
+    before Label_Layout_70:analyzeDependentTokens(Token,UmpleClass,int)
   {
       analyzeLayoutToken(t,aClass,analysisStep);
     }  } 
@@ -4330,7 +4330,7 @@ mixset Layout {
 
 mixset Class { 
   class UmpleInternalParser { 
-    before Lable_Class_71:postTokenAnalysis
+    before Label_Class_71:postTokenAnalysis
   {
       if (getParseResult().getWasSuccess())
       {
@@ -4342,7 +4342,7 @@ mixset Class {
 
 mixset Trace { 
   class UmpleInternalParser { 
-    before Lable_Trace_72:postTokenAnalysis
+    before Label_Trace_72:postTokenAnalysis
   { 
       if (getParseResult().getWasSuccess())
       {
@@ -4354,7 +4354,7 @@ mixset Trace {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_73:postTokenAnalysis
+    before Label_Trait_73:postTokenAnalysis
   {
       if (getParseResult().getWasSuccess())
       {
@@ -4372,7 +4372,7 @@ mixset Trait {
 
 mixset Layout { 
   class UmpleInternalParser { 
-    before Lable_Layout_74:postTokenAnalysis
+    before Label_Layout_74:postTokenAnalysis
   {
       if (getParseResult().getWasSuccess())
       {
@@ -4384,7 +4384,7 @@ mixset Layout {
 
 mixset Template { 
   class UmpleInternalParser { 
-    before Lable_Template_75:postTokenAnalysis
+    before Label_Template_75:postTokenAnalysis
   {
       if (getParseResult().getWasSuccess()) {
         postTokenTemplateAnalysis();
@@ -4395,7 +4395,7 @@ mixset Template {
 
 mixset Structure { 
   class UmpleInternalParser { 
-    before Lable_Structure_76:postTokenAnalysis
+    before Label_Structure_76:postTokenAnalysis
   {
       if (getParseResult().getWasSuccess()) {
         postTokenComponentAnalysis();
@@ -4406,7 +4406,7 @@ mixset Structure {
 
 mixset Constraint { 
   class UmpleInternalParser { 
-    before Lable_Constraint_77:postTokenAnalysis
+    before Label_Constraint_77:postTokenAnalysis
   {
       if (getParseResult().getWasSuccess())
       {
@@ -4418,7 +4418,7 @@ mixset Constraint {
 
 mixset Mixset { 
   class UmpleInternalParser { 
-    before Lable_Mixset_78:analyzeClassToken(Token,int)
+    before Label_Mixset_78:analyzeClassToken(Token,int)
   {
       // add parsed files to parsedUmpfiles hashMap.
       String umpFileName = t.getSubToken("use").getValue();
@@ -4430,7 +4430,7 @@ mixset Mixset {
 
 mixset Mixset { 
   class UmpleInternalParser { 
-    before Lable_Mixset_79:analyzeClassToken(Token,UmpleClass,int)
+    before Label_Mixset_79:analyzeClassToken(Token,UmpleClass,int)
   {
       else if (token.getValue("mixsetDefinition") != null)  {
         analyzeMixsetBodyToken(token);
@@ -4441,7 +4441,7 @@ mixset Mixset {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_80:postTokenClassAnalysis
+    before Label_StateMachine_80:postTokenClassAnalysis
   {
       addAutogeneratedMethodsForStateMachines();
       }  } 
@@ -4450,7 +4450,7 @@ mixset StateMachine {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_81:checkAssociationsForDistributed
+    before Label_Trait_81:checkAssociationsForDistributed
   { 
          if (associationIsBetweenClassAndTrait(association)){continue;} 
        }  } 
@@ -4459,7 +4459,7 @@ mixset Trait {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_82:checkAssociationsForDistributed
+    before Label_Trait_82:checkAssociationsForDistributed
   {
       if(getModel().getUmpleTraitTypeParameter(myEnd.getClassName()) || getModel().getUmpleTrait(myEnd.getClassName())!=null) return ;
       if(getModel().getUmpleTraitTypeParameter(yourEnd.getClassName()) || getModel().getUmpleTrait(yourEnd.getClassName())!=null) return ;
@@ -4469,7 +4469,7 @@ mixset Trait {
 
 mixset Mixset { 
   class UmpleInternalParser { 
-    before Lable_Mixset_83:analyzeAllAssociations(Token)
+    before Label_Mixset_83:analyzeAllAssociations(Token)
   {
         if (token.is("mixsetDefinition"))
         {
@@ -4481,7 +4481,7 @@ mixset Mixset {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_84:analyzeClass(Token)
+    before Label_StateMachine_84:analyzeClass(Token)
   {
     //Reset number of activeObjects with each class definition
     this.numberOfActiveObjects = 1;
@@ -4491,7 +4491,7 @@ mixset StateMachine {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_85:addExtendsTo(Token,UmpleClassifier,Map<UmpleClassifier,List<String>>,Map<UmpleClassifier,List<Token>>)
+    before Label_Trait_85:addExtendsTo(Token,UmpleClassifier,Map<UmpleClassifier,List<String>>,Map<UmpleClassifier,List<Token>>)
   {
           processGTemplateParameterAssignment(extendsToken, aClassifier, extendName);
         }  } 
@@ -4500,7 +4500,7 @@ mixset Trait {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_86:verifyClassesInUse
+    before Label_Trait_86:verifyClassesInUse
   {
         boolean isTraitTypeParameter = model.getUmpleTraitTypeParameter(e.getValue());
         boolean isATrait = model.getUmpleTrait(e.getValue()) != null;
@@ -4511,7 +4511,7 @@ mixset Trait {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_87:addUnlinkedExtends
+    before Label_Trait_87:addUnlinkedExtends
   {
           isTraitCheck = isUmpleTrait(extendName);
         }  } 
@@ -4520,7 +4520,7 @@ mixset Trait {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_88:addUnlinkedExtends
+    before Label_Trait_88:addUnlinkedExtends
   {
               UmpleTrait parent = model.getUmpleTrait(extendName);     
               boolean wasSet = child.addExtendsTrait(parent);
@@ -4545,7 +4545,7 @@ mixset Trait {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_89:addUnlinkedKeys
+    before Label_StateMachine_89:addUnlinkedKeys
   {          
             if(c.hasStateMachines())  
             {
@@ -4564,7 +4564,7 @@ mixset StateMachine {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_90:addImplementedMethodsFromInterface(List<UmpleInterface>,UmpleClass)
+    before Label_Trait_90:addImplementedMethodsFromInterface(List<UmpleInterface>,UmpleClass)
   {
             hasMethodTraitsCheck = !(uClass.hasMethodInTraits(aMethod));
           }  } 
@@ -4573,7 +4573,7 @@ mixset Trait {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_91:createSpecializedLinks
+    before Label_Trait_91:createSpecializedLinks
   {
         if (model.getUmpleTrait(aLeftEnd.getClassName()) != null || model.getUmpleTrait(aRightEnd.getClassName()) != null)
         {
@@ -4585,7 +4585,7 @@ mixset Trait {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_92:createSpecializedLinks
+    before Label_Trait_92:createSpecializedLinks
   {
           if (model.getUmpleTrait(bLeftEnd.getClassName()) != null || model.getUmpleTrait(bRightEnd.getClassName()) != null)
           {
@@ -4597,7 +4597,7 @@ mixset Trait {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_93:checkSingletonAssociations
+    before Label_Trait_93:checkSingletonAssociations
   { 
         if (associationIsBetweenClassAndTrait(association)){continue;} 
       }  } 
@@ -4606,7 +4606,7 @@ mixset Trait {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_94:checkSingletonAssociations
+    before Label_Trait_94:checkSingletonAssociations
   {
         if(getModel().getUmpleTraitTypeParameter(myEnd.getClassName()) || getModel().getUmpleTrait(myEnd.getClassName())!=null) return ;
         if(getModel().getUmpleTraitTypeParameter(yourEnd.getClassName()) || getModel().getUmpleTrait(yourEnd.getClassName())!=null) return ;
@@ -4616,7 +4616,7 @@ mixset Trait {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_95:addUnlinkedAssociations
+    before Label_Trait_95:addUnlinkedAssociations
   { 
          if (associationIsBetweenClassAndTrait(association)){continue;}
        }  } 
@@ -4625,7 +4625,7 @@ mixset Trait {
 
 mixset Mixset { 
   class UmpleInternalParser { 
-    before Lable_Mixset_96:analyzeMethod(Token,UmpleElement,boolean)
+    before Label_Mixset_96:analyzeMethod(Token,UmpleElement,boolean)
   {
               methodCode = processInlineMixset(token.getValue(), meth);
             }  } 
@@ -4634,7 +4634,7 @@ mixset Mixset {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_97:analyzeMethod(Token,UmpleElement,boolean)
+    before Label_StateMachine_97:analyzeMethod(Token,UmpleElement,boolean)
   {
         if (uClass.getStateDependentMethods().contains(aMethod) && !aMethod.isIsAbstract()) {
           uClass.addStateDependentMethod(aMethod, null);
@@ -4646,7 +4646,7 @@ mixset StateMachine {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_98:analyzeMethod(Token,UmpleElement,boolean)
+    before Label_StateMachine_98:analyzeMethod(Token,UmpleElement,boolean)
   {
         stateDependentMethodsflag = !uClass.getStateDependentMethods().contains(aMethod);
         }  } 
@@ -4655,7 +4655,7 @@ mixset StateMachine {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_99:analyzeMethod(Token,UmpleElement,boolean)
+    before Label_Trait_99:analyzeMethod(Token,UmpleElement,boolean)
   {
     else if (uElement instanceof UmpleTrait)
     {
@@ -4695,7 +4695,7 @@ mixset Trait {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_100:checkCodeInjectionValidity(Token,UmpleClass,String)
+    before Label_StateMachine_100:checkCodeInjectionValidity(Token,UmpleClass,String)
   {
           stateDependentMethodsFlag = uClass.getStateDependentMethods().stream().anyMatch(m -> m.getName().equals(operationFinal));
         }  } 
@@ -4704,7 +4704,7 @@ mixset StateMachine {
 
 mixset Mixset { 
   class UmpleInternalParser { 
-    before Lable_Mixset_101:makeCodeInject(Token,CodeInjection,CodeBlock,UmpleClassifier)
+    before Label_Mixset_101:makeCodeInject(Token,CodeInjection,CodeBlock,UmpleClassifier)
   {
         aspectCode = processInlineMixset(sub.getValue(), null);
         }  } 
@@ -4713,7 +4713,7 @@ mixset Mixset {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_102:analyzeExtraCode(Token,UmpleClass)
+    before Label_StateMachine_102:analyzeExtraCode(Token,UmpleClass)
   {
 
     //This is a catch all and will be used less often as the grammar gets updated.
@@ -4724,7 +4724,7 @@ mixset StateMachine {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_103:fixImportFromDefaultPackage
+    before Label_Trait_103:fixImportFromDefaultPackage
   { 
              if (associationIsBetweenClassAndTrait(association)){continue;} 
            }  } 
@@ -4733,7 +4733,7 @@ mixset Trait {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_104:fixImportFromDefaultPackage
+    before Label_Trait_104:fixImportFromDefaultPackage
   {
             if(getModel().getUmpleTraitTypeParameter(myEnd.getClassName()) || getModel().getUmpleTrait(myEnd.getClassName())!=null) return ;
             if(getModel().getUmpleTraitTypeParameter(yourEnd.getClassName()) || getModel().getUmpleTrait(yourEnd.getClassName())!=null) return ;
@@ -4743,7 +4743,7 @@ mixset Trait {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_105:analyzeToken(Token,UmpleTrait,int)
+    before Label_StateMachine_105:analyzeToken(Token,UmpleTrait,int)
   {
       analyzeStateMachineToken(t,aTrait,analysisStep);
     }  } 
@@ -4752,7 +4752,7 @@ mixset StateMachine {
 
 mixset Mixset { 
   class UmpleInternalParser { 
-    before Lable_Mixset_106:analyzeTraitToken(Token,UmpleTrait,int)
+    before Label_Mixset_106:analyzeTraitToken(Token,UmpleTrait,int)
   {
       else if (token.is("mixsetDefinition"))
       {
@@ -4765,7 +4765,7 @@ mixset Mixset {
 
 mixset Association { 
   class UmpleInternalParser { 
-    before Lable_Association_107:analyzeTraitToken(Token,UmpleTrait,int)
+    before Label_Association_107:analyzeTraitToken(Token,UmpleTrait,int)
   {
       else if (token.is("inlineAssociation"))
       {
@@ -4781,7 +4781,7 @@ mixset Association {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_108:analyzeExtraCode(Token,UmpleTrait)
+    before Label_StateMachine_108:analyzeExtraCode(Token,UmpleTrait)
   {
       if(extraCodeIsMalformedStateMachine(token)) setFailedPosition(token.getPosition(), 1006, "");
     }  } 
@@ -4790,7 +4790,7 @@ mixset StateMachine {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_109:analyzeException(Token,UmpleTrait)
+    before Label_StateMachine_109:analyzeException(Token,UmpleTrait)
   {
     else if(sub.is("malformedStatemachine1")||sub.is("malformedStatemachine2"))
     {
@@ -4832,7 +4832,7 @@ mixset StateMachine {
 
 mixset AspectInjection { 
   class UmpleInternalParser { 
-    before Lable_AspectInjection_110:analyzeDependentTokens(Token,UmpleTrait,int)
+    before Label_AspectInjection_110:analyzeDependentTokens(Token,UmpleTrait,int)
   {
       else if (t.is("beforeCode") || t.is("afterCode"))
       {
@@ -4845,7 +4845,7 @@ mixset AspectInjection {
 
 mixset Layout { 
   class UmpleInternalParser { 
-    before Lable_Layout_111:analyzeDependentTokens(Token,UmpleTrait,int)
+    before Label_Layout_111:analyzeDependentTokens(Token,UmpleTrait,int)
   {
       analyzeLayoutToken(t,inTrait,analysisStep);
     }  } 
@@ -4854,7 +4854,7 @@ mixset Layout {
 
 mixset Association { 
   class UmpleInternalParser { 
-    before Lable_Association_112:applyTraits
+    before Label_Association_112:applyTraits
   {
             if (getParseResult().getWasSuccess()) copyAssociationsFromTraitToClass(uClass);
           }  } 
@@ -4863,7 +4863,7 @@ mixset Association {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_113:applyTraits
+    before Label_StateMachine_113:applyTraits
   {
           if (getParseResult().getWasSuccess()) copyStateMachinesFromTraiToClass(uClass);
           }  } 
@@ -4872,7 +4872,7 @@ mixset StateMachine {
 
 mixset AspectInjection { 
   class UmpleInternalParser { 
-    before Lable_AspectInjection_114:applyTraitProperties(UmpleClass,UmpleTrait)
+    before Label_AspectInjection_114:applyTraitProperties(UmpleClass,UmpleTrait)
   {
        // copy injection codes
        for (CodeInjection cj : inTrait.getCodeInjections()) {
@@ -4885,7 +4885,7 @@ mixset AspectInjection {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_115:processGTemplateParameterAssignment(Token,UmpleClassifier,String)
+    before Label_StateMachine_115:processGTemplateParameterAssignment(Token,UmpleClassifier,String)
   {
                 StateMachineTemplateSignature stTSignature = obtainStateMachineTemplateSignatureForTransitions(subToken);
                 if (! aGeneralTPApplied.hasStateMachineTemplateSignature(stTSignature)){  
@@ -4900,7 +4900,7 @@ mixset StateMachine {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_116:processGTemplateParameterAssignment(Token,UmpleClassifier,String)
+    before Label_StateMachine_116:processGTemplateParameterAssignment(Token,UmpleClassifier,String)
   {
           else if (subToken.is("StateMachineAliasName")){ 
               StateMachineTemplateSignature stTSignature = obtainStateMachineTemplateSignature(subToken);
@@ -4925,7 +4925,7 @@ mixset StateMachine {
 
 mixset Association { 
   class UmpleInternalParser { 
-    before Lable_Association_117:analyzeFIXMLDefinition(Token)
+    before Label_Association_117:analyzeFIXMLDefinition(Token)
   {
 				  assignAssociationInitialValues(); // based-on-single-associations
 				}  } 
@@ -4934,7 +4934,7 @@ mixset Association {
 
 mixset addAssociation { 
   class UmpleInternalParser { 
-    before Lable_addAssociation_118:analyzeFIXMLextendedContentContetnt(Token)
+    before Label_addAssociation_118:analyzeFIXMLextendedContentContetnt(Token)
   {
 				  addAssociation(uClass, rUClass,subToken); // based-on-single-associations
 				}  } 
@@ -4943,7 +4943,7 @@ mixset addAssociation {
 
 mixset Association { 
   class UmpleInternalParser { 
-    before Lable_Association_119:analyzeFIXMLextendedContentContetnt(Token)
+    before Label_Association_119:analyzeFIXMLextendedContentContetnt(Token)
   {
 				  addAssociation(uClass, rUClass,subToken); // based-on-single-associations
 				}  } 
@@ -4952,7 +4952,7 @@ mixset Association {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_120:analyzeStateMachineToken(Token,UmpleClassifier,int)
+    before Label_Trait_120:analyzeStateMachineToken(Token,UmpleClassifier,int)
   {
       else if (uClassifier instanceof UmpleTrait) {
         if (((UmpleTrait)uClassifier).isImmutable())
@@ -4968,7 +4968,7 @@ mixset Trait {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_121:analyzedReferencedStateMachine(Token,UmpleClassifier)
+    before Label_Trait_121:analyzedReferencedStateMachine(Token,UmpleClassifier)
   {
       if (uClassifier instanceof UmpleTrait){
         sm.setUmpleTrait((UmpleTrait)uClassifier);
@@ -4979,7 +4979,7 @@ mixset Trait {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_122:analyzedReferencedStateMachine(Token,UmpleClassifier)
+    before Label_Trait_122:analyzedReferencedStateMachine(Token,UmpleClassifier)
   {
         else if (uClassifier instanceof UmpleTrait) {
         wasSet = sm.setUmpleTrait((UmpleTrait)uClassifier);
@@ -4990,7 +4990,7 @@ mixset Trait {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_123:analyzedReferencedStateMachine(Token,UmpleClassifier)
+    before Label_Trait_123:analyzedReferencedStateMachine(Token,UmpleClassifier)
   {
         else if (uClassifier instanceof UmpleTrait) {
           //TODO --Trait's code
@@ -5002,7 +5002,7 @@ mixset Trait {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_124:analyzeStateMachine(Token,UmpleClassifier)
+    before Label_Trait_124:analyzeStateMachine(Token,UmpleClassifier)
   {
             if (uClassifier instanceof UmpleTrait){
             sm.setUmpleTrait((UmpleTrait)uClassifier);
@@ -5013,7 +5013,7 @@ mixset Trait {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_125:analyzeStateMachine(Token,UmpleClassifier)
+    before Label_Trait_125:analyzeStateMachine(Token,UmpleClassifier)
   {
        if (uClassifier instanceof UmpleTrait) {
     	wasSet = sm.setUmpleTrait((UmpleTrait)uClassifier);
@@ -5024,7 +5024,7 @@ mixset Trait {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_126:analyzeStateMachine(Token,UmpleClassifier)
+    before Label_Trait_126:analyzeStateMachine(Token,UmpleClassifier)
   {
           if (uClassifier instanceof UmpleTrait) {
           //TODO --Trait's code
@@ -5036,7 +5036,7 @@ mixset Trait {
 
 mixset Mixset { 
   class UmpleInternalParser { 
-    before Lable_Mixset_127:analyzeStateMachine(Token,UmpleClassifier)
+    before Label_Mixset_127:analyzeStateMachine(Token,UmpleClassifier)
   {
       analyzeMixsetDefinition(innerMixsetTokens, sm);
     }  } 
@@ -5045,7 +5045,7 @@ mixset Mixset {
 
 mixset Trace { 
   class UmpleInternalParser { 
-    before Lable_Trace_128:populateStateMachine(Token,StateMachine,UmpleClassifier)
+    before Label_Trace_128:populateStateMachine(Token,StateMachine,UmpleClassifier)
   {
         if(stateToken.is("trace"))
         {
@@ -5061,7 +5061,7 @@ mixset Trace {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_129:analyzeTransition(boolean,Token,State,String)
+    before Label_Trait_129:analyzeTransition(boolean,Token,State,String)
   {
         if (fromState.getStateMachine().getRootStateMachine().getUmpleClass()==null){
     		uClassifier = fromState.getStateMachine().getRootStateMachine().getUmpleTrait();
@@ -5072,7 +5072,7 @@ mixset Trait {
 
 mixset Association { 
   class UmpleInternalParser { 
-    before Lable_Association_130:analyzeTraceStatement(UmpleClass,Token)
+    before Label_Association_130:analyzeTraceStatement(UmpleClass,Token)
   {
     tracedAssoc = new AssociationTraceItem(traceDirective);
     }  } 
@@ -5081,7 +5081,7 @@ mixset Association {
 
 mixset Association { 
   class UmpleInternalParser { 
-    before Lable_Association_131:analyzeTraceStatement(UmpleClass,Token)
+    before Label_Association_131:analyzeTraceStatement(UmpleClass,Token)
   {
           tracedAssoc.setConstraint(constraint);
           }  } 
@@ -5090,7 +5090,7 @@ mixset Association {
 
 mixset Association { 
   class UmpleInternalParser { 
-    before Lable_Association_132:analyzeTraceStatement(UmpleClass,Token)
+    before Label_Association_132:analyzeTraceStatement(UmpleClass,Token)
   {
           attr = traceDirective.getUmpleClass().getAssociationVariable(token.getValue("LHS"));
           }  } 
@@ -5099,7 +5099,7 @@ mixset Association {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_133:analyzeTraceItem(Token)
+    before Label_StateMachine_133:analyzeTraceItem(Token)
   {
       if( traceItemType == 2 )
       {
@@ -5111,7 +5111,7 @@ mixset StateMachine {
 
 mixset Association { 
   class UmpleInternalParser { 
-    before Lable_Association_134:anaylzeTraceWildCard(Token)
+    before Label_Association_134:anaylzeTraceWildCard(Token)
   {
     //------------- trace all associations [wildcard]
     if( traceToken.getValue("traceEntity").toLowerCase().equals("allassociations") )
@@ -5130,7 +5130,7 @@ mixset Association {
 
 mixset Association { 
   class UmpleInternalParser { 
-    before Lable_Association_135:traceItemType(Token)
+    before Label_Association_135:traceItemType(Token)
   {  
     attr = attr==null?aClass.getAssociationVariable(traceToken.getValue("traceEntity")):attr;
     }  } 
@@ -5139,7 +5139,7 @@ mixset Association {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_136:traceItemType(Token)
+    before Label_StateMachine_136:traceItemType(Token)
   {
       // --- check if state machine
       for( StateMachine sVar : aClass.getStateMachines() )
@@ -5174,7 +5174,7 @@ mixset StateMachine {
 
 mixset Association { 
   class UmpleInternalParser { 
-    before Lable_Association_137:traceItemType(Token)
+    before Label_Association_137:traceItemType(Token)
   {
     // --- check if association
     for( AssociationVariable aVar : aClass.getAssociationVariables() )
@@ -5198,7 +5198,7 @@ mixset Association {
 
 mixset Association { 
   class UmpleInternalParser { 
-    before Lable_Association_138:analyzeLayoutToken(Token,UmpleClassifier,int)
+    before Label_Association_138:analyzeLayoutToken(Token,UmpleClassifier,int)
   {
       else if (token.is("associationPosition"))
       {
@@ -5223,7 +5223,7 @@ mixset Association {
 
 mixset Association { 
   class UmpleInternalParser { 
-    before Lable_Association_139:layoutNewElements
+    before Label_Association_139:layoutNewElements
   {
       // Layout associations
       for (int i=0; i<model.numberOfAssociations(); i++)
@@ -5251,7 +5251,7 @@ mixset Association {
 
 mixset Association { 
   class UmpleInternalParser { 
-    before Lable_Association_140:analyzeFilterToken(Token,int)
+    before Label_Association_140:analyzeFilterToken(Token,int)
   {
             if(t.is("association"))
 	        {
@@ -5264,88 +5264,12 @@ mixset Association {
 
 
 
-mixset StateMachine { 
-  class UmpleInternalParser { 
-    before Lable_StateMachine_142:postTokenClassEnumerationAnalysis(UmpleClass)
-  {
-      // Check if the enumeration conflicts with any state machines, and if the enumeration is used as
-      // event parameters
-      for (StateMachine sm : uClass.getStateMachines()) {
-        if (uEnum.hasSameName(sm.getName())) {
-          // Enumeration Conflicts with State Machine Error
-          getParseResult().addErrorMessage(new ErrorMessage(97, 
-                                                            uEnum.getPosition(), 
-                                                            uEnum.getName(), 
-                                                            "" + uEnum.getPosition().getLineNumber(),
-                                                            sm.getName(),
-                                                            uClass.getName()));
-          return;
-        }
-        for (Event e : sm.getAllEvents()) {
-          for (MethodParameter p : e.getParams()) {
-            if (uEnum.hasSameName(p.getType()) && otherClass != null) {
-              // Event Parameter Ambiguity Warning
-              getParseResult().addErrorMessage(new ErrorMessage(103, 
-                                                                uEnum.getPosition(), 
-                                                                uEnum.getName(), 
-                                                                "" + uEnum.getPosition().getLineNumber(),
-                                                                p.getName(),
-                                                                e.getName(),
-                                                                sm.getName(),
-                                                                otherClass.getName()));
-            }
-          }
-        }
-      }
-      }  } 
-} 
-
-
-mixset StateMachine { 
-  class UmpleInternalParser { 
-    before Lable_StateMachine_143:analyzeModelEnumInClass(UmpleClass,UmpleEnumeration)
-  {   
-     // Check if the class's state machines conflict with the enumeration, and if any of its state 
-     // machine's events use the enumeration in their parameters
-     for (StateMachine sm : uClass.getStateMachines()) {
-       if (classUsesEnum) {
-         if (uEnum.hasSameName(sm.getName())) {
-           // Enumeration Conflicts with State Machine Error
-           getParseResult().addErrorMessage(new ErrorMessage(97, 
-                                                             uEnum.getPosition(), 
-                                                             uEnum.getName(), 
-                                                             "" + uEnum.getPosition().getLineNumber(),
-                                                             sm.getName(),
-                                                             uClass.getName()));
-           return;
-         }
-       }
-       for (Event e : sm.getAllEvents()) {
-         for (MethodParameter p : e.getParams()) {
-           if (uEnum.hasSameName(p.getType())) {
-             if (!classUsesEnum && uEnum.hasSameName(sm.getName())) {
-               // Enumeration Conflicts with State Machine Error
-               getParseResult().addErrorMessage(new ErrorMessage(97, 
-                                                                uEnum.getPosition(), 
-                                                                uEnum.getName(), 
-                                                                "" + uEnum.getPosition().getLineNumber(),
-                                                                sm.getName(),
-                                                                uClass.getName()));
-               return;
-             } else {
-               classUsesEnum = true;
-           }
-         }
-       }
-      }
-     }
-    }  } 
-} 
+ 
 
 
 mixset Class { 
   class UmpleInternalParser { 
-    before Lable_Class_144:getMixsetFragmentWithEnclosingElement(Token,String)
+    before Label_Class_144:getMixsetFragmentWithEnclosingElement(Token,String)
   {
       if (token.is("classDefinition"))
       {
@@ -5359,7 +5283,7 @@ mixset Class {
 
 mixset StateMachine { 
   class UmpleInternalParser { 
-    before Lable_StateMachine_145:getMixsetFragmentWithEnclosingElement(Token,String)
+    before Label_StateMachine_145:getMixsetFragmentWithEnclosingElement(Token,String)
   {
       else if (token.is("state"))
       {
@@ -5375,7 +5299,7 @@ mixset StateMachine {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_146:getMixsetFragmentWithEnclosingElement(Token,String)
+    before Label_Trait_146:getMixsetFragmentWithEnclosingElement(Token,String)
   {
       else if (token.is("traitDefinition"))
       {
@@ -5389,7 +5313,7 @@ mixset Trait {
 
 mixset Association { 
   class UmpleInternalParser { 
-    before Lable_Association_147:getMixsetFragmentWithEnclosingElement(Token,String)
+    before Label_Association_147:getMixsetFragmentWithEnclosingElement(Token,String)
   {
       else if (token.is("associationDefinition"))
       {
@@ -5402,7 +5326,7 @@ mixset Association {
 
 mixset FeatureModel { 
   class UmpleInternalParser { 
-    before Lable_FeatureModel_148:parseMixsetNotUsedToken(Token)
+    before Label_FeatureModel_148:parseMixsetNotUsedToken(Token)
   {
       //parse require statments. 
       analyzeRequireStatement(token, 2);
@@ -5412,7 +5336,7 @@ mixset FeatureModel {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_149:analyzeToplevelInjectionCode(Token,int,String)
+    before Label_Trait_149:analyzeToplevelInjectionCode(Token,int,String)
   {
               traitNames = (ArrayList<String>) mapElement.getValue();
               ArrayList<String> newTraitNames = (ArrayList<String>) traitNames.clone();
@@ -5430,7 +5354,7 @@ mixset Trait {
 
 mixset Trait { 
   class UmpleInternalParser { 
-    before Lable_Trait_150:analyzeToplevelInjectionCode(Token,int,String)
+    before Label_Trait_150:analyzeToplevelInjectionCode(Token,int,String)
   {
           for (String umpleTraitName:traitNames)
           {
@@ -5445,7 +5369,7 @@ mixset Trait {
 
 mixset Mixset { 
   class UmpleInternalParser { 
-    before Lable_Mixset_151:analyzeInjectionCode(Token,UmpleClassifier)
+    before Label_Mixset_151:analyzeInjectionCode(Token,UmpleClassifier)
   {
       // check if the aspect needs to be injected before/after a label.
       if(codeLabelToken != null)
@@ -5456,7 +5380,7 @@ mixset Mixset {
 
 mixset Association { 
   class CompositeStructureTokenAnalyzer { 
-    before Lable_Association_152:analyzeConstraint(Token,UmpleClassifier)
+    before Label_Association_152:analyzeConstraint(Token,UmpleClassifier)
   {
 		else if (invariantToken.is("associationExpr"))
 		{
@@ -5468,7 +5392,7 @@ mixset Association {
 
 mixset StateMachine { 
   class CompositeStructureTokenAnalyzer { 
-    before Lable_StateMachine_153:analyzeConstraint(Token,UmpleClassifier)
+    before Label_StateMachine_153:analyzeConstraint(Token,UmpleClassifier)
   {
 	     else if (invariantToken.is("statemachineExpr"))
 	     {
@@ -5480,7 +5404,7 @@ mixset StateMachine {
 
 mixset Association { 
   class CompositeStructureTokenAnalyzer { 
-    before Lable_Association_154:analyzeAssociationConstraintExpression(Token,UmpleClassifier)
+    before Label_Association_154:analyzeAssociationConstraintExpression(Token,UmpleClassifier)
   {
 			  else if(sub.is("associationLit"))
 			  {
@@ -5492,7 +5416,7 @@ mixset Association {
 
 mixset Association { 
   class CompositeStructureTokenAnalyzer { 
-    before Lable_Association_155:analyzeInvariantConstraint(Token)
+    before Label_Association_155:analyzeInvariantConstraint(Token)
   {
 			     else if (invariantToken.is("associationExpr"))
 			     {
@@ -5504,7 +5428,7 @@ mixset Association {
 
 mixset StateMachine { 
   class CompositeStructureTokenAnalyzer { 
-    before Lable_StateMachine_156:analyzeInvariantConstraint(Token)
+    before Label_StateMachine_156:analyzeInvariantConstraint(Token)
   {
 			     else if (invariantToken.is("statemachineExpr"))
 			     {
@@ -5516,7 +5440,7 @@ mixset StateMachine {
 
 mixset Mixset { 
   class TemplateDefinitionWalker { 
-    before Lable_Mixset_157:analyzeToken(Token,TemplateTokenAnalyzer,int)
+    before Label_Mixset_157:analyzeToken(Token,TemplateTokenAnalyzer,int)
   {
           processInlineMixset(aToken);
         }  } 

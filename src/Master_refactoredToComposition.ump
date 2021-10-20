@@ -4167,16 +4167,6 @@ mixset FIXML {
 
 
 
-mixset Constraint { 
-  class UmpleInternalParser { 
-    before Label_Constraint_67:analyzeDependentTokens(Token,UmpleClass,int)
-  {
-      if (t.is("modelConstraintBody"))
-      {
-        analyzeModelConstraint(t,aClass);
-      }
-    }  } 
-} 
 
 
 mixset AspectInjection { 

@@ -4,4 +4,11 @@
       analyzeTraceToken(t,analysisStep);
     }  
 } 
+
+  class UmpleInternalParser { 
+    before Label_Trace_69:analyzeDependentTokens(Token,UmpleClass,int)
+  {
+      analyzeTraceToken(t,aClass);
+    }  } 
+
  

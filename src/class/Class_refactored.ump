@@ -33,3 +33,15 @@ mixset Class {
       analyzeClassToken(t,aClass,analysisStep);
     }  } 
 } 
+
+
+mixset AspectInjection { 
+  class UmpleInternalParser { 
+    before Label_AspectInjection_68:analyzeDependentTokens(Token,UmpleClass,int)
+  {
+      else if (t.is("beforeCode") || t.is("afterCode"))
+      {
+        analyzeInjectionCode(t,aClass);
+      }
+    }  } 
+} 

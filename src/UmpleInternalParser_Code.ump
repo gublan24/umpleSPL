@@ -234,9 +234,6 @@ class UmpleInternalParser
     analyzeCoreToken(t,aClass,analysisStep);
     Label_Class_65: ;
     Label_StateMachine_66: ;
-    mixset StateMachine {
-      analyzeStateMachineToken(t,aClass,analysisStep);
-    }
     analyzeDependentTokens(t,aClass,analysisStep);
   }
 
@@ -255,28 +252,18 @@ class UmpleInternalParser
       shouldProcessClassAgain = true;
       return;
     }
-    mixset Constraint {
-      if (t.is("modelConstraintBody"))
-      {
-        analyzeModelConstraint(t,aClass);
-      }
-    }
-    mixset AspectInjection {
-      else if (t.is("beforeCode") || t.is("afterCode"))
-      {
-        analyzeInjectionCode(t,aClass);
-      }
-    }
+    Label_Constraint_67:;
+    Label_AspectInjection_68: ;
+
+
     else if (t.is("key") || t.is("defaultKey"))
     {
       addKey(t, aClass, unlinkedKeysTokens);
     }
-    mixset Trace {
-      analyzeTraceToken(t,aClass);
-    }
-    mixset Layout {
-      analyzeLayoutToken(t,aClass,analysisStep);
-    }
+
+    Label_Trace_69:;
+    Label_Layout_70: ;
+
   }
 
   // Once you have analyze all tokens, you allowed a second 'pass' to apply any additional checks

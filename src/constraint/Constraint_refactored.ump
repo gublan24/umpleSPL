@@ -4,3 +4,14 @@
       parser.addGrammarFile("/constraint/umple_constraints.grammar");  // TODO Under development
     }  
   } 
+
+  class UmpleInternalParser { 
+    before Label_Constraint_67:analyzeDependentTokens(Token,UmpleClass,int)
+  {
+      if (t.is("modelConstraintBody"))
+      {
+        analyzeModelConstraint(t,aClass);
+      }
+    }  
+} 
+

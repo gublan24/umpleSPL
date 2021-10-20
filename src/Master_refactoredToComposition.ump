@@ -4144,13 +4144,7 @@ mixset Trait {
 
 
 
-mixset Layout { 
-  class UmpleInternalParser { 
-    before Label_Layout_60:analyzeToken(Token,int)
-  {
-      analyzeLayoutToken(t,analysisStep);
-    }  } 
-} 
+
 
 
 mixset FIXML { 
@@ -4162,49 +4156,15 @@ mixset FIXML {
 } 
 
 
-mixset Mixset { 
-  class UmpleInternalParser { 
-    before Label_Mixset_62:analyzeToken(Token,int)
-  {
-      analyzeMixsetToken(t, analysisStep);
-    }  } 
-} 
 
 
-mixset FeatureModel { 
-  class UmpleInternalParser { 
-    before Label_FeatureModel_63:analyzeToken(Token,int)
-  {
-      analyzeRequireStatement(t, analysisStep);
-    }  } 
-} 
 
 
-mixset AspectInjection { 
-  class UmpleInternalParser { 
-    before Label_AspectInjection_64:analyzeToken(Token,int)
-  {
-      analyzeInjectionToken(t, analysisStep);
-    }  } 
-} 
 
 
-mixset Class { 
-  class UmpleInternalParser { 
-    before Label_Class_65:analyzeToken(Token,UmpleClass,int)
-  {
-      analyzeClassToken(t,aClass,analysisStep);
-    }  } 
-} 
 
 
-mixset StateMachine { 
-  class UmpleInternalParser { 
-    before Label_StateMachine_66:analyzeToken(Token,UmpleClass,int)
-  {
-      analyzeStateMachineToken(t,aClass,analysisStep);
-    }  } 
-} 
+
 
 
 mixset Constraint { 

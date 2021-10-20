@@ -222,24 +222,8 @@ class UmpleInternalParser
     Label_FIXML_61: ;
     Label_Mixset_62: ;
     Label_FeatureModel_63: ;
+    Label_AspectInjection_64: ;
 
-
-
-  
-
-
-    mixset FIXML {
-      analyzeFIXML(t, analysisStep);
-    }
-    mixset Mixset {
-      analyzeMixsetToken(t, analysisStep);
-    }
-    mixset FeatureModel {
-      analyzeRequireStatement(t, analysisStep);
-    }
-    mixset AspectInjection {
-      analyzeInjectionToken(t, analysisStep);
-    }
   }
 
   // Analyze an individual token, delegates to the various components in Umple
@@ -248,9 +232,8 @@ class UmpleInternalParser
     // See #460 - types are now nested
     t.flattenNameRecursive("type");
     analyzeCoreToken(t,aClass,analysisStep);
-    mixset Class {
-      analyzeClassToken(t,aClass,analysisStep);
-    }
+    Label_Class_65: ;
+    Label_StateMachine_66: ;
     mixset StateMachine {
       analyzeStateMachineToken(t,aClass,analysisStep);
     }

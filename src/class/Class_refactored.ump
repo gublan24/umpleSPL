@@ -17,3 +17,19 @@ mixset Attribute {
     }  
 } 
 
+
+mixset AspectInjection { 
+  class UmpleInternalParser { 
+    before Label_AspectInjection_64:analyzeToken(Token,int)
+  {
+      analyzeInjectionToken(t, analysisStep);
+    }  } 
+} 
+
+mixset Class { 
+  class UmpleInternalParser { 
+    before Label_Class_65:analyzeToken(Token,UmpleClass,int)
+  {
+      analyzeClassToken(t,aClass,analysisStep);
+    }  } 
+} 

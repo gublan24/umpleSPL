@@ -4,3 +4,11 @@ class UmpleInternalParser {
       analyzeMixsetUseStatement(t, analysisStep);
   }  
 } 
+
+
+  class UmpleInternalParser { 
+    before Label_Mixset_62:analyzeToken(Token,int)
+  {
+      analyzeMixsetToken(t, analysisStep);
+    }  } 
+

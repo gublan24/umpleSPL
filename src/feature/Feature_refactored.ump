@@ -5,3 +5,10 @@ class UmpleInternalParser {
       }  
 } 
  
+
+  class UmpleInternalParser { 
+    before Label_FeatureModel_63:analyzeToken(Token,int)
+  {
+      analyzeRequireStatement(t, analysisStep);
+    }  } 
+

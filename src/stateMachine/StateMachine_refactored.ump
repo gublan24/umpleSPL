@@ -89,3 +89,11 @@
   {
       analyzeStateMachineToken(t,analysisStep);
     }  } 
+
+
+  class UmpleInternalParser { 
+    before Label_StateMachine_66:analyzeToken(Token,UmpleClass,int)
+  {
+      analyzeStateMachineToken(t,aClass,analysisStep);
+    }  } 
+

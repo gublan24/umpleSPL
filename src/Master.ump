@@ -45,9 +45,21 @@ use Parser.ump;
 // use FeatureModel;
 // use AspectInjection;
 
+mixset Constraint {
+  use constraint/Umple_CodeConstraint.ump;
+}
+mixset StateMachine {
+  use stateMachine/Umple_Code_StateMachine.ump;
+}
 mixset StateMachine {
   use stateMachine/StateMachine.ump;
   use Structure_StateMachine;
+}
+mixset Filter{
+  use filter/Umple_Code_Filter.ump;
+}
+mixset Trait {
+  use trait/Umple_Code_Trait.ump;
 }
 use Umlet.ump;
 use Umple.ump;

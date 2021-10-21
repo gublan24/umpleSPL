@@ -603,9 +603,8 @@ class UmpleGenerator
     mixset Template {
       parser.addGrammarFile("/template/umple_template.grammar");
     }
-    mixset Structure {
-      parser.addGrammarFile("/strcture/umple_structure.grammar");
-    }
+    Label_Structure_13: ;
+
     parser.addGrammarFile("/constraint/umple_constraints.grammar");  // TODO Under development
     mixset Layout {
        parser.addGrammarFile("/layout/umple_layout.grammar");

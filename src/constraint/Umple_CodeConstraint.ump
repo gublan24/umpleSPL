@@ -779,7 +779,7 @@ mixset StateMachine {
     public String getType(){ return "statemachine"; }
   }
 }
-
+// Interaction between Contraint, Structure and StateMachine
 mixset Structure_StateMachine
 {
 class ConstraintPort

@@ -5,26 +5,11 @@ Total mixsts definitions: 64
 //*** 
 //Coarse-grained variability : 
 
-mixset Structure { 
-// Fragment source file: Master.ump
-// Line : 59
-use strcture/Structure.ump;
-  use Structure_StateMachine;
 
-// Fragment source file: UmpleInternalParser_Code.ump
-// Line : 530
-use strcture/UmpleInternalParser_CodeStructure.ump;
-  use Template_Strcture;
-
-}
 
 mixset Trace { 
-// Fragment source file: Generator.ump
-// Line : 53
-interface CodeTranslator
-  {
-    String translate(String id, TraceItem traceItem);
-  }
+
+
 
 // Fragment source file: GeneratorHelper_Code.ump
 // Line : 66
@@ -278,14 +263,7 @@ use constraint/UmpleInternalParser_CodeConstraints.ump;
 }
 
 mixset StateMachine { 
-// Fragment source file: Generator.ump
-// Line : 44
-interface CodeTranslator {
-    String translate(String id, StateMachine stm);
-    String translate(String id, State st);
-    String translate(String id, Event e);
-    String translate(String id, Activity a);
-  }
+
 
 // Fragment source file: GeneratorHelper_Code.ump
 // Line : 63
@@ -3084,12 +3062,7 @@ use generators/Generator_CodeJsonMixed.ump;
 
 }
 
-mixset StructureDiagramGenerator { 
-// Fragment source file: Generator.ump
-// Line : 122
-use generators/Generator_CodeStructureDiagram.ump;
 
-}
 
 mixset GvStateDiagramGenerator { 
 // Fragment source file: Generator.ump
@@ -3260,19 +3233,7 @@ class GvEntityRelationshipDiagramGenerator
 
 }
 
-mixset Structure_StateMachine { 
-// Fragment source file: Umple_CodeConstraint.ump
-// Line : 785
-class ConstraintPort
-{
-  String getName()
-  {
-    return port==null?null:port.getName();
-  }
-  public String getType(){ return "port"; }
-}
 
-}
 
 
 //*** 
@@ -3386,13 +3347,7 @@ mixset Template {
 } 
 
 
-mixset Structure { 
-  class UmpleGenerator { 
-    before Label_Structure_13:initializeParser
-  {
-      parser.addGrammarFile("/strcture/umple_structure.grammar");
-    }  } 
-} 
+
 
 
 mixset Layout { 

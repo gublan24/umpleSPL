@@ -43,3 +43,17 @@ mixset Template_Strcture {
             }
         }  
 } 
+
+
+  class UmpleGenerator { 
+    before Label_Structure_13:initializeParser
+  {
+      parser.addGrammarFile("/strcture/umple_structure.grammar");
+    }  
+    
+} 
+
+
+
+
+

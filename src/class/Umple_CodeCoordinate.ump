@@ -97,7 +97,6 @@ class Coordinate
 }
 
 
-mixset Coordinate { 
 // Fragment source file: Umple_Code.ump
 // Line : 360
  class UmpleModel {
@@ -290,4 +289,3 @@ mixset Coordinate {
       return defaults;
     } } 
 
-}

@@ -39,12 +39,6 @@ interface CodeTranslator
     String translate(String id, TraceItem traceItem);
   }
 
-//
-
-
-// Fragment source file: GeneratorHelper_Code.ump
-// Line : 66
-//use generators/GeneratorHelper_CodeTrace.ump;
 
 // Fragment source file: Generator_SuperCodeGenerator.ump
 // Line : 47
@@ -77,16 +71,7 @@ interface CodeTranslator
     return all;
   } } 
 
-// Fragment source file: Master.ump
-// Line : 56
-//use trace/Trace.ump;
 
-// Fragment source file: UmpleInternalParser_Code.ump
-// Line : 541
-//use trace/UmpleInternalParser_CodeTrace.ump;
-
-
- 
 
   class UmpleGenerator { 
     before Label_Trace_11:initializeParser
@@ -96,7 +81,7 @@ interface CodeTranslator
 } 
 
 
-
+mixset StateMachine {
   class UmpleInternalParser { 
     before Label_Trace_128:populateStateMachine(Token,StateMachine,UmpleClassifier)
   {
@@ -109,6 +94,7 @@ interface CodeTranslator
         }
         }
       } 
+}
 } 
 
 

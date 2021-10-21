@@ -850,9 +850,4 @@ class Comment
 }
 
 
-use class/Umple_CodeAssociation.ump;
-use class/Umple_CodeAttribute.ump;
-use class/Umple_CodeClass.ump;
-use class/Umple_CodeMethod.ump;
-use class/Umple_CodeCoordinate.ump; 
 use Test_Code.ump;

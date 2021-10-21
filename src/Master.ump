@@ -72,6 +72,12 @@ mixset Trait {
 mixset Class {
   use class/UmpleInternalParser_CodeClass.ump;
   use class/Class_refactored.ump;
+  // below can be moved to their mixsets:
+  use class/Umple_CodeAssociation.ump;
+  use class/Umple_CodeAttribute.ump;
+  use class/Umple_CodeClass.ump;
+  use class/Umple_CodeMethod.ump;
+  use class/Umple_CodeCoordinate.ump; 
 }
 mixset Trait{
   use trait/UmpleInternalParser_CodeTrait.ump;

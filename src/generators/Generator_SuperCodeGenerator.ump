@@ -43,19 +43,8 @@ class SuperCodeGenerator {
     }
   }
 
-  mixset Trace {	
-    public String translate(String keyName, TraceItem ti)
-    {
-      if (keyName.length()>5&&"trace".equals(keyName.substring(0,5)))
-      {
-        return TraceLookupMap.get(keyName.substring(5).toLowerCase());
-      }
-      else 
-      {
-        return "INVALID KEYNAME IN TRANSLATE";
-      }
-    }
-  }
+  //Label_Trace_128: ;
+
   private boolean testForPrimitiveInConstraint(ConstraintVariable variable)
   {
   	//System.out.println(variable.toString() + "###");

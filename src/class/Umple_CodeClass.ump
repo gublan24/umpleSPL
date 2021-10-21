@@ -158,19 +158,7 @@ mixset Trait {
   {
     this(name, null);
   }
-  mixset Trace {
-  public List<TraceDirective> getAllTraceDirectives(){
-    ArrayList<TraceDirective> all = new ArrayList<TraceDirective>();
-    all.addAll(getTraceDirectives());
 
-    for(TraceCase tc : getTraceCases())
-      if( tc.getActivation() ==  true )
-        for(TraceDirective td : tc.getTraceDirectives())
-          all.add(td);
-
-    return all;
-  }
-  }
 
   public ArrayList<String> getMethodNames()
   {

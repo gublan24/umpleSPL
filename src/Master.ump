@@ -96,6 +96,7 @@ mixset StateMachine {
 }
 mixset Trace {
   use trace/UmpleInternalParser_CodeTrace.ump;
+  use src/generators/GeneratorHelper_CodeTrace.ump;
   use trace/Trace_refactored.ump;
 }
 mixset Layout {

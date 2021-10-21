@@ -32,9 +32,9 @@ class GeneratorHelper
     mixset StateMachine {
       postpareStateMachine(model);
     }
-    mixset Trace {
-      postpareTrace(model);
-    }
+    
+    Label_Trace_2: ;
+
     
     for (UmpleClass aClass : model.getUmpleClasses())
     {
@@ -49,9 +49,7 @@ class GeneratorHelper
     mixset StateMachine {
       postpareStateMachine(aClass);
     }
-    mixset Trace {
-      postpareTrace(aClass);
-    }
+    Label_Trace_4: ;
   }
 
   public static SuperCodeGenerator generator = null;
@@ -62,6 +60,3 @@ use GeneratorHelper_CodeClass.ump;
 mixset StateMachine {
   use generators/GeneratorHelper_CodeStateMachine.ump;
 }
-mixset Trace{
-  use generators/GeneratorHelper_CodeTrace.ump;
-  }

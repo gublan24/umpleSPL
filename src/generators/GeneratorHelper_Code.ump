@@ -29,13 +29,9 @@ class GeneratorHelper
   public static void postpare(UmpleModel model)
   {
     postpareClass(model);
-    mixset StateMachine {
-      postpareStateMachine(model);
-    }
-    
+    Label_StateMachine_1: ;    
     Label_Trace_2: ;
 
-    
     for (UmpleClass aClass : model.getUmpleClasses())
     {
       postpare(aClass);
@@ -46,9 +42,7 @@ class GeneratorHelper
   private static void postpare(UmpleClass aClass)
   {
     postpareClass(aClass);
-    mixset StateMachine {
-      postpareStateMachine(aClass);
-    }
+    Label_StateMachine_3: ;
     Label_Trace_4: ;
   }
 
@@ -57,6 +51,3 @@ class GeneratorHelper
 }
 
 use GeneratorHelper_CodeClass.ump;
-// mixset StateMachine {
-//   use generators/GeneratorHelper_CodeStateMachine.ump;
-// }

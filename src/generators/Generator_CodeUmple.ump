@@ -594,9 +594,8 @@ class UmpleGenerator
       parser.addGrammarFile("/fixml/umple_fixml.grammar");
     }
     parser.addGrammarFile("/umple_patterns.grammar");
-    mixset StateMachine {
-      parser.addGrammarFile("/stateMachine/umple_state_machines.grammar");
-    }
+    Label_StateMachine_10: ;
+
     Label_Trace_11: ;
     mixset Template {
       parser.addGrammarFile("/template/umple_template.grammar");

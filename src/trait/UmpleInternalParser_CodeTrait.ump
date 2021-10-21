@@ -1942,7 +1942,3 @@ private void ApplyExludeIncludeAliasToMethod(Map<UmpleTrait, List<Method>> intra
 
 }
 
-mixset StateMachine {
-use stateMachine/UmpleInternalParser_CodeTrait_StateMachine.ump;
-}
-

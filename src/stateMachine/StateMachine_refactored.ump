@@ -1450,7 +1450,7 @@ mixset StateMachine {
 } 
 
 
-mixset StateMachine { 
+mixset Class { 
   class UmpleClass { 
     before Label_StateMachine_19:getMethodNames
   {
@@ -1469,7 +1469,7 @@ mixset StateMachine {
 } 
 
 
-mixset StateMachine { 
+mixset Class { 
   class UmpleClass { 
     before Label_StateMachine_20:hasImplementedMethodIncludingWithinParentClasses(Method)
   {
@@ -1484,7 +1484,7 @@ mixset StateMachine {
 } 
 
 
-mixset StateMachine { 
+mixset Class { 
   class UmpleClass { 
     before Label_StateMachine_21:propagateImmutabilityToAllRelationships(boolean)
   {
@@ -1551,7 +1551,7 @@ mixset StateMachine {
 } 
 
 
-mixset StateMachine { 
+mixset Class { 
   class UmpleInternalParser { 
     before Label_StateMachine_80:postTokenClassAnalysis
   {
@@ -1559,7 +1559,7 @@ mixset StateMachine {
       }  } 
 } 
 
-mixset StateMachine { 
+mixset Class { 
   class UmpleInternalParser { 
     before Label_StateMachine_84:analyzeClass(Token)
   {
@@ -1568,7 +1568,7 @@ mixset StateMachine {
     }  } 
 } 
 
-mixset StateMachine { 
+mixset Class { 
   class UmpleInternalParser { 
     before Label_StateMachine_89:addUnlinkedKeys
   {          
@@ -1587,7 +1587,7 @@ mixset StateMachine {
 } 
 
 
-mixset StateMachine { 
+mixset Class { 
   class UmpleInternalParser { 
     before Label_StateMachine_97:analyzeMethod(Token,UmpleElement,boolean)
   {
@@ -1599,7 +1599,7 @@ mixset StateMachine {
 } 
 
 
-mixset StateMachine { 
+mixset Class { 
   class UmpleInternalParser { 
     before Label_StateMachine_98:analyzeMethod(Token,UmpleElement,boolean)
   {
@@ -1608,7 +1608,7 @@ mixset StateMachine {
 } 
 
 
-mixset StateMachine { 
+mixset Class { 
   class UmpleInternalParser { 
     before Label_StateMachine_100:checkCodeInjectionValidity(Token,UmpleClass,String)
   {

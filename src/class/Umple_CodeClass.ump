@@ -172,19 +172,8 @@ mixset Trait {
     {
       methodNames.addAll(av.getMethodNames());
     }
-    mixset StateMachine {
-      for(StateMachine sm : this.getStateMachines())
-      {
-        String stateMachineName = sm.getName().substring(0, 1).toUpperCase() + sm.getName().substring(1);
-        methodNames.add("set" + stateMachineName);
-        methodNames.add("get" + stateMachineName);
+    Label_StateMachine_19: ;
 
-        for(Event ev : sm.getEvents())
-        {
-          methodNames.add(ev.getName());
-        }
-      }
-    }
     for (Method m: this.getMethods()) {
       if (!isGetterSetter(m) && !m.isIsConstructor()) {
         methodNames.add(m.getName());
@@ -439,15 +428,8 @@ mixset Trait {
     if(aMethod!=null&&!aMethod.isIsAbstract()){
       return true;
     }
-    mixset StateMachine {
-    if (numberOfStateMachines()>0){
-    	for(StateMachine sm : getStateMachines()){
-    		if (sm.getEventByMethod(comparedMethod)!=null){
-    			return true;
-    		}
-    	}
-    }
-    }
+    Label_StateMachine_20: ;
+
     if(getExtendsClass()!=null&&getExtendsClass().hasImplementedMethodIncludingWithinParentClasses(comparedMethod)){
       return true;
     }
@@ -591,9 +573,8 @@ mixset Trait {
     
     if (isImmutable)
     {
-      mixset StateMachine {
-      if (this.hasStateMachines()) { return false; }
-      }
+      Label_StateMachine_21: ;
+ 
 
       for (AssociationVariable av : associationVariables)
       {

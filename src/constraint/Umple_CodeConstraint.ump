@@ -759,7 +759,7 @@ class ConstraintVariable
 
   public abstract String getType();
 }
-
+//Interaction between Constraint and StateMachine
 mixset StateMachine {
   class ConstraintState
   {

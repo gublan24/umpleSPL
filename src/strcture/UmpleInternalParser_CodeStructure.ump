@@ -1406,35 +1406,7 @@ class CompositeStructureTokenAnalyzer {
 	}
    }
 
-   mixset StateMachine {
-     private ConstraintTree analyzeStateMachineConstraintExpression(Token statemachineExpressionToken, UmpleClassifier uClassifier)
-	{
-		ConstraintTree rawLine = new ConstraintTree();
-		List<Token> numberExpressionSubtokens = statemachineExpressionToken.getSubTokens();
-		StateMachine stateMachine = null;
-		for(Token sub : numberExpressionSubtokens)
-		{
 
-			if(sub.is("constraintName"))
-			{
-				ConstraintVariable cv = analyzeConstraintName(sub,uClassifier,true);
-				rawLine.addElement(cv);
-
-			}
-			else if(sub.is("isInOp"))
-			{
-				ConstraintVariable cv = new ConstraintOperator("in==");
-				rawLine.addElement(cv);
-			}
-			else if(sub.is("isNotInOp"))
-			{
-				ConstraintVariable cv = new ConstraintOperator("in!=");
-				rawLine.addElement(cv);
-			}
-		}
-		return rawLine;
-	}
-   }
 
    public ConstraintTree analyzeInvariantConstraint(Token invariantToken){
 	   ConstraintTree rawLine = analyzeConstraint(invariantToken, componentClass);

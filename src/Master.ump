@@ -60,6 +60,8 @@ mixset StateMachine {
 mixset StateMachine {
   use stateMachine/StateMachine.ump;
   use Structure_StateMachine;
+  use generators/GeneratorHelper_CodeStateMachine.ump;
+
 }
 mixset Filter{
   use filter/Umple_Code_Filter.ump;

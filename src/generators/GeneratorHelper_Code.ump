@@ -57,6 +57,6 @@ class GeneratorHelper
 }
 
 use GeneratorHelper_CodeClass.ump;
-mixset StateMachine {
-  use generators/GeneratorHelper_CodeStateMachine.ump;
-}
+// mixset StateMachine {
+//   use generators/GeneratorHelper_CodeStateMachine.ump;
+// }

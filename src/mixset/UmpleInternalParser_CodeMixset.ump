@@ -61,22 +61,7 @@ class UmpleInternalParser
   {
     parser.addGrammarFile("/mixset/umple_mixsets.grammar"); 
   }
-  mixset StateMachine {
-    // prepare mixsets that are inside a state machine. 
-    private void analyzeMixsetDefinition(List<Token> tokenList , StateMachine stateMachine)
-    {  
-      if (tokenList.size() < 1)
-      return;
-      
-      for(Token aToken : tokenList)
-      {
-        if(stateMachine.getUmpleClass().getName() == null)
-        return;
-        //otherwise
-        analyzeMixsetBodyToken(aToken);
-      }  
-    }
-  }
+
   private void analyzeMixsetBodyToken(Token token) 
   {
     Token mixsetBodyToken = token.getSubToken("extraCode");

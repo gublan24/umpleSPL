@@ -1507,62 +1507,7 @@ private void recursiveCheckRequiredInterfaces(UmpleClass inClass,	UmpleTrait inT
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start-------------------------------------- 
-mixset StateMachine {
-  private StateMachineModifier obtainStateMachineModifier(Token inToken) {
-        StateMachineModifier smModifier = null;
-      String modifier=inToken.getValue("modifier");
-      String smName = inToken.getValue("smName");
-      if (inToken.getValue("StateNames")==null){
-       smModifier = new StateMachineModifier(modifier,smName,"");
-      } else {
-        List<String> states = new ArrayList<String>();      
-        String eventName="";
-        Token t = inToken;        
-        while(t!=null && t.getSubToken("StateNames")!=null){      
-          if(t.getSubToken("StateNames").getSubToken("StateNamesPassing")!=null){
-            states.add(t.getSubToken("StateNames").getValue("sName"));
-          }else{
-            if( inToken.getSubToken("iEParameterList")!=null)
-                 eventName = t.getSubToken("StateNames").getValue("sName");
-            else
-             states.add(t.getSubToken("StateNames").getValue("sName"));   
-          }
-          t =  t.getSubToken("StateNames").getSubToken("StateNamesPassing");
-        }  
-        if (eventName.equals("") && states.size() >0 && inToken.getSubToken("guardOption")==null){
-           smModifier = new StateModifier(modifier,smName,"");
-           for(String state:states)  ((StateModifier)smModifier).addSrcState(state);
-        } else {
-            smModifier = new EventModifier(modifier,smName,"");
-            for(String state:states)  ((EventModifier)smModifier).addSrcState(state);
-            Method method = new Method("", eventName, "Boolean", false);
-            extractIEParameters(inToken, method);
-            ((EventModifier)smModifier).setMethod(method);
-            if (inToken.getSubToken("guardOption")!=null){
-                Token guardToken = inToken.getSubToken("guardOption").getSubToken("guard");
-                if (guardToken != null)
-                {
-                  //01 is a dummy name
-                  StateMachine tempSM = new StateMachine("01");
-                  UmpleClass tempClass = new UmpleClass("01");
-                  tempClass.addStateMachine(tempSM);
-                  State s1 = new State("s1", tempSM);
-                  State s2 = new State("s2", tempSM);
-                  Transition t1 = new Transition(s1, s2); 
-                  ((GuardAnalyzer)model.getAnalyzer("guard")).setUClassifier(tempClass);
-                  ((GuardAnalyzer)model.getAnalyzer("guard")).setT(t1);
-                  model.getAnalyzer("guard").analyzeToken(guardToken);
-                  ((EventModifier)smModifier).setGuard(t1.getGuard());
-                  tempSM.delete();
-                  tempClass.delete();
-                }
-            }
-        }
-        
-      } 
-      return smModifier;
-  }
-}
+
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
@@ -1594,64 +1539,7 @@ mixset StateMachine {
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
-mixset StateMachine {
-	private StateMachineTemplateSignature obtainStateMachineTemplateSignature(Token inToken){
-  	String iEStateMachineModifier="",stateMachineAliasName ="";
-	 	String smName = inToken.getValue("smName");
-	 	String smDesName = "";
-		if (inToken.getValue("iEStateMachineModifier") != null) iEStateMachineModifier = inToken.getValue("iEStateMachineModifier");
-	 	if (inToken.getValue("smDesName") != null) stateMachineAliasName = inToken.getValue("smDesName");
-	 	Token smDesNameToken = inToken.getSubToken("DesStateNames");
-	 	if (smDesNameToken!=null){
-	 		smDesName = stateMachineAliasName;
-	 		stateMachineAliasName="";
-	 	}
-		StateMachineTemplateSignature smTSignature = new StateMachineTemplateSignature(iEStateMachineModifier, smName, smDesName, stateMachineAliasName);	 
-	 	extractStatesFromTemplateSignature(inToken,smTSignature,"src");
-	 	extractStatesFromTemplateSignature(smDesNameToken,smTSignature,"des"); 	
- 		return smTSignature;
-	}
-//---------------------------------end----------------------------------------
-//----------------------------------------------------------------------------   
-//---------------------------------Start--------------------------------------
-	private void extractStatesFromTemplateSignature(Token inToken,StateMachineTemplateSignature inStateMachineTemplateSignature,String type){
-		while(inToken!=null && inToken.getSubToken("StateNames")!=null){  		
-			if (type=="src")	{
-				inStateMachineTemplateSignature.addSrcState(inToken.getSubToken("StateNames").getValue("sName"));
-			}	else if (type=="des"){
-				inStateMachineTemplateSignature.addDesState(inToken.getSubToken("StateNames").getValue("sName"));
-			}
-		inToken =  inToken.getSubToken("StateNames").getSubToken("StateNamesPassing");
-		}  	
- 	}
-//---------------------------------end----------------------------------------
-//----------------------------------------------------------------------------   
-//---------------------------------Start--------------------------------------
-	private StateMachineTemplateSignature obtainStateMachineTemplateSignatureForTransitions(Token inToken) {
-     String smPattern="";
-     String stateMachineAliasName =inToken.getValue("aliasName");
-     String smName = "";
-     String modifier = "";
-     String eventName = inToken.getValue("methodName");
-     MethodTemplateSignature mtSignature = null;
-     if (inToken.getValue("smName") != null) smName = inToken.getValue("smName");
-     if (inToken.getValue("smPattern") != null) smPattern = inToken.getValue("smPattern"); 
-     if (inToken.getValue("modifier") != null) modifier = inToken.getValue("modifier");          
-     Method method = new Method("public", eventName, "", false); 
-     if (inToken.getSubToken("iEParameterList") != null){
-      for (Token subToken : inToken.getSubToken("iEParameterList").getSubTokens()) {
-        if (subToken.is("parameter")) {
-            method.addMethodParameter(new MethodParameter("", subToken.getValue(), "", "", false));
-        }
-      }
-     }
-     StateMachineTemplateSignature smTSignature = new StateMachineTemplateSignature(modifier, smName,"", stateMachineAliasName);
-     mtSignature = new MethodTemplateSignature(smPattern,stateMachineAliasName,method);
-     smTSignature.setMethodTemplateSignature(mtSignature);
-     return smTSignature;
-	}
 
-}
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------

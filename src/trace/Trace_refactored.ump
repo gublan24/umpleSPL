@@ -32,4 +32,11 @@
 } 
 
 
+// Fragment source file: Generator.ump
+// Line : 53
+interface CodeTranslator
+  {
+    String translate(String id, TraceItem traceItem);
+  }
+
  

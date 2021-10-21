@@ -103,16 +103,8 @@ class UmpleInternalParser
         returnMixsetBody= true;
       }
     }
-    mixset StateMachine {
-      else if (token.is("state"))
-      {
-        tokenKey = "stateName";
-      }
-      else if (token.is("inlineStateMachine"))
-      {
-        tokenKey =  "name";
-      }
-    }
+    Label_StateMachine_145: ;
+
     mixset Trait {
       else if (token.is("traitDefinition"))
       {

@@ -181,9 +181,8 @@ class UmpleInternalParser
 
   	analyzeCoreToken(t,aTrait,analysisStep);
     analyzeTraitToken(t,aTrait,analysisStep);
-    mixset StateMachine {
-      analyzeStateMachineToken(t,aTrait,analysisStep);
-    }
+    Label_StateMachine_105: ;
+
     analyzeDependentTokens(t,aTrait,analysisStep);
   }
 
@@ -499,9 +498,8 @@ class UmpleInternalParser
    private void analyzeExtraCode(Token token, UmpleTrait aTrait){
     //This is a catch all and will be used less often as the grammar gets updated.
     
-    mixset StateMachine {
-      if(extraCodeIsMalformedStateMachine(token)) setFailedPosition(token.getPosition(), 1006, "");
-    }
+    Label_StateMachine_108: ;
+
     //Append #line comment to indicate line and position of source
     if (token.getPosition() != null)
     {
@@ -696,42 +694,8 @@ mixset Association {
 
       setFailedPosition(sub.getPosition(), 1007, sub.getValue("name"));
     }
-    mixset StateMachine {
-    else if(sub.is("malformedStatemachine1")||sub.is("malformedStatemachine2"))
-    {
-      String extraCode = "";
-      for(Token token:sub.getSubTokens())
-      {
-        if(token.is("stuff"))
-        {
-          if(!"".equals(token.getValue())&&!token.getValue().contains(" ")&&!Token.isValidIdentifier(token.getValue()))
-          {
-            setFailedPosition(token.getPosition(), 150, token.getValue("name"));
-          }
-          extraCode += token.getValue()+ " ";
-        }
-      }
-      extraCode += "\n  {\n    "+sub.getValue("innerstuff")+"\n  }";
-      aTrait.appendExtraCode("// line " + exception.getPosition().getLineNumber() + " " + aTrait.getRelativePath(exception.getPosition().getFilename(),"Java"));
-      aTrait.appendExtraCode("  "+extraCode+"\n");
-      setFailedPosition(sub.getPosition(), 1006, sub.getValue("name"));
-    }
-    else if(sub.is("malformedMethod"))
-    {
-      String extraCode = "";
-      for(Token token:sub.getSubTokens())
-      {
-        if(token.is("stuff"))
-        {
-          extraCode += token.getValue()+ " ";
-        }
-      }
-      extraCode += "\n  {\n    "+sub.getValue("innerstuff")+"\n  }";
-      aTrait.appendExtraCode("// line " + exception.getPosition().getLineNumber() + " " + aTrait.getRelativePath(exception.getPosition().getFilename(),"Java"));
-      aTrait.appendExtraCode("  "+extraCode+"\n");
-      setFailedPosition(sub.getPosition(), 1008, sub.getValue("name"));
-    }
-    }
+    Label_StateMachine_109: ;
+    
   }
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
@@ -783,9 +747,8 @@ mixset Association {
           mixset Association {
             if (getParseResult().getWasSuccess()) copyAssociationsFromTraitToClass(uClass);
           }
-          mixset StateMachine {
-          if (getParseResult().getWasSuccess()) copyStateMachinesFromTraiToClass(uClass);
-          }
+          Label_StateMachine_113: ;
+
           if (getParseResult().getWasSuccess()) copyTestCasesFromTraitsToClass(uClass);
           if (getParseResult().getWasSuccess()) {
             for (UmpleTrait uTrait : uClass.getExtendsTraits()) {
@@ -1450,15 +1413,7 @@ private void recursiveCheckRequiredInterfaces(UmpleClass inClass,	UmpleTrait inT
       for(Token subToken : mainToken.getSubTokens()) {
         if (subToken.is("iEFunction") || subToken.is("functionAliasName")) {
           if (subToken.getSubToken("smName")!=null | subToken.getSubToken("smPattern")!=null ){
-              mixset StateMachine {
-                StateMachineTemplateSignature stTSignature = obtainStateMachineTemplateSignatureForTransitions(subToken);
-                if (! aGeneralTPApplied.hasStateMachineTemplateSignature(stTSignature)){  
-                  aGeneralTPApplied.addStateMachineTemplateSignature(stTSignature);
-                } else {
-                  getParseResult().addErrorMessage(new ErrorMessage(229,subToken.getPosition(),aGeneralTPApplied.getInheritanceName(),stTSignature.getSrcStateMachine()));
-                  return;
-                }
-            }
+              Label_StateMachine_115: ;
           }else{
             MethodTemplateSignature mtSignature =obtainMethodTemplateSignature(subToken);
             if (! aGeneralTPApplied.hasMethodTemplateSignature(mtSignature)){ 
@@ -1469,25 +1424,8 @@ private void recursiveCheckRequiredInterfaces(UmpleClass inClass,	UmpleTrait inT
             }
           }
         } 
-        mixset StateMachine {
-          else if (subToken.is("StateMachineAliasName")){ 
-              StateMachineTemplateSignature stTSignature = obtainStateMachineTemplateSignature(subToken);
-              if (! aGeneralTPApplied.hasStateMachineTemplateSignature(stTSignature)){  
-                aGeneralTPApplied.addStateMachineTemplateSignature(stTSignature);
-              } else {
-                getParseResult().addErrorMessage(new ErrorMessage(229,subToken.getPosition(),aGeneralTPApplied.getInheritanceName(),stTSignature.getSrcStateMachine()));
-                return;
-              } 
-          } else if (subToken.is("iEStateMachine")){ 
-              StateMachineModifier stTSignature = obtainStateMachineModifier(subToken);
-              if (! aGeneralTPApplied.hasStateMachineModifier(stTSignature)){  
-                aGeneralTPApplied.addStateMachineModifier(stTSignature);
-              } else {
-                getParseResult().addErrorMessage(new ErrorMessage(229,subToken.getPosition(),aGeneralTPApplied.getInheritanceName(),stTSignature.getSrcStateMachine()));
-                return;
-              } 
-          } 
-        }
+        Label_StateMachine_116: ;
+
         else if (subToken.is("traitAppliedParameters")){
             parameterName = subToken.getValue("pName");
             if (aGeneralTPApplied.getParameterMapping().containsKey(parameterName)){

@@ -81,6 +81,7 @@ interface CodeTranslator
 } 
 
 
+//File: stateMachine/UmpleInternalParser_CodeStateMachine.ump:967: 
 mixset StateMachine {
   class UmpleInternalParser { 
     before Label_Trace_128:populateStateMachine(Token,StateMachine,UmpleClassifier)

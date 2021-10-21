@@ -43,7 +43,6 @@ class SuperCodeGenerator {
     }
   }
 
-  //Label_Trace_128: ;
 
   private boolean testForPrimitiveInConstraint(ConstraintVariable variable)
   {

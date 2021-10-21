@@ -964,6 +964,8 @@ class UmpleInternalParser
         setFailedPosition(stateMachineToken.getPosition(), 53, sm.getName());
       } 
       
+      Label_Trace_128: ;
+      
       if (!stateToken.is("state") && !stateToken.is("stateName"))
       {
         if (stateToken.is("changeType")) { changeType = stateToken.getValue(); }      

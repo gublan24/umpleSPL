@@ -61,6 +61,7 @@ mixset StateMachine {
   use stateMachine/StateMachine.ump;
   use Structure_StateMachine;
   use generators/GeneratorHelper_CodeStateMachine.ump;
+  use src/stateMachine/UmpleInternalParser_CodeTraceStateMachine.ump;
 
 }
 mixset Filter{

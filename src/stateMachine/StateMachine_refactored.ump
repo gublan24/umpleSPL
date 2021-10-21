@@ -1720,7 +1720,7 @@ mixset Trait {
         }  } 
 } 
 
-mixset StateMachine { 
+mixset Trace { 
   class UmpleInternalParser { 
     before Label_StateMachine_133:analyzeTraceItem(Token)
   {
@@ -1732,7 +1732,7 @@ mixset StateMachine {
 } 
 
 
-mixset StateMachine { 
+mixset Trace { 
   class UmpleInternalParser { 
     before Label_StateMachine_136:traceItemType(Token)
   {
@@ -1783,7 +1783,7 @@ mixset Mixset {
 } 
 
 
-mixset StateMachine { 
+mixset Structure { 
   class CompositeStructureTokenAnalyzer { 
     before Label_StateMachine_153:analyzeConstraint(Token,UmpleClassifier)
   {
@@ -1794,7 +1794,7 @@ mixset StateMachine {
 	   }  } 
 } 
 
-mixset StateMachine { 
+mixset Structure { 
   class CompositeStructureTokenAnalyzer { 
     before Label_StateMachine_156:analyzeInvariantConstraint(Token)
   {

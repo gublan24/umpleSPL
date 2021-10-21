@@ -358,12 +358,8 @@ class UmpleInternalParser
     {
       analyzeAttributeTraceItem(traceToken);
     }
-    mixset StateMachine {
-      if( traceItemType == 2 )
-      {
-        analyzeStateMachineTraceItem(traceToken);
-      }
-    }
+    Label_StateMachine_133: ;
+
     if( traceItemType == 3 )
     {
       analyzeAssociationTraceItem(traceToken);
@@ -446,35 +442,7 @@ class UmpleInternalParser
       traceItemType = 1;
     }
 
-    mixset StateMachine {
-      // --- check if state machine
-      for( StateMachine sVar : aClass.getStateMachines() )
-      {
-        if( traceToken.getValue("traceEntity").equals(sVar.getName()))
-        {
-          traceItemType = 2;
-        }
-        for( State s : sVar.getStates() )
-        {
-          if( traceToken.getValue("traceEntity").equals(s.getName()) || traceToken.getValue("traceEntity").equals(sVar.getName()+"."+s.getName()) )
-          {
-            traceItemType = 2;
-          }
-          for( Transition t : s.getTransitions() )
-            if( traceToken.getValue("traceEntity").equals(t.getEvent().getName()))
-            {
-              traceItemType = 2;
-            }
-          // check if traced state is already found
-          // no need to check nested states
-          if( traceItemType == 2 ) return traceItemType;
-          if(s.hasNestedStateMachines())
-          {
-            traceItemType = checkNestedStateMachine(traceToken.getValue("traceEntity"),s);	
-          }
-        }
-      }
-    }
+    Label_StateMachine_136: ;
     mixset Association {
     // --- check if association
     for( AssociationVariable aVar : aClass.getAssociationVariables() )
@@ -576,9 +544,7 @@ class UmpleInternalParser
 } 
 
 use UmpleInternalParser_CodeTraceAttribute.ump;
-mixset StateMachine {
-  use stateMachine/UmpleInternalParser_CodeTraceStateMachine.ump;
-}
+
 // TODO : mix associ
 use UmpleInternalParser_CodeTraceAssociation.ump;
 use UmpleInternalParser_CodeTraceCase.ump;

@@ -24,3 +24,20 @@
     }  
 } 
 
+//src/generators/Generator_CodeUmple.ump
+mixset Layout { 
+  class UmpleGenerator { 
+    before Label_Layout_14:initializeParser
+  {
+       parser.addGrammarFile("/layout/umple_layout.grammar");
+    }  } 
+} 
+
+
+mixset Trait { 
+  class UmpleInternalParser { 
+    before Label_Layout_111:analyzeDependentTokens(Token,UmpleTrait,int)
+  {
+      analyzeLayoutToken(t,inTrait,analysisStep);
+    }  } 
+} 

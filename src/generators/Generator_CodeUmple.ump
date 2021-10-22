@@ -595,9 +595,7 @@ class UmpleGenerator
     Label_Template_12: ;
     Label_Structure_13: ;
     parser.addGrammarFile("/constraint/umple_constraints.grammar");  // TODO Under development
-    mixset Layout {
-       parser.addGrammarFile("/layout/umple_layout.grammar");
-    }
+    Label_Layout_14: ;
     parser.addGrammarFile("/umple_exceptions.grammar");
     parser.addGrammarFile("/use.grammar");
     Label_Filter_15: ;

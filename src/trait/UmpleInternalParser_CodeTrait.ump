@@ -721,9 +721,8 @@ mixset Association {
     //  analyzeKey(t,aClass);
     }
     //analyzeTraceToken(t,aClass);
-    mixset Layout {
-      analyzeLayoutToken(t,inTrait,analysisStep);
-    }
+    Label_Layout_111: ;
+
   }
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   

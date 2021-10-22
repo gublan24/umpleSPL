@@ -1,14 +1,5 @@
 
 
-
-
-mixset Layout { 
-// Fragment source file: UmpleInternalParser_Code.ump
-// Line : 544
-use layout/UmpleInternalParser_CodeLayout.ump;
-
-}
-
 mixset Class { 
 // Fragment source file: UmpleInternalParser_Code.ump
 // Line : 521
@@ -1670,14 +1661,6 @@ mixset Class {
 
 
 
-mixset Layout { 
-  class UmpleGenerator { 
-    before Label_Layout_14:initializeParser
-  {
-       parser.addGrammarFile("/layout/umple_layout.grammar");
-    }  } 
-} 
-
 
 
 
@@ -2065,13 +2048,7 @@ mixset AspectInjection {
 } 
 
 
-mixset Layout { 
-  class UmpleInternalParser { 
-    before Label_Layout_111:analyzeDependentTokens(Token,UmpleTrait,int)
-  {
-      analyzeLayoutToken(t,inTrait,analysisStep);
-    }  } 
-} 
+
 
 
 mixset Association { 

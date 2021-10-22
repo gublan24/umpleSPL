@@ -707,7 +707,7 @@ mixset UmpleAnnotaiveToCompositionGenerator {
   use src/generators/Generator_CodeAnnotaiveToComposition.ump;
 }
 
-mixset EoreGenerator {
+mixset EcoreGenerator {
   use src/generators/ecoreGenerator/ecoreGeneratorConfig.ump;
   use src/generators/ecoreGenerator/Generator_CodeEcore.ump;
   
@@ -849,7 +849,10 @@ mixset CodeGenerator { use generators/Generator_Code.ump; }
 mixset UmpleGenerator { use generators/Generator_CodeUmple.ump; }
 mixset RubyGenerator { 
   use generators/Generator_CodeRuby.ump; 
-  use RubyGeneratorIntMixset;
+  mixset Mixset 
+  {
+    use RubyGeneratorIntMixset;
+  }
   }
 mixset JavaGenerator { use generators/Generator_CodeJava.ump; }
 mixset RTCppGenerator { use generators/Generator_CodeRTCpp.ump; }

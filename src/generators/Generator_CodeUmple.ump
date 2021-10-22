@@ -588,10 +588,7 @@ class UmpleGenerator
       parser.addGrammarFile("/class/umple_classes.grammar");
     }
     Label_Trait_8: ;
-
-    mixset FIXML {
-      parser.addGrammarFile("/fixml/umple_fixml.grammar");
-    }
+    Label_FIXML_9: ;
     parser.addGrammarFile("/umple_patterns.grammar");
     Label_StateMachine_10: ;
     Label_Trace_11: ;

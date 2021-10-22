@@ -1,14 +1,19 @@
-  class UmpleModel { 
-    before Label_Filter_22:generate
-    {
-      applyFilter(null);
-    }  
-  } 
-
-
+mixset FIXML { 
   class UmpleInternalParser { 
-    before Label_Filter_59:analyzeToken(Token,int)
+    before Label_FIXML_61:analyzeToken(Token,int)
   {
-      analyzeFilterToken(t,analysisStep);
+      analyzeFIXML(t, analysisStep);
     }  } 
+} 
+
+
+//src/generators/Generator_CodeUmple.ump
+mixset FIXML { 
+  class UmpleGenerator { 
+    before Label_FIXML_9:initializeParser
+  {
+      parser.addGrammarFile("/fixml/umple_fixml.grammar");
+    }  } 
+} 
+
 

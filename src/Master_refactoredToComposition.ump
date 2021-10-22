@@ -1,11 +1,6 @@
 
 
-mixset FIXML { 
-// Fragment source file: UmpleInternalParser_CodeTrait.ump
-// Line : 2057
-use fixml/UmpleInternalParser_FIXML.ump;
 
-}
 
 mixset Layout { 
 // Fragment source file: UmpleInternalParser_Code.ump
@@ -1675,16 +1670,6 @@ mixset Class {
 
 
 
-
-
-mixset FIXML { 
-  class UmpleGenerator { 
-    before Label_FIXML_9:initializeParser
-  {
-      parser.addGrammarFile("/fixml/umple_fixml.grammar");
-    }  } 
-} 
-
 mixset Layout { 
   class UmpleGenerator { 
     before Label_Layout_14:initializeParser
@@ -2046,14 +2031,6 @@ mixset Association {
 
 
 
-
-mixset FIXML { 
-  class UmpleInternalParser { 
-    before Label_FIXML_61:analyzeToken(Token,int)
-  {
-      analyzeFIXML(t, analysisStep);
-    }  } 
-} 
 
  
 

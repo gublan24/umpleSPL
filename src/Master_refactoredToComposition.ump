@@ -1,7 +1,3 @@
-
-
-
-
 mixset Attribute { 
 // Fragment source file: UmpleInternalParser_CodeClass.ump
 // Line : 5855
@@ -1637,13 +1633,7 @@ class GvEntityRelationshipDiagramGenerator
 
 
 
-mixset RubyGeneratorIntMixset { 
-  class GeneratorHelper { 
-    before Label_RubyGeneratorIntMixset_6:toCode(List<CodeInjection>)
-  {
-          comment = RubyGenerator.class.isInstance(generator)?"#":"//";
-        }  } 
-} 
+
 
 
 

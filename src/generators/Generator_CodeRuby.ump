@@ -1012,3 +1012,11 @@ class RubyGenerator
     ConstraintLookupMap.put("cardinality<","{0}<{1}");
 	}  
 }
+
+mixset RubyGeneratorIntMixset { 
+  class GeneratorHelper { 
+    before Label_RubyGeneratorIntMixset_6:toCode(List<CodeInjection>)
+  {
+          comment = RubyGenerator.class.isInstance(generator)?"#":"//";
+        }  } 
+} 

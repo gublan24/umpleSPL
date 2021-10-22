@@ -63,9 +63,8 @@ class GeneratorHelper
       {
         Label_Mixset_5:  ;
         String comment = "//";
-        mixset RubyGeneratorIntMixset {
-          comment = RubyGenerator.class.isInstance(generator)?"#":"//";
-        }
+        Label_RubyGeneratorIntMixset_6: ;
+
         String positionString = "";
         Position p = inject.getPosition();
         Position codeP = inject.getCodePosition();

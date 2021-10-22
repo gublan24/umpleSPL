@@ -1,11 +1,6 @@
 
 
-mixset Class { 
-// Fragment source file: UmpleInternalParser_Code.ump
-// Line : 521
-use class/UmpleInternalParser_CodeClass.ump;
 
-}
 
 mixset Attribute { 
 // Fragment source file: UmpleInternalParser_CodeClass.ump
@@ -1651,13 +1646,7 @@ mixset RubyGeneratorIntMixset {
 } 
 
 
-mixset Class { 
-  class UmpleGenerator { 
-    before Label_Class_7:initializeParser
-  {
-      parser.addGrammarFile("/class/umple_classes.grammar");
-    }  } 
-} 
+
 
 
 
@@ -2263,18 +2252,7 @@ mixset Association {
           }  } 
 } 
 
-mixset Class { 
-  class UmpleInternalParser { 
-    before Label_Class_144:getMixsetFragmentWithEnclosingElement(Token,String)
-  {
-      if (token.is("classDefinition"))
-      {
-        tokenKey = "name"; 
-        prefix ="class";
-        returnMixsetBody= true;
-      }
-    }  } 
-} 
+ 
 
 
 

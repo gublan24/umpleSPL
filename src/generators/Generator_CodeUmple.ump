@@ -607,9 +607,8 @@ class UmpleGenerator
     }
     parser.addGrammarFile("/umple_exceptions.grammar");
     parser.addGrammarFile("/use.grammar");
-    mixset Filter {
-      parser.addGrammarFile("/filter/umple_filter.grammar"); // TODO Under development
-    }
+    Label_Filter_15: ;
+
     mixset Mixset {
       parser.addGrammarFile("/mixset/umple_mixsets.grammar");
     }

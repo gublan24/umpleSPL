@@ -1,28 +1,5 @@
-/* 
-Annotaive fragments are refactored into composition fragments. 
-Total mixsts definitions: 64
-*/ 
-//*** 
-//Coarse-grained variability : 
 
 
-
-
-
-
-
-
-
-mixset Filter { 
-// Fragment source file: Umple_Code.ump
-// Line : 865
-use filter/Umple_Code_Filter.ump;
-
-// Fragment source file: UmpleInternalParser_Code.ump
-// Line : 548
-use filter/UmpleInternalParser_CodeFilter.ump;
-
-}
 
 mixset Mixset { 
 // Fragment source file: Umple.ump
@@ -1859,13 +1836,7 @@ mixset Layout {
 } 
 
 
-mixset Filter { 
-  class UmpleGenerator { 
-    before Label_Filter_15:initializeParser
-  {
-      parser.addGrammarFile("/filter/umple_filter.grammar"); // TODO Under development
-    }  } 
-} 
+
 
 
 mixset Mixset { 

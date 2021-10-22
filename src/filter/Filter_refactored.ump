@@ -12,3 +12,12 @@
       analyzeFilterToken(t,analysisStep);
     }  } 
 
+
+//src/generators/Generator_CodeUmple.ump
+mixset Filter { 
+  class UmpleGenerator { 
+    before Label_Filter_15:initializeParser
+  {
+      parser.addGrammarFile("/filter/umple_filter.grammar"); // TODO Under development
+    }  } 
+} 

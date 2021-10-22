@@ -1,16 +1,7 @@
 
 
 
-mixset Mixset { 
-// Fragment source file: Umple.ump
-// Line : 1324
-use mixset/Mixset.ump;
 
-// Fragment source file: UmpleInternalParser_Code.ump
-// Line : 553
-use mixset/UmpleInternalParser_CodeMixset.ump;
-
-}
 
 mixset Template { 
 // Fragment source file: Master.ump
@@ -1770,14 +1761,7 @@ class GvEntityRelationshipDiagramGenerator
 
 
 
-mixset Mixset { 
-  class GeneratorHelper { 
-    before Label_Mixset_5:toCode(List<CodeInjection>)
-  {
-	      if(inject.hasCodeLabel())
-          continue;// handle the case when labels are used. // Do nothing  
-        }  } 
-} 
+
 
 
 mixset RubyGeneratorIntMixset { 
@@ -1839,13 +1823,7 @@ mixset Layout {
 
 
 
-mixset Mixset { 
-  class UmpleGenerator { 
-    before Label_Mixset_16:initializeParser
-  {
-      parser.addGrammarFile("/mixset/umple_mixsets.grammar");
-    }  } 
-} 
+ 
 
 
 
@@ -2220,138 +2198,7 @@ mixset FIXML {
     }  } 
 } 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-mixset Mixset { 
-  class UmpleInternalParser { 
-    before Label_Mixset_78:analyzeClassToken(Token,int)
-  {
-      // add parsed files to parsedUmpfiles hashMap.
-      String umpFileName = t.getSubToken("use").getValue();
-      if(! parsedUmpfiles.keySet().contains(umpFileName))
-      parsedUmpfiles.put(umpFileName, true);
-      }  } 
-} 
-
-
-mixset Mixset { 
-  class UmpleInternalParser { 
-    before Label_Mixset_79:analyzeClassToken(Token,UmpleClass,int)
-  {
-      else if (token.getValue("mixsetDefinition") != null)  {
-        analyzeMixsetBodyToken(token);
-      }
-    }  } 
-} 
-
-
-
-
-
-
-
-
-
-mixset Mixset { 
-  class UmpleInternalParser { 
-    before Label_Mixset_83:analyzeAllAssociations(Token)
-  {
-        if (token.is("mixsetDefinition"))
-        {
-          analyzeMixsetBodyToken(token);
-        } 
-      }  } 
-} 
-
-
-
-
-
-
-mixset Mixset { 
-  class UmpleInternalParser { 
-    before Label_Mixset_96:analyzeMethod(Token,UmpleElement,boolean)
-  {
-              methodCode = processInlineMixset(token.getValue(), meth);
-            }  } 
-} 
-
-
-
-
-
-
-
-
-
-mixset Mixset { 
-  class UmpleInternalParser { 
-    before Label_Mixset_101:makeCodeInject(Token,CodeInjection,CodeBlock,UmpleClassifier)
-  {
-        aspectCode = processInlineMixset(sub.getValue(), null);
-        }  } 
-} 
-
-
-
-
-
-
-
-
-
-mixset Mixset { 
-  class UmpleInternalParser { 
-    before Label_Mixset_106:analyzeTraitToken(Token,UmpleTrait,int)
-  {
-      else if (token.is("mixsetDefinition"))
-      {
-        analyzeMixsetBodyToken(token);
-    
-      }
-    }  } 
-} 
+ 
 
 
 mixset Association { 
@@ -2451,13 +2298,6 @@ mixset Association {
 
 
 
-mixset Mixset { 
-  class UmpleInternalParser { 
-    before Label_Mixset_127:analyzeStateMachine(Token,UmpleClassifier)
-  {
-      analyzeMixsetDefinition(innerMixsetTokens, sm);
-    }  } 
-} 
 
 
 
@@ -2612,13 +2452,6 @@ mixset Association {
           }  } 
 } 
 
-
-
-
-
- 
-
-
 mixset Class { 
   class UmpleInternalParser { 
     before Label_Class_144:getMixsetFragmentWithEnclosingElement(Token,String)
@@ -2661,19 +2494,6 @@ mixset FeatureModel {
 } 
 
  
-
-
-mixset Mixset { 
-  class UmpleInternalParser { 
-    before Label_Mixset_151:analyzeInjectionCode(Token,UmpleClassifier)
-  {
-      // check if the aspect needs to be injected before/after a label.
-      if(codeLabelToken != null)
-      injection.setInjectionlabel(codeLabelToken.getValue());
-    }  } 
-} 
-
-
 mixset Association { 
   class CompositeStructureTokenAnalyzer { 
     before Label_Association_152:analyzeConstraint(Token,UmpleClassifier)
@@ -2714,14 +2534,6 @@ mixset Association {
 
 
 
-
-mixset Mixset { 
-  class TemplateDefinitionWalker { 
-    before Label_Mixset_157:analyzeToken(Token,TemplateTokenAnalyzer,int)
-  {
-          processInlineMixset(aToken);
-        }  } 
-} 
 
 
 

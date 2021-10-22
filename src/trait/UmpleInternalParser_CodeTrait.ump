@@ -210,13 +210,8 @@ class UmpleInternalParser
     {
       shouldConsumeComment = false;
     }
-    mixset Mixset {
-      else if (token.is("mixsetDefinition"))
-      {
-        analyzeMixsetBodyToken(token);
-    
-      }
-    }
+    Label_Mixset_106: ;
+
     else if (token.is("testCase"))
     {
       analyzeTraitTestCaseToken(token, aTrait);

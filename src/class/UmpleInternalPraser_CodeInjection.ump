@@ -162,11 +162,8 @@ class UmpleInternalParser
 
     CodeInjection injection = new CodeInjection(type,operationName,"",uClassifier);
     injection.setOperationSource(operationSource);
-    mixset Mixset {
-      // check if the aspect needs to be injected before/after a label.
-      if(codeLabelToken != null)
-      injection.setInjectionlabel(codeLabelToken.getValue());
-    }
+    Label_Mixset_151: ;
+
     List<String> operationsParameters = getOperationsParameters(injectToken);
     for(String operationParameters : operationsParameters) {
       injection.addParameter(operationParameters);      

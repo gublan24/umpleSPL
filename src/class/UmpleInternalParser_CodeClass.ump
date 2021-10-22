@@ -74,12 +74,8 @@ class UmpleInternalParser
     else if (t.is("useStatement") )
     {
       analyzeAllTokens(t);
-      mixset Mixset {
-      // add parsed files to parsedUmpfiles hashMap.
-      String umpFileName = t.getSubToken("use").getValue();
-      if(! parsedUmpfiles.keySet().contains(umpFileName))
-      parsedUmpfiles.put(umpFileName, true);
-      }
+      Label_Mixset_78: ;
+ 
       
     }
     else if (t.is("strictness") )
@@ -354,11 +350,8 @@ class UmpleInternalParser
     {
       analyzeClassTestSequence(token,aClass);
     }
-    mixset Mixset {
-      else if (token.getValue("mixsetDefinition") != null)  {
-        analyzeMixsetBodyToken(token);
-      }
-    }
+    Label_Mixset_79: ;
+
     else if (token.is("extraCode"))
     {
       analyzeExtraCode(token,aClass);
@@ -1032,12 +1025,8 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
     // Go through every token that is a child of the current token (all associations part of this association).
     for(Token token : associationToken.getSubTokens()){
       boolean isAssociationToken = token.is("association");
-      mixset Mixset {
-        if (token.is("mixsetDefinition"))
-        {
-          analyzeMixsetBodyToken(token);
-        } 
-      }
+      Label_Mixset_106: ;
+
       //Issue 213/131: [association] elements inside associationClasses generate 2 associations instead of one
       if (isAssociationToken && associationToken.is("associationClassDefinition")) {
         for (Token t : token.getSubTokens()) {
@@ -3098,9 +3087,8 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
           {
             String methodCode = token.getValue();
             // process mixsets inside code 
-            mixset Mixset {
-              methodCode = processInlineMixset(token.getValue(), meth);
-            } // end of MIXSET 
+            Label_Mixset_96: ;
+     
             cb.setCode(methodCode);
             aMethod.setCodePosition(token.getPosition());
             
@@ -3878,9 +3866,8 @@ private Boolean checkIsDistributed(UmpleInterface uInterface)
       if(sub.is("code"))
       {
         String aspectCode = sub.getValue();
-        mixset Mixset {
-        aspectCode = processInlineMixset(sub.getValue(), null);
-        }
+        Label_Mixset_101: ;
+    
         if(langs.size()==0)
         {
           cb.setCode(aspectCode);

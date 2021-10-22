@@ -609,9 +609,8 @@ class UmpleGenerator
     parser.addGrammarFile("/use.grammar");
     Label_Filter_15: ;
 
-    mixset Mixset {
-      parser.addGrammarFile("/mixset/umple_mixsets.grammar");
-    }
+    Label_Mixset_16: ;
+
 
     parser.setupRules(true);    // Compute the Umple grammar rules
 

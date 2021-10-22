@@ -746,9 +746,8 @@ class UmpleInternalParser
       }
     }
     
-    mixset Mixset {
-      analyzeMixsetDefinition(innerMixsetTokens, sm);
-    }
+    Label_Mixset_127: ;
+
  
     return sm;
   }

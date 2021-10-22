@@ -603,13 +603,8 @@ class UmpleInternalParser
     {
       analyzeInvariant(t,inTrait);
     }
-    mixset AspectInjection {
-      else if (t.is("beforeCode") || t.is("afterCode"))
-      {
-      //TODO should applied for traits
-        analyzeInjectionCode(t,inTrait);
-      }
-    }
+    Label_AspectInjection_110: ;
+
     else if (t.is("key") || t.is("defaultKey"))
     {
     //TODO should applied for traits
@@ -938,13 +933,7 @@ private void checkClassSupportTraitsInterfaces(	GeneralTPApplied inGeneralTPAppl
 		for(ConstraintTree aConstraint : inTrait.getConstraintTrees()) {
 			inClass.addConstraintTree(aConstraint);
 		}	
-		mixset AspectInjection {
-       // copy injection codes
-       for (CodeInjection cj : inTrait.getCodeInjections()) {
-               cj.setUmpleClassifier(inClass);
-               inClass.addCodeInjection(cj);
-       }
-    }
+		Label_AspectInjection_114: ;
        // copy Extra code
        inClass.appendExtraCode(inTrait.getExtraCode());
        

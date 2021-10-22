@@ -1,3 +1,12 @@
+  class UmpleInternalParser { 
+    before Label_FeatureModel_148:parseMixsetNotUsedToken(Token)
+  {
+      //parse require statments. 
+      analyzeRequireStatement(token, 2);
+    }  
+} 
+
+
 class UmpleInternalParser { 
     before Label_FeatureModel_51:analyze(boolean)
   {
@@ -10,5 +19,6 @@ class UmpleInternalParser {
     before Label_FeatureModel_63:analyzeToken(Token,int)
   {
       analyzeRequireStatement(t, analysisStep);
-    }  } 
+    } 
+ } 
 

@@ -135,6 +135,7 @@ mixset FeatureModel {
 
 mixset AspectInjection {
   use class/UmpleInternalPraser_CodeInjection.ump;
+  use class/Aspect_refactored.ump;
 }
 
 mixset FIXML {

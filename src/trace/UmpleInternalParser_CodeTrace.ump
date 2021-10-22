@@ -161,9 +161,7 @@ class UmpleInternalParser
   private void analyzeTraceStatement(UmpleClass aClass, Token token){
     traceDirective = new TraceDirective(model.getTracer());
     traceAttr = new AttributeTraceItem(traceDirective);
-    mixset Association {
-    tracedAssoc = new AssociationTraceItem(traceDirective);
-    }
+    Label_Association_130: ;
     mte = new MethodTraceItem(traceDirective);
     post = new Postfix(traceDirective);
     TraceRecord traceRecord = null;
@@ -221,9 +219,7 @@ class UmpleInternalParser
         if(others.isEmpty())
         {
         	cond.setConstraint(constraint);
-          mixset Association {
-          tracedAssoc.setConstraint(constraint);
-          }
+          Label_Association_131: ;
           mte.setConstraint(constraint);
         }
         else
@@ -259,9 +255,7 @@ class UmpleInternalParser
         UmpleVariable attr = traceDirective.getUmpleClass().getAttribute(token.getValue("LHS"));
         if(attr==null)
         {
-          mixset Association {
-          attr = traceDirective.getUmpleClass().getAssociationVariable(token.getValue("LHS"));
-          }
+          Label_Association_132: ;
         }
         traceAttr.addUmpleVariable(attr);
       }     
@@ -397,19 +391,7 @@ class UmpleInternalParser
         traceAttr.setTraceSet(true);
       }
     }
-    mixset Association {
-    //------------- trace all associations [wildcard]
-    if( traceToken.getValue("traceEntity").toLowerCase().equals("allassociations") )
-    {
-      for( AssociationVariable assoc : uClass.getAssociationVariables() )
-      {
-      	tracedAssoc.setPosition(traceToken.getPosition());
-      	tracedAssoc.addAssociationVariable(assoc);
-      	tracedAssoc.setTraceAdd(true);
-      	tracedAssoc.setTraceRemove(true);
-      }
-    }
-    }
+    Label_Association_134: ;
     //------------- trace all non-api methods [wildcard]
     if( traceToken.getValue("traceEntity").toLowerCase().equals("allnonapimethods") )
     {
@@ -433,9 +415,7 @@ class UmpleInternalParser
 
     // --- check if attribute
     UmpleVariable attr = aClass.getAttribute(traceToken.getValue("traceEntity"));
-    mixset Association {  
-    attr = attr==null?aClass.getAssociationVariable(traceToken.getValue("traceEntity")):attr;
-    }
+    Label_Association_135: ;
 
     if( attr != null )
     {
@@ -443,24 +423,7 @@ class UmpleInternalParser
     }
 
     Label_StateMachine_136: ;
-    mixset Association {
-    // --- check if association
-    for( AssociationVariable aVar : aClass.getAssociationVariables() )
-    {
-      if( traceToken.getValue("traceEntity").equals(aVar.getName()))
-      {
-        traceItemType = 3;
-      }
-    }
-
-    for( Association a : aClass.getAssociations() )
-    {
-      if( a.getName().contains(traceToken.getValue("traceEntity") ))
-      {
-        traceItemType = 3;
-      }
-    }
-    }
+    Label_Association_137: ;
 
     // --- check if method
     for( Method mVar : aClass.getMethods() )

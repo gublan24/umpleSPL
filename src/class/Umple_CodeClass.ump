@@ -42,60 +42,11 @@ class UmpleModel {
         addInterfacesRecursively(interfacesToKeep, pi);
       }
     }
-    mixset Association {
-      public Association getAssociation(String name)
-      {
-        for (Association a : associations)
-        {
-          if (a.getName().equals(name))
-          {
-            return a;
-          }
-        }
-        return null;
-      }
-
-      public AssociationClass addAssociationClass(String className)
-      {
-        AssociationClass newClass = (AssociationClass) getUmpleClass(className);
-        if (newClass == null)
-        {
-          newClass = new AssociationClass(className);
-          addUmpleClass(newClass);
-        }
-        return newClass;
-      }
-    }
 
 
-  mixset Association {
-/*
- */
-  class AssociationClass
-  {
-    public AssociationClass(String name)
-    {
-      this(name, null);
-    }
 
-    public void addMissingKeyIfNeeded()
-    {
-      Key key = getKey();
-      if (!key.isProvided())
-      {
-        key = new Key();
+  
 
-        for(Association associatedTo: getAssociatedTo())
-        {
-          key.addMember(associatedTo.getEnd(1).getRoleName());
-        }
-
-        key.setIsInternal(true);
-        setKey(key);
-      }
-      }
-    }
-  } 
 }
 
 /*

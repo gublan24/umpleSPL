@@ -11,9 +11,6 @@ class Filter
   name;
   Integer superCount = -1;
   Integer subCount = 0;
-  mixset Association {
-    Integer associationCount = -1;
-  }
   String[] values;
   String[] filterValues;
 }

@@ -81,6 +81,7 @@ mixset Class {
   use class/Umple_CodeClass.ump;
   use class/Umple_CodeMethod.ump;
   use class/Umple_CodeCoordinate.ump; 
+  use class/Association_refactored.ump;
 }
 mixset Trait{
   use trait/UmpleInternalParser_CodeTrait.ump;

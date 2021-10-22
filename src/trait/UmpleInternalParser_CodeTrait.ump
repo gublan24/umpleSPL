@@ -276,16 +276,7 @@ class UmpleInternalParser
       Depend d = new Depend(token.getValue());
       aTrait.addDepend(d);
     }
-    mixset Association {
-      else if (token.is("inlineAssociation"))
-      {
-        analyzeinlineAssociation(token,aTrait);
-      }
-      else if (token.is("symmetricReflexiveAssociation"))
-      {
-        analyzeSymmetricReflexiveAssociation(token,aTrait);
-      }
-    }    
+    Label_Association_107: ;    
     else if (token.is("exception"))
     {
       analyzeException(token,aTrait);
@@ -525,103 +516,7 @@ class UmpleInternalParser
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
-mixset Association {
-   private void analyzeinlineAssociation(Token inlineAssociationToken, UmpleTrait aTrait){
-    
-    Association association = analyzeAssociation(inlineAssociationToken,aTrait.getName());
 
-    if (!getParseResult().getWasSuccess())
-    {
-      return;
-    }
-
-    AssociationEnd myEnd = association.getEnd(0);
-    AssociationEnd yourEnd = association.getEnd(1);
-
-    AssociationVariable myAs = new AssociationVariable(myEnd.getRoleName(),myEnd.getClassName(),myEnd.getModifier(),null,myEnd.getMultiplicity(),association.getIsLeftNavigable());
-    myAs.setIsComposition(association.getIsLeftComposition());
-    AssociationVariable yourAs = new AssociationVariable(yourEnd.getRoleName(),yourEnd.getClassName(),yourEnd.getModifier(),null,yourEnd.getMultiplicity(),association.getIsRightNavigable());
-    yourAs.setIsComposition(association.getIsRightComposition());
-
-    myAs.setRelatedAssociation(yourAs);
-    
-    if(!"".equals(myEnd.getPriority())) { myAs.setPriority(myEnd.getPriority()); }
-    if(!"".equals(yourEnd.getPriority())) { yourAs.setPriority(yourEnd.getPriority()); }
-    
-    if (association.isImmutable())
-    {
-      boolean set = myAs.setImmutable();
-      if (set)
-      {
-        yourAs.setImmutable();
-      }
-      else
-      {
-      	//TODO traits' errors
-        setFailedPosition(inlineAssociationToken.getPosition(),17);
-      }
-    }
-
-    // Add comments above the association to the association.
-    for (Comment c : lastComments)
-    {
-      yourAs.addComment(c);
-    }
-    
-    // set last association made to be yourAs. clear lastattr.
-    lastassoc = yourAs;
-    lastassocPosition = inlineAssociationToken.getPosition();
-    lastattr = null;
-    
-
-    boolean added = aTrait.addAssociationVariable(yourAs);
-    if (added)
-    {
-      unlinkedAssociationVariables.add(yourAs);
-      aTrait.addAssociation(association);
-    }
-    else
-    {
-      if (aTrait.isImmutable()) {
-      	//TODO traits' errors
-      	setFailedPosition(inlineAssociationToken.getPosition(),17);
-      } else {
-      	//TODO traits' errors
-      	setFailedPosition(inlineAssociationToken.getPosition(),13);
-      }
-    }
-    
-  }
-
-
-//---------------------------------end----------------------------------------
-//----------------------------------------------------------------------------   
-//---------------------------------Start--------------------------------------
-   private void analyzeSymmetricReflexiveAssociation(Token symmetricReflexiveAssociationToken, UmpleTrait aTrait){
-    /*
-    String myName = symmetricReflexiveAssociationToken.getValue("roleName");
-    String myType = aTrait.getName();
-    String myModifier = "symmetricreflexive";
-    String myBound = symmetricReflexiveAssociationToken.getValue("bound");
-    String myLowerBound = symmetricReflexiveAssociationToken.getValue("lowerBound");
-    String myUpperBound = symmetricReflexiveAssociationToken.getValue("upperBound");
-    Multiplicity myMult = new Multiplicity();
-    myMult.setBound(myBound);
-    myMult.setRange(myLowerBound,myUpperBound);
-
-    AssociationVariable myAs = new AssociationVariable(myName,myType,myModifier,null,myMult,true);
-    AssociationVariable yourAs = new AssociationVariable(myName,myType,myModifier,null,myMult,true);
-
-    myAs.setRelatedAssociation(yourAs);
-    aTrait.addAssociationVariable(yourAs);
-    
-    AssociationEnd leftEnd = new AssociationEnd(null,myType,myModifier,myType,myMult);
-    AssociationEnd rightEnd = new AssociationEnd(myName,myType,myModifier,myType,myMult);
-    Association assoc = new Association(false, true, false, false, leftEnd, rightEnd);
-    aTrait.addAssociation(assoc);
-    */
-  } 
-}
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
@@ -738,9 +633,7 @@ mixset Association {
         if (uClass.hasExtendsTraits()) {
           if (getParseResult().getWasSuccess()) copyAttributesFromTraitsToClass(uClass);
           if (getParseResult().getWasSuccess()) copyMethodsFromTraitToClass(uClass);
-          mixset Association {
-            if (getParseResult().getWasSuccess()) copyAssociationsFromTraitToClass(uClass);
-          }
+          Label_Association_112: ;
           Label_StateMachine_113: ;
 
           if (getParseResult().getWasSuccess()) copyTestCasesFromTraitsToClass(uClass);
@@ -955,73 +848,7 @@ private void checkClassSupportTraitsInterfaces(	GeneralTPApplied inGeneralTPAppl
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start-------------------------------------- 
-mixset Association {
-  private void ApplyTypeParametersToAssociation(AssociationVariable inAssociationVariable, GeneralTPApplied inGeneralTPApplied,UmpleClass inClass, UmpleTrait inTrait) {  
-    String rawRName = "";
-    String rName = "";
-    boolean bidirectional = inAssociationVariable.getRelatedAssociation().getIsNavigable();
-    if (inGeneralTPApplied != null || inTrait.getGeneralTemplateParameters().size()>0) {
-      for (GeneralTemplateParameter gtp : inTrait.getGeneralTemplateParameters()){
-        String newName = (inGeneralTPApplied!=null && inGeneralTPApplied.getParameterMapping().containsKey(gtp.getName())) ? inGeneralTPApplied.getParameterMapping().get(gtp.getName()) : gtp.getDefaultValue();
-        if (inAssociationVariable.getType().equals(gtp.getName())){
-              //----------------------------------------------------------------
-             String tempOldName = StringFormatter.toCamelCase(gtp.getName());
-             String oldName = inAssociationVariable.getMultiplicity().isMany() ? model.getGlossary().getPlural(tempOldName) : tempOldName;
-              if (inAssociationVariable.getName().equals(oldName)){
-                rawRName = StringFormatter.toCamelCase(newName);
-                rName = inAssociationVariable.getMultiplicity().isMany() ? model.getGlossary().getPlural(rawRName) : rawRName;  
-                inAssociationVariable.setName(rName);
-              } else{
-                rawRName = StringFormatter.toCamelCase(inAssociationVariable.getName());
-                rName = inAssociationVariable.getMultiplicity().isMany() ? model.getGlossary().getPlural(rawRName) : rawRName;                      
-              }
-              
-              inAssociationVariable.setType(newName);
-              if (getModel().getUmpleClass(newName)==null){
-                  if (getModel().getUmpleInterface(newName)!=null){
-                      if (bidirectional){
-                        setFailedPosition(inTrait.getPosition(0), 213, "trait "+inTrait.getName());
-                        return;
-                      }
-                  } 
-              }
-              return;     
-        }
-      }
-    }
-    if (getModel().getUmpleClass(inAssociationVariable.getType())==null){
-        if (getModel().getUmpleInterface(inAssociationVariable.getType())!=null && bidirectional){
-            setFailedPosition(inTrait.getPosition(0), 213, "trait "+inTrait.getName());
-            return;
-        }
-    }
-  }
-//---------------------------------end----------------------------------------
-//----------------------------------------------------------------------------   
-//---------------------------------Start-------------------------------------- 
-  private void addAssociation(String lName, String rName, AssociationVariable inAssociationVariable, UmpleClass inClass, UmpleClass relatedClass) {	
-        AssociationEnd leftEnd = new AssociationEnd(lName, inClass.getName(), inAssociationVariable.getRelatedAssociation().getModifier(), inClass.getName(), inAssociationVariable.getRelatedAssociation().getMultiplicity());
-		AssociationEnd rightEnd = new AssociationEnd(rName,relatedClass.getName(), inAssociationVariable.getModifier(),relatedClass.getName(),inAssociationVariable.getMultiplicity());		
-		Association aAssociation = new Association(inAssociationVariable.getRelatedAssociation().getIsNavigable(), inAssociationVariable.getIsNavigable(),false,false,leftEnd,rightEnd);
-		aAssociation.setName(rName);
-		getModel().addAssociation(aAssociation);	    
-		AssociationEnd myEnd = aAssociation.getEnd(0);
-	    AssociationEnd yourEnd = aAssociation.getEnd(1);
-	    AssociationVariable myAs = new AssociationVariable(myEnd.getRoleName(),myEnd.getClassName(),myEnd.getModifier(),null,myEnd.getMultiplicity(),aAssociation.getIsLeftNavigable());
-              myAs.setIsComposition(aAssociation.getIsLeftComposition());
-	    AssociationVariable yourAs = new AssociationVariable(yourEnd.getRoleName(),yourEnd.getClassName(),yourEnd.getModifier(),null,yourEnd.getMultiplicity(),aAssociation.getIsRightNavigable());
-	    yourAs.setIsComposition(aAssociation.getIsRightComposition());
 
-	    myAs.setRelatedAssociation(yourAs); 
-	    boolean added = inClass.addAssociationVariable(yourAs);
-	    if (added)
-	    {
-		    relatedClass.addAssociationVariable(myAs);
-		    aAssociation.setSource(Association.Source.fTrait);
-	    	inClass.addAssociation(aAssociation);
-	    }
-}
-}
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------  	
@@ -1497,49 +1324,7 @@ private void copyAttributesFromTraitsToClass(UmpleClass inClass){
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
-mixset Association {
-  private void copyAssociationsFromTraitToClass(UmpleClass inClass) {
-    Map<UmpleTrait, List<AssociationVariable>> traiAssociationVariables = new HashMap<UmpleTrait, List<AssociationVariable>>();
-	Map<UmpleTrait, List<AssociationVariable>> tempTraitAssociationVariables = new HashMap<UmpleTrait, List<AssociationVariable>>();
-	for (UmpleTrait uTrait : inClass.getExtendsTraits()) {
-		tempTraitAssociationVariables = gatherAssociations(uTrait,inClass.getGeneralTPAppliedByName(uTrait.getName()),inClass);
-		if ( ! getParseResult().getWasSuccess() ) return;
-		//checkMethodComeFromTraitsIsAvaiableInClass(tempTraitAssociations,inClass);
-		//if (CheckMethodComeFromTraitsIsAvaialbleInOtherTraits(traitMethods,tempTraitAssociations,inClass)) return;
-		AddAssociationMapToAnother(traiAssociationVariables,tempTraitAssociationVariables);
-	}
-	for (UmpleTrait t1 : traiAssociationVariables.keySet()) {
-		for (AssociationVariable associationVariable : traiAssociationVariables.get(t1)) {
-            AssociationVariable relAsso = associationVariable.getRelatedAssociation();
-            String tempOldName = StringFormatter.toCamelCase(relAsso.getType());
-            String oldName = relAsso.getMultiplicity().isMany() ? model.getGlossary().getPlural(tempOldName) : tempOldName;
-             if (relAsso.getName().equals(oldName)){
-                 String rawRName = StringFormatter.toCamelCase(inClass.getName());
-                 relAsso.setName(relAsso.getMultiplicity().isMany() ? model.getGlossary().getPlural(rawRName) : rawRName);
-             }
-  
-             if (model.getUmpleClass(associationVariable.getType())!=null){
-                 addAssociation(relAsso.getName(), associationVariable.getName(), associationVariable,inClass, model.getUmpleClass(associationVariable.getType()));
-                 if (associationVariable.getIsNavigable())
-                   {                  
-                       inClass.addReferencedPackage(model.getUmpleClass(associationVariable.getType()).getPackageName());
-                   }
-                   if (associationVariable.getRelatedAssociation().getIsNavigable())
-                   {
-                       model.getUmpleClass(associationVariable.getType()).addReferencedPackage(inClass.getPackageName());
-                   }        
-             } else if (model.getUmpleInterface(associationVariable.getType())!=null){
-                 
-                 addAssociation(relAsso.getName(), associationVariable.getName(), associationVariable,inClass, new UmpleClass(associationVariable.getType()));
-                 if (associationVariable.getRelatedAssociation().getIsNavigable())
-                   {
-                       inClass.addReferencedPackage(model.getUmpleInterface(associationVariable.getType()).getPackageName());
-                   }     
-             }  		
-		}
-	}	
-  }
-}
+
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
@@ -1572,34 +1357,7 @@ private Map<UmpleTrait, List<Attribute>> gatherAttributes(UmpleTrait inTrait, Ge
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
-mixset Association {
-private Map<UmpleTrait, List<AssociationVariable>> gatherAssociations(UmpleTrait inTrait, GeneralTPApplied inGTPApplied, UmpleClass inClass) {
-     Map<UmpleTrait, List<AssociationVariable>> traitAssociationVariables = new HashMap<UmpleTrait, List<AssociationVariable>>(); 
- 	 Map<UmpleTrait, List<AssociationVariable>> tempTraitAssociationVariables = new HashMap<UmpleTrait, List<AssociationVariable>>();
- 	 //----------------------------------------------------------------------------------------
- 	 List<AssociationVariable> associationVariables = new ArrayList<AssociationVariable>();	  
- 	 for (AssociationVariable associationVariable : inTrait.getAssociationVariables()) {
- 		 	AssociationVariable newAssociationVariable = new AssociationVariable(associationVariable);
- 		 	AssociationVariable tempAssociationVariable = new AssociationVariable(associationVariable.getRelatedAssociation());
- 		 	newAssociationVariable.setRelatedAssociation(tempAssociationVariable);
-    	 	ApplyTypeParametersToAssociation(newAssociationVariable,inGTPApplied,inClass, inTrait);
-    	 	associationVariables.add(newAssociationVariable);
-	 }
- 	traitAssociationVariables.put(inTrait,associationVariables);
-     //----------------------------------------------------------------------------------------
-     for (UmpleTrait uTrait : inTrait.getExtendsTraits()) {
-       GeneralTPApplied newGTParameter = inTrait.getGeneralTPAppliedByName(uTrait.getName())!=null ? new GeneralTPApplied(inTrait.getGeneralTPAppliedByName(uTrait.getName())) : null;     
-       if (newGTParameter!=null){
-         ApplyTypeParametersToTypeParameters(newGTParameter, inGTPApplied,inTrait);       
-    	   tempTraitAssociationVariables = gatherAssociations(uTrait,newGTParameter,inClass);   
-    	 }	 
-    	 if ( ! getParseResult().getWasSuccess() ) return traitAssociationVariables;
-//    	 if (CheckAssociationsComeFromTraitsIsAvaialbleInOtherTraits(traitAssociations,tempTraitAssociations,inTrait)) return traitAssociations;
-    	 AddAssociationMapToAnother(traitAssociationVariables,tempTraitAssociationVariables);
-	 }
-     return traitAssociationVariables;
-}
-}
+
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
@@ -1769,19 +1527,7 @@ private void AddAttMapToAnother(Map<UmpleTrait, List<Attribute>> inTraitAttribut
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------
-mixset Association {
-private void AddAssociationMapToAnother(Map<UmpleTrait, List<AssociationVariable>> inTraitAssociations,Map<UmpleTrait, List<AssociationVariable>> inTempTraitAssociations) {
-    for (UmpleTrait uTrait : inTempTraitAssociations.keySet()) {
-		if (inTraitAssociations.containsKey(uTrait)){
-			for (AssociationVariable associationVariable : inTraitAssociations.get(uTrait)) {
-				inTraitAssociations.get(uTrait).add(associationVariable);
-        }
-      } else{
-        inTraitAssociations.put(uTrait, inTempTraitAssociations.get(uTrait));
-      }	
-	  }	
-  }
-}
+
 //---------------------------------end----------------------------------------
 //----------------------------------------------------------------------------   
 //---------------------------------Start--------------------------------------

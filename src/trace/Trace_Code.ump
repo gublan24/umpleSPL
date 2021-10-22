@@ -59,36 +59,8 @@ class AssociationVariable
 
 		for(TraceDirective td: uClass.getAllTraceDirectives())
 		{
-			mixset Association {
-				for(AssociationTraceItem ast: td.getAssociationTraceItems())
-				{
-					if(( (method.equals("associationAdd")||method.equals("associationRemove")) && ast.getTraceCardinality()))
-					{
-						for(AssociationVariable variable: ast.getAssociationVariables())
-						{
-							if(variable.getName().equals(this.getName()))
-								traceItems.add(ast);
-						}
 
-					}
-					if((method.equals("associationAdd") && ast.getTraceAdd()))
-					{
-						for(AssociationVariable variable: ast.getAssociationVariables())
-						{
-							if(variable.getName().equals(this.getName()))
-								traceItems.add(ast);
-						}
-					}
-					if((method.equals("associationRemove") && ast.getTraceRemove()))
-					{
-						for(AssociationVariable variable: ast.getAssociationVariables())
-						{
-							if(variable.getName().equals(this.getName()))
-								traceItems.add(ast);
-						}
-					}
-				}
-			}
+			Label_Association_31: ;
 		}
 
 		return traceItems;
@@ -164,12 +136,8 @@ class AttributeTraceItem
 				{
 					name = gen.translate("attributeOne",(Attribute)o);
 				}
-				mixset Association {
-				  else if(o instanceof AssociationVariable)
-				  {
-					name = gen.translate("associationMany",(AssociationVariable)o);
-				  }
-				}
+				Label_Association_33: ;
+
 				if(type==null||"".equals(type)||"Boolean".equals(type)||"boolean".equals(type)||"String".equals(type)||"int".equals(type)||"Integer".equals(type)||"float".equals(type)||"Float".equals(type)||"double".equals(type)||"Double".equals(type)||"Time".equals(type)||"Date".equals(type))
 				{
 					obj = name;
@@ -263,83 +231,7 @@ class AssociationTraceItem
 	 * @return the message for the trace 
 	 */  
 	public String trace(CodeTranslator gen, Object o, String methodname, UmpleClass uClass, String... args){
-		mixset Association {
-		for(AssociationVariable ass: uClass.getAssociationVariables())
-		{
-			if(ass.equals(o))
-			{
-				String type = ((AssociationVariable)o).getType();
-				String name = "";
-				String extra = "";
-				String obj = "";
-				String accessor = gen.translate("traceAccessor",this);
-				String concatinator = gen.translate("traceConcatinator",this);
-				String comma = concatinator+"\",\""+concatinator;
-				String tracerName = Character.toUpperCase(getTracerType().charAt(0)) + getTracerType().substring(1);
-				String messageLayout = "{0}"+comma+"{1}"+concatinator+"\",{2},{3},{4},\""+concatinator+"{5}"+concatinator+"\",{6},{7},\"";
-				mixset Association {
-				  if(o instanceof AssociationVariable)
-				  {
-					name = gen.translate("associationMany",(AssociationVariable)o);
-			  	  }
-				}
-
-				//         if(type==null||"".equals(type)||"Boolean".equals(type)||"boolean".equals(type)||"String".equals(type)||"int".equals(type)||"Integer".equals(type)||"float".equals(type)||"Float".equals(type)||"double".equals(type)||"Double".equals(type)||"Time".equals(type)||"Date".equals(type))
-				//         {
-				//           obj = name;
-				//         }
-				//         else
-				//         {
-				//           obj = name+"(\"+"+StringFormatter.format(gen.translate("traceIdentifier",this),name)+"+\")";
-				//           name += gen.translate("traceFormatNonPrimitive",this);
-				//         }
-
-				for(String str: args){
-					extra+=concatinator+str;
-				}
-				if(getTraceDirective().getTraceRecord()!=null)
-				{
-					for(Attribute record:getTraceDirective().getTraceRecord().getAttributes())
-					{
-						extra+=comma+gen.translate("attribute"+(record.getIsList()?"Many":"One"),record);
-					}
-					if(getTraceDirective().getTraceRecord().numberOfRecord()>0)
-					{
-						extra+= concatinator+"\"";
-						for(String record:getTraceDirective().getTraceRecord().getRecord())
-						{
-							extra+=","+record.replace("\"","");
-						}
-						extra+= "\"";
-					}
-				}
-				String message = messageLayout+extra;
-				message = StringFormatter.format(
-						message,gen.translate("traceTimestamp",this),
-						gen.translate("traceThread",this),
-						getPosition().getFilename().replace("\\","\\\\"),
-						getPosition().getLineNumber(),
-						uClass.getName()+"+"+type,
-						StringFormatter.format(gen.translate("traceIdentifier",this),gen.translate("traceSelf",this)),
-						methodname,
-						name        
-						);
-
-				message = TraceItemUtil.prepareTraceMessage(getTraceDirective(),gen,this,message);
-
-				message = StringFormatter.format(getExtremities(gen, name),message);
-				message = GeneratorHelper.doIndent(message,gen.translate("traceIndent",this));
-				if(getTraceDirective().getPostfix().getExecuteClause()!=null)
-				{
-					String execute = getTraceDirective().getPostfix().getExecuteClause();
-					execute = GeneratorHelper.doIndent(execute,gen.translate("traceIndent",this));
-					message += "\n" + execute;
-				}
-				return message;
-			}
-		}
-		}
-
+		Label_Association_35: ;
 		return "";
 	}
 	/* Gets and returns the if statement enclosing this trace item.

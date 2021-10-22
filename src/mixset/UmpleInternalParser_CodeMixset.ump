@@ -97,16 +97,9 @@ class UmpleInternalParser
     boolean returnMixsetBody= false;
     Label_Class_144: ;
     Label_StateMachine_145: ;
-
     Label_Trait_146: ;
+    Label_Association_147: ;
 
-    mixset Association {
-      else if (token.is("associationDefinition"))
-      {
-        tokenKey = "name"; 
-        prefix ="association";
-      }
-    }
     if(! tokenKey.equals("")) 
     {
       mixsetBody = " "+prefix +" "+ token.getValue(tokenKey) + " { " + mixsetBody + " } ";

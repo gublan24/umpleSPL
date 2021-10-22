@@ -97,7 +97,9 @@ mixset Structure {
 }
 mixset Template {
   use template/UmpleInternalParser_CodeTemplate.ump;
-  use Template_Strcture;
+  mixset Structure {
+    use Template_Strcture;
+  }
 }
 mixset StateMachine {
   use stateMachine/UmpleInternalParser_CodeStateMachine.ump;

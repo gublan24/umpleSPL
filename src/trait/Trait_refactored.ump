@@ -420,7 +420,7 @@ mixset Class {
 } 
 
 
-mixset Trait { 
+mixset StateMachine { 
   class UmpleInternalParser { 
     before Label_Trait_120:analyzeStateMachineToken(Token,UmpleClassifier,int)
   {
@@ -436,7 +436,7 @@ mixset Trait {
 } 
 
 
-mixset Trait { 
+mixset StateMachine { 
   class UmpleInternalParser { 
     before Label_Trait_121:analyzedReferencedStateMachine(Token,UmpleClassifier)
   {
@@ -447,7 +447,7 @@ mixset Trait {
 } 
 
 
-mixset Trait { 
+mixset StateMachine { 
   class UmpleInternalParser { 
     before Label_Trait_122:analyzedReferencedStateMachine(Token,UmpleClassifier)
   {
@@ -458,7 +458,7 @@ mixset Trait {
 } 
 
 
-mixset Trait { 
+mixset StateMachine { 
   class UmpleInternalParser { 
     before Label_Trait_123:analyzedReferencedStateMachine(Token,UmpleClassifier)
   {
@@ -470,7 +470,7 @@ mixset Trait {
 } 
 
 
-mixset Trait { 
+mixset StateMachine { 
   class UmpleInternalParser { 
     before Label_Trait_124:analyzeStateMachine(Token,UmpleClassifier)
   {
@@ -481,7 +481,7 @@ mixset Trait {
 } 
 
 
-mixset Trait { 
+mixset StateMachine { 
   class UmpleInternalParser { 
     before Label_Trait_125:analyzeStateMachine(Token,UmpleClassifier)
   {
@@ -492,7 +492,7 @@ mixset Trait {
 } 
 
 
-mixset Trait { 
+mixset StateMachine { 
   class UmpleInternalParser { 
     before Label_Trait_126:analyzeStateMachine(Token,UmpleClassifier)
   {
@@ -504,7 +504,7 @@ mixset Trait {
 } 
 
 
-mixset Trait { 
+mixset StateMachine { 
   class UmpleInternalParser { 
     before Label_Trait_129:analyzeTransition(boolean,Token,State,String)
   {

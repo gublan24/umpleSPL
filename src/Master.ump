@@ -104,7 +104,9 @@ mixset StateMachine {
   use stateMachine/StateMachine_refactored.ump;
 }
 mixset StateMachine {
-use stateMachine/UmpleInternalParser_CodeTrait_StateMachine.ump;
+  mixset Trait {
+    use stateMachine/UmpleInternalParser_CodeTrait_StateMachine.ump;
+  }
 }
 mixset Trace {
   use trace/UmpleInternalParser_CodeTrace.ump;

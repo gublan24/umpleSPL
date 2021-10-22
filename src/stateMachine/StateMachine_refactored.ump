@@ -1306,12 +1306,6 @@ class StatemachineExprStateNameAnalyzer
 
 
 
-mixset Trait{
-// Fragment source file: UmpleInternalParser_CodeTrait.ump
-// Line : 2060
-use stateMachine/UmpleInternalParser_CodeTrait_StateMachine.ump;
-}
-
 
 
 // Fragment source file: UmpleInternalParser_CodeStructure.ump

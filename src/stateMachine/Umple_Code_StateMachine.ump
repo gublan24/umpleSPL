@@ -14,6 +14,8 @@
     }
 } 
 
+
+// Interaction between Trait, StateMachine
 // Fragment source file: Umple_Code.ump
 // Line : 873
 mixset Trait {

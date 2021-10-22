@@ -105,14 +105,8 @@ class UmpleInternalParser
     }
     Label_StateMachine_145: ;
 
-    mixset Trait {
-      else if (token.is("traitDefinition"))
-      {
-        tokenKey = "name"; 
-        prefix ="trait";
-        returnMixsetBody= true;
-      }
-    }
+    Label_Trait_146: ;
+
     mixset Association {
       else if (token.is("associationDefinition"))
       {

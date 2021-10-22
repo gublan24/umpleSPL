@@ -115,16 +115,7 @@ class UmpleClass
   	}
   	return null;
   }
-mixset Trait {
-  public boolean hasMethodInTraits (Method aMethod) {
-	  for (UmpleTrait uTrait : getExtendsTraits()) {
-		  if (uTrait.hasCascadeMethod(aMethod,true) || uTrait.hasCascadeMethod(aMethod,false)) {
-			  return true;
-		  }
-	}
-	  return false;
-  }
-}
+
 
   after setExtendsClass {
     if(aExtendsClass!=null&&aExtendsClass.getMethods()!=null)

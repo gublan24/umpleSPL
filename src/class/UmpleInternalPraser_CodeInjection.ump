@@ -108,31 +108,14 @@ class UmpleInternalParser
           Map.Entry mapElement = (Map.Entry)hmIterator.next(); 
           if (((UmpleClass)mapElement.getKey()).equals(model.getUmpleClass(className)))
           {
-            mixset Trait {
-              traitNames = (ArrayList<String>) mapElement.getValue();
-              ArrayList<String> newTraitNames = (ArrayList<String>) traitNames.clone();
-              for (String traitName : traitNames)
-              {
-                if (model.getUmpleTrait(traitName) == null)
-                {
-                  newTraitNames.remove(traitName);
-                }
-              } 
-              traitNames = newTraitNames;
-            }
+            Label_Trait_149: ;
+        
           }
         } 
 
         ArrayList<String> methodNames = model.getUmpleClass(className).getMethodNames();
-        mixset Trait {
-          for (String umpleTraitName:traitNames)
-          {
-            for (Method m : model.getUmpleTrait(umpleTraitName).getMethods())
-            {
-              methodNames.add(m.getName());
-            }
-          }
-        }
+        Label_Trait_150: ;
+  
         for (String operationName : operationNames)
         {
           boolean foundMethod = false;

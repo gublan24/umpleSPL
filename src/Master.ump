@@ -148,27 +148,6 @@ use util/Util_Code.ump;
 use util/Ant.ump;
 use Builder_Code.ump;
 use GraphWalking.ump;
-
-
-mixset FeatureModel {
-  require [Mixset];
-}
-
-// SPL feature model (level 1):
-require subfeature [Parser];
-require subfeature [Class];
-require subfeature [opt StateMachine opt Trait opt Mixset opt FeatureModel];
-require subfeature [opt Trace opt Structure opt Template];
-require subfeature [opt Layout opt Filter opt FIXML];
-require subfeature [Generators];
-
-
-// SPL feature dependecies (level 1):
-mixset StateMachine {
-  require [Class];
-}
-
-
 //
 use StateMachine ;
 use Trace ;
